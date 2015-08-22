@@ -6,6 +6,11 @@
   // jQuery is optional. Use it to support legacy browsers.
   var $ = (typeof window.jQuery !== 'undefined') && window.jQuery;
 
+  window.reactComponents = {};
+  window.registerComponent = function (name, component) {
+    window.reactComponents[name] = component;
+  };
+
   // create the  namespace
   window.ReactRailsUJS = {
     CLASS_NAME_ATTR: 'data-react-class',
@@ -39,7 +44,7 @@
         // Assume className is simple and can be found at top-level (window).
         // Fallback to eval to handle cases like 'My.React.ComponentName'.
 
-        var constructor = window.ReactComponents[className] || eval.call(window, className);
+        var constructor = window.reactComponents[className] || eval.call(window, className);
         var propsJson = node.getAttribute(window.ReactRailsUJS.PROPS_ATTR);
         var props = propsJson && JSON.parse(propsJson);
 
