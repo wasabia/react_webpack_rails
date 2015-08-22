@@ -1,8 +1,5 @@
 # ReactWebpackRails
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/react_webpack_rails`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Rails - webpack integration with react setup.
 
 ## Installation
 
@@ -12,7 +9,7 @@ Add this line to your application's Gemfile:
 gem 'react_webpack_rails'
 ```
 
-And then execute:
+Execute:
 
     $ bundle
 
@@ -20,9 +17,35 @@ Or install it yourself as:
 
     $ gem install react_webpack_rails
 
-## Usage
+And then run installation
 
-TODO: Write usage instructions here
+    $ rails g react_webpack_rails:install
+
+
+## Usage
+1. Register component in index.js
+
+```js
+import Component from 'some-component';
+
+registerComponent('customComponentName', Component)
+```
+
+2. Use it in view
+
+```erb
+<%= react_component('customComponentName', { user: User.last })
+```
+
+#### Development
+Run webpack in watch mode so it will react on any file change.
+
+    webpack -w
+
+#### Production
+Run webpack in production mode before compiling assets
+
+    webpack -p
 
 ## Development
 
@@ -32,10 +55,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/react_webpack_rails.
+Bug reports and pull requests are welcome on GitHub at https://github.com/netguru/react_webpack_rails.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
