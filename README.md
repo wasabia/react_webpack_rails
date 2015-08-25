@@ -17,9 +17,20 @@ Or install it yourself as:
 
     $ gem install react_webpack_rails
 
-And then run installation
+And then:
 
+1. run installation
+
+    ```
     $ rails g react_webpack_rails:install
+    ```
+    
+2. add react-integration and bundle files to application.js
+
+    ```js
+    //= require react_integration
+    //= require generated/bundle
+    ```
 
 
 ## Usage
