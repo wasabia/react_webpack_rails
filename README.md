@@ -28,7 +28,7 @@ And then:
 2. add react-integration and bundle files to application.js
 
     ```js
-    //= require react_integration
+    //= require react-integration
     //= require generated/bundle
     ```
 
