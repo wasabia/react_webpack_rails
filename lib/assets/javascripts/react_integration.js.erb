@@ -6,16 +6,12 @@
   // jQuery is optional. Use it to support legacy browsers.
   var $ = (typeof window.jQuery !== 'undefined') && window.jQuery;
 
-  window.reactComponents = {};
-  window.registerComponent = function (name, component) {
-    window.reactComponents[name] = component;
-  };
-
   // create the  namespace
   window.ReactRailsUJS = {
     CLASS_NAME_ATTR: 'data-react-class',
     PROPS_ATTR: 'data-react-props',
     RAILS_ENV_DEVELOPMENT: <%= Rails.env == "development" %>,
+    reactComponents: {},
     // helper method for the mount and unmount methods to find the
     // `data-react-class` DOM elements
     findDOMNodes: function(searchSelector) {
@@ -34,6 +30,10 @@
       }
     },
 
+    registerComponent: function (name, component) {
+      window.ReactRailsUJS.reactComponents[name] = component;
+    },
+
     mountComponents: function(searchSelector) {
       var nodes = window.ReactRailsUJS.findDOMNodes(searchSelector);
 
@@ -44,7 +44,7 @@
         // Assume className is simple and can be found at top-level (window).
         // Fallback to eval to handle cases like 'My.React.ComponentName'.
 
-        var constructor = window.reactComponents[className] || eval.call(window, className);
+        var constructor = window.ReactRailsUJS.reactComponents[className] || eval.call(window, className);
         var propsJson = node.getAttribute(window.ReactRailsUJS.PROPS_ATTR);
         var props = propsJson && JSON.parse(propsJson);
 
@@ -62,6 +62,9 @@
       }
     }
   };
+
+  // expose registerComponent globally
+  window.registerComponent = ReactRailsUJS.registerComponent;
 
   // functions not exposed publicly
   function handleTurbolinksEvents () {
