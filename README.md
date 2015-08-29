@@ -1,5 +1,6 @@
 # ReactWebpackRails
-Rails - webpack integration with react setup.
+#### Rails - webpack setup with react integration.
+Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes rails-webpack-react integration easy.
 
 ## Installation
 
@@ -17,21 +18,20 @@ Or install it yourself as:
 
     $ gem install react_webpack_rails
 
-And then:
+Then run installation:
 
-1. run installation
-
-    ```
     $ rails g react_webpack_rails:install
-    ```
-    
-2. add react-integration and bundle files to application.js
 
-    ```js
-    //= require react-integration
-    //= require generated/bundle
-    ```
+Generate `react_bundle` for first time:
 
+    $ webpack
+
+And require integration and bundle files in `application.js`
+
+```js
+//= require react_integration
+//= require react_bundle
+```
 
 ## Usage
 1. Register component in index.js
