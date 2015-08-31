@@ -34,6 +34,20 @@
       window.ReactRailsUJS.reactComponents[name] = component;
     },
 
+    getComponent: function(name) {
+      return window.ReactRailsUJS.reactComponents[name];
+    },
+
+    createComponent: function (name, props) {
+      var constructor = window.ReactRailsUJS.getComponent(name);
+      return React.createElement(constructor, props);
+    },
+
+    renderComponent: function (name, props, element) {
+      var component = window.ReactRailsUJS.createComponent(name, props);
+      React.render(component, element);
+    },
+
     mountComponents: function(searchSelector) {
       var nodes = window.ReactRailsUJS._findDOMNodes(searchSelector);
 
@@ -44,7 +58,7 @@
         // Assume className is simple and can be found at top-level (window).
         // Fallback to eval to handle cases like 'My.React.ComponentName'.
 
-        var constructor = window.ReactRailsUJS.reactComponents[className] || eval.call(window, className);
+        var constructor = window.ReactRailsUJS.reactComponents[className];
         var propsJson = node.getAttribute(window.ReactRailsUJS.PROPS_ATTR);
         var props = propsJson && JSON.parse(propsJson);
 
@@ -63,8 +77,11 @@
     }
   };
 
-  // expose registerComponent globally
+  // expose helpers globally
   window.registerComponent = ReactRailsUJS.registerComponent;
+  window.getComponent = ReactRailsUJS.getComponent;
+  window.createComponent = ReactRailsUJS.createComponent;
+  window.renderComponent = ReactRailsUJS.renderComponent;
 
   // functions not exposed publicly
   function handleTurbolinksEvents () {
