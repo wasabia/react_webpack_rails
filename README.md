@@ -34,29 +34,45 @@ And require integration and bundle files in `application.js`
 ```
 
 ## Usage
-1. Register component in index.js
+#### Register component in index.js
 
 ```js
-import Component from 'some-component';
-
+import Component from './componnets/some-component';
 registerComponent('customComponentName', Component)
 ```
 
-2. Use it in view
+#### Use it in rails view
 
 ```erb
 <%= react_component('customComponentName', { user: User.last })
 ```
 
-#### Development
-Run webpack in watch mode so it will react on any file change.
+#### Use it in js
 
-    webpack -w
+```js
+var element = $('.my-element');
+renderComponent('customComponentName', {user_id: 1}, element);
+```
 
-#### Production
-Run webpack in production mode before compiling assets
+### Development
+Run webpack in wath mode using script:
 
-    webpack -p
+    $ npm start
+
+Or manually:
+
+    $ webacpk -w --config YOUR_CONFIG
+
+
+
+### Production
+Run webpack in production mode before compiling assets using script:
+
+    $ npm run build
+
+or manually:
+
+    $ webpack -p --config YOUR_CONFIG
 
 ## Development
 
