@@ -1,7 +1,9 @@
 this will create:
   webpack.config.js
   karma.conf.js
-  tests.webpack.js
+  webpack/tests.config.js
+  webpack/dev.config.js
+  webpack/production.config.js
   package.json.erb
   app/react/index.js
   app/react/components/hello-world.jsx
