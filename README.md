@@ -1,6 +1,6 @@
 # ReactWebpackRails
 #### Rails - webpack setup with react integration.
-Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes rails-webpack-react integration easy.
+Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes react-webpack-rails integration easy.
 
 ## Installation
 
@@ -37,7 +37,7 @@ And require integration and bundle files in `application.js`
 #### Register component in index.js
 
 ```js
-import Component from './componnets/some-component';
+import Component from './componets/some-component';
 registerComponent('customComponentName', Component)
 ```
 
@@ -50,7 +50,7 @@ registerComponent('customComponentName', Component)
 #### Use it in js
 
 ```js
-var element = $('.my-element');
+var element = $('#my-element');
 renderComponent('customComponentName', {user_id: 1}, element);
 ```
 
