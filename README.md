@@ -22,6 +22,10 @@ Then run installation:
 
     $ rails g react_webpack_rails:install
 
+Establish the node packages (may take a few moments)
+
+    $ npm install    # you may see warnings to consider updating the provided package.json file with license and repository
+
 Generate `react_bundle` for first time:
 
     $ webpack
@@ -37,7 +41,7 @@ And require integration and bundle files in `application.js`
 #### Register component in index.js
 
 ```js
-import Component from './componets/some-component';
+import Component from './components/some-component';
 registerComponent('customComponentName', Component)
 ```
 
@@ -55,13 +59,13 @@ renderComponent('customComponentName', {user_id: 1}, element);
 ```
 
 ### Development
-Run webpack in wath mode using script:
+Run webpack in watch mode using script:
 
     $ npm start
 
 Or manually:
 
-    $ webacpk -w --config YOUR_CONFIG
+    $ webpack -w --config YOUR_CONFIG
 
 
 
