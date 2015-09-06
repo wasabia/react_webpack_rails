@@ -56,6 +56,7 @@ And require integration and bundle files in `application.js`
 ```
 
 ## Usage
+##### Check [docs](https://github.com/netguru/react_webpack_rails/tree/master/docs) for detailed api description.
 #### Register component in index.js
 
 ```js
