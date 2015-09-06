@@ -1,3 +1,13 @@
+## 0.0.3 (September 6, 2015)
+* Reorganize config files.
+* Add UJS helpers:
+  * `getComponent`
+  * `createComponent`
+  * `renderComponent`
+* Add docs.
+* Add various Readme fixes.
+* Bump dependencies.
+
 ## 0.0.2 (August 29, 2015)
 * Use rails like names.
 * Simplify webpack setup.
