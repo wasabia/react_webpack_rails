@@ -10,8 +10,10 @@
   window.ReactRailsUJS = {
     CLASS_NAME_ATTR: 'data-react-class',
     PROPS_ATTR: 'data-react-props',
+    ROUTER_FLAG: 'data-react-router',
     RAILS_ENV_DEVELOPMENT: <%= Rails.env == "development" %>,
     reactComponents: {},
+    reactRouters: {},
     // helper method for the mount and unmount methods to find the
     // `data-react-class` DOM elements
     _findDOMNodes: function(searchSelector) {
@@ -48,21 +50,36 @@
       React.render(component, element);
     },
 
+    getRouter: function(name) {
+      return window.ReactRailsUJS.reactRouters[name];
+    },
+
+    registerRouter: function(name, routes) {
+      window.ReactRailsUJS.reactRouters[name] = routes;
+    },
+
+    renderRouter: function(name, props, element) {
+      var router = window.ReactRailsUJS.getRouter(name);
+      Router.run(router, function (Handler) {
+        React.render(React.createElement(Handler, props), element)
+      });
+    },
+
     mountComponents: function(searchSelector) {
       var nodes = window.ReactRailsUJS._findDOMNodes(searchSelector);
 
       for (var i = 0; i < nodes.length; ++i) {
         var node = nodes[i];
         var className = node.getAttribute(window.ReactRailsUJS.CLASS_NAME_ATTR);
-
-        // Assume className is simple and can be found at top-level (window).
-        // Fallback to eval to handle cases like 'My.React.ComponentName'.
-
-        var constructor = window.ReactRailsUJS.reactComponents[className];
         var propsJson = node.getAttribute(window.ReactRailsUJS.PROPS_ATTR);
+        var isRouter = node.getAttribute(window.ReactRailsUJS.ROUTER_FLAG);
         var props = propsJson && JSON.parse(propsJson);
+        if (isRouter) {
+          window.ReactRailsUJS.renderComponent(className, props, node)
+        } else{
+          window.ReactRailsUJS.renderRouter(className, props, node)
+        }
 
-        React.render(React.createElement(constructor, props), node);
       }
     },
 
@@ -82,6 +99,10 @@
   window.getComponent = ReactRailsUJS.getComponent;
   window.createComponent = ReactRailsUJS.createComponent;
   window.renderComponent = ReactRailsUJS.renderComponent;
+
+  window.registerRouter = ReactRailsUJS.registerRouter;
+  window.getRouter = ReactRailsUJS.getRouter;
+  window.renderRouter = ReactRailsUJS.renderRouter;
 
   // functions not exposed publicly
   function handleTurbolinksEvents () {
