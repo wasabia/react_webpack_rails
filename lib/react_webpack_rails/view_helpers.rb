@@ -2,8 +2,6 @@ module ReactWebpackRails
   module ViewHelpers
     # based on https://github.com/reactjs/react-rails/blob/master/lib/react/rails/view_helper.rb
     def react_component(name, props = {}, options = {}, &block)
-      options = { tag: options } if options.is_a?(Symbol)
-
       html_options = options.reverse_merge(data: {})
       html_options[:data].tap do |data|
         data[:react_class] = name
@@ -13,6 +11,10 @@ module ReactWebpackRails
       html_options.except!(:tag)
 
       content_tag(html_tag, '', html_options, &block)
+    end
+
+    def react_router(name, props = {})
+      react_component(name, props, react_router: true)
     end
   end
 end
