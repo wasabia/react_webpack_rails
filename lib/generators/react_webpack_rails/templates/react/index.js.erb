@@ -1,11 +1,17 @@
-window.React = require('react');
-<% if options.example %>
+import React from 'react';
+window.React = React;
+<% if options.router %>
+import Router from 'react-router';
+window.Router = Router;
+<% else %>
+// react-router integration:
+// import Router from 'react-router';
+// window.Router = Router;
+<% end %><% if options.example %>
 import HelloWorld from './components/hello-world';
-
 registerComponent('hello-world', HelloWorld);
 <% else %>
 // example usage:
 // import HelloWorld from './components/hello-world';
-
 // registerComponent('hello-world', HelloWorld);
 <% end %>

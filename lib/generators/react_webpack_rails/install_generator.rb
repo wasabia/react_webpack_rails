@@ -2,6 +2,8 @@ module ReactWebpackRails
   class InstallGenerator < Rails::Generators::Base
     source_root File.expand_path('../templates', __FILE__)
     class_option :example, type: :boolean, default: true, desc: 'Include example component and test files.'
+    class_option :router, type: :boolean, default: true, desc: 'Add and expose react-router globally.'
+
 
     def generate_layout
       copy_file 'webpack.config.js', 'webpack.config.js'
