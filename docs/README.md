@@ -62,6 +62,52 @@
   renderComponent('MyComponentName', {foo: 'bar'}, element);
   ```
 
+* ### registerRouter
+  ```js
+  registerRouter(String routerName, class|function component)
+  ```
+
+  Register router so it's globally accessible.
+
+  ##### example:
+
+  ```js
+  import MyComponent from 'my-component';
+
+  registerComponent('MyComponentName', MyComponent);
+  ```
+
+  **note:** Registered components are accessible in globally exposed `ReactRailsUJS` under `reactRouters` property.
+
+* ### getRouter
+
+  ```js
+  getRouter(String routerName)
+  ```
+
+  Shortcut for accessing registered router.
+
+  ##### example:
+
+  ```js
+  getRouter('MyRouterName');
+  ```
+
+* ### renderRouter
+
+  ```js
+  renderRouter(String routerName, Object props, DOMElement container)
+  ```
+
+  Wrapper ove `Router.run` function with possibility to pass props to handler.
+
+  ##### example:
+
+  ```js
+  var element = document.getElementById('my-element');
+  renderComponent('MyComponentName', {foo: 'bar'}, element);
+  ```
+
 ## Rails helpers
 
 * ### react_component
@@ -79,3 +125,17 @@
   ```
 
   **note:** Props Object will parsed to JSON. Be careful when passing rails models there - all its data accessible after `.to_json` will be exposed as data-attributes. We  recommend using serializers to control it.
+
+* ### react_router
+
+  ```ruby
+  react_component(String router_name[, Object props])
+  ```
+
+  Same as react_component but will be wrapped with Router.run function.
+
+  ##### example:
+
+  ```ruby
+  <%= react_router('MyRouterName', MySerializer.new(my_data)) %>
+  ```
