@@ -75,11 +75,10 @@
         var isRouter = node.getAttribute(window.ReactRailsUJS.ROUTER_FLAG);
         var props = propsJson && JSON.parse(propsJson);
         if (isRouter) {
-          window.ReactRailsUJS.renderComponent(className, props, node)
-        } else{
           window.ReactRailsUJS.renderRouter(className, props, node)
+        } else {
+          window.ReactRailsUJS.renderComponent(className, props, node)
         }
-
       }
     },
 
