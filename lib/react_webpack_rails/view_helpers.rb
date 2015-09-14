@@ -14,8 +14,8 @@ module ReactWebpackRails
       content_tag(html_tag, '', html_options, &block)
     end
 
-    def react_router(name, props = {})
-      react_component(name, props, react_router: true)
+    def react_router(name)
+      react_component(name, {}, react_router: true)
     end
   end
 end

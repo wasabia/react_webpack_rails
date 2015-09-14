@@ -50,19 +50,17 @@
       React.render(component, element);
     },
 
-    getRouter: function(name) {
-      return window.ReactRailsUJS.reactRouters[name];
-    },
-
     registerRouter: function(name, routes) {
       window.ReactRailsUJS.reactRouters[name] = routes;
     },
 
-    renderRouter: function(name, props, element) {
+    getRouter: function(name) {
+      return window.ReactRailsUJS.reactRouters[name];
+    },
+
+    renderRouter: function(name, element) {
       var router = window.ReactRailsUJS.getRouter(name);
-      Router.run(router, function (Handler) {
-        React.render(React.createElement(Handler, props), element)
-      });
+      React.render(router, element);
     },
 
     mountComponents: function(searchSelector) {
@@ -72,10 +70,14 @@
         var node = nodes[i];
         var className = node.getAttribute(window.ReactRailsUJS.CLASS_NAME_ATTR);
         var propsJson = node.getAttribute(window.ReactRailsUJS.PROPS_ATTR);
-        var isRouter = node.getAttribute(window.ReactRailsUJS.ROUTER_FLAG);
+        try {
+          var isRouter = JSON.parse(node.getAttribute(window.ReactRailsUJS.ROUTER_FLAG));
+        } catch(error) {
+          var isRouter = false
+        }
         var props = propsJson && JSON.parse(propsJson);
         if (isRouter) {
-          window.ReactRailsUJS.renderRouter(className, props, node)
+          window.ReactRailsUJS.renderRouter(className, node)
         } else {
           window.ReactRailsUJS.renderComponent(className, props, node)
         }
@@ -87,7 +89,6 @@
 
       for (var i = 0; i < nodes.length; ++i) {
         var node = nodes[i];
-
         React.unmountComponentAtNode(node);
       }
     }

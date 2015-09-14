@@ -1,13 +1,6 @@
 import React from 'react';
 window.React = React;
-<% if options.router %>
-import Router from 'react-router';
-window.Router = Router;
-<% else %>
-// react-router integration:
-// import Router from 'react-router';
-// window.Router = Router;
-<% end %><% if options.example %>
+<% if options.example %>
 import HelloWorld from './components/hello-world';
 registerComponent('hello-world', HelloWorld);
 <% else %>

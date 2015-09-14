@@ -129,13 +129,11 @@
 * ### react_router
 
   ```ruby
-  react_component(String router_name[, Object props])
+  react_router(String router_name)
   ```
-
-  Same as react_component but will be wrapped with Router.run function.
 
   ##### example:
 
   ```ruby
-  <%= react_router('MyRouterName', MySerializer.new(my_data)) %>
+  <%= react_router('MyRouterName') %>
   ```
