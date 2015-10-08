@@ -35,6 +35,7 @@ This will create following files:
 │   ├── dev.config.js
 │   ├── production.config.js
 │   └── tests.config.js
+|── .babelrc
 ├── karma.conf.js
 ├── package.json
 └── webpack.config.js
@@ -54,6 +55,10 @@ And require integration and bundle files in `application.js`
 //= require react_integration
 //= require react_bundle
 ```
+
+### Babel
+
+By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to change the stage, you can do so in the `.babelrc` file. It is however not recommended to use Stage 0 in a production app, because the features present there can be dropped, which would break your application.
 
 ## Usage
 ##### Check [docs](https://github.com/netguru/react_webpack_rails/tree/master/docs) for detailed api description.
