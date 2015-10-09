@@ -6,6 +6,7 @@ module ReactWebpackRails
 
 
     def generate_layout
+      copy_file '.babelrc', '.babelrc'
       copy_file 'webpack.config.js', 'webpack.config.js'
       copy_file 'webpack/dev.config.js', 'webpack/dev.config.js'
       copy_file 'webpack/production.config.js', 'webpack/production.config.js'
