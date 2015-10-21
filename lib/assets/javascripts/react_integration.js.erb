@@ -50,6 +50,10 @@
       React.render(component, element);
     },
 
+    unmountComponent: function (node) {
+      React.unmountComponentAtNode(node);
+    },
+
     registerRouter: function(name, routes) {
       window.ReactRailsUJS.reactRouters[name] = routes;
     },
@@ -93,7 +97,7 @@
       window.ReactRailsUJS.routerEnabled = false;
       for (var i = 0; i < nodes.length; ++i) {
         var node = nodes[i];
-        React.unmountComponentAtNode(node);
+        window.ReactRailsUJS.unmountComponent(node);
       }
     }
   };
@@ -103,6 +107,7 @@
   window.getComponent = ReactRailsUJS.getComponent;
   window.createComponent = ReactRailsUJS.createComponent;
   window.renderComponent = ReactRailsUJS.renderComponent;
+  window.unmountComponent = ReactRailsUJS.unmountComponent;
 
   window.registerRouter = ReactRailsUJS.registerRouter;
   window.getRouter = ReactRailsUJS.getRouter;

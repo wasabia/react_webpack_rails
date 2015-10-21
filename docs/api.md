@@ -60,6 +60,21 @@
   renderComponent('MyComponentName', {foo: 'bar'}, element);
   ```
 
+* ### unmountComponent
+
+  ```js
+  unmountComponent(DOMElement container)
+  ```
+
+  Wrapper over `React.unmountComponentAtNode`. It will unmount component from given DOM node.
+
+  ##### example:
+
+  ```js
+  var element = document.getElementById('my-element');
+  unmountComponent(element);
+  ```
+
 * ### registerRouter
   ```js
   registerRouter(String routerName, class|function component)
