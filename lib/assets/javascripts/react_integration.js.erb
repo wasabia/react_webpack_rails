@@ -47,11 +47,11 @@
 
     renderComponent: function (name, props, element) {
       var component = window.ReactRailsUJS.createComponent(name, props);
-      React.render(component, element);
+      ReactDOM.render(component, element);
     },
 
     unmountComponent: function (node) {
-      React.unmountComponentAtNode(node);
+      ReactDOM.unmountComponentAtNode(node);
     },
 
     registerRouter: function(name, routes) {
@@ -68,7 +68,7 @@
       }
       window.ReactRailsUJS.routerEnabled = true;
       var router = window.ReactRailsUJS.getRouter(name);
-      React.render(router, element);
+      ReactDOM.render(router, element);
     },
 
     mountComponents: function(searchSelector) {
