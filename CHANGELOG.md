@@ -1,3 +1,34 @@
+## 0.0.4 (October 26, 2015)
+* Add [react-router [v1]](https://github.com/rackt/react-router) integration:
+  * js helpers:
+    * `registerRouter`
+    * `getRouter`
+    * `renderRouter`
+  * rails helper:
+    * `react_router`
+* Add `unmountComponent` js helper.
+* Bump package.json.
+* Add React 0.14 compatibility.
+* Add `.babelrc` file as part of generator.
+
+### migration 0.0.3 -> 0.0.4
+* Make sure your package.json is up-to-date.
+* install `react-dom 0.14`:
+  ```
+  $ npm install react-dom --save`
+  ```
+* Expose `ReactDOM` in app/react/index.js.
+  ```js
+  import ReactDOM from 'react-dom';
+  window.ReactDOM = ReactDOM;
+  ```
+* Create `.bablerc` in your project directory:
+  ```js
+  {
+    "stage": 1
+  }
+  ```
+
 ## 0.0.3 (September 6, 2015)
 * Reorganize config files.
 * Add UJS helpers:
