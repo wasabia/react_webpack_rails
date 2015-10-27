@@ -13,6 +13,7 @@ module ReactWebpackRails
       copy_file 'webpack/production.config.js', 'webpack/production.config.js'
       copy_file 'karma.conf.js', 'karma.conf.js'
       copy_file 'webpack/tests.config.js', 'webpack/tests.config.js'
+      copy_file 'partial/_assets.html.erb', 'app/views/layouts/_assets.html.erb'
       template 'react/index.js.erb', 'app/react/index.js'
       if options.example
         copy_file 'react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
