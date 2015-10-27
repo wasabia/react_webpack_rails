@@ -62,6 +62,11 @@ By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to 
 
 ## Usage
 ##### Check [docs](https://github.com/netguru/react_webpack_rails/tree/master/docs) for detailed api description.
+### add partial in your application.html.erb to <body>:
+```erb
+<%= render 'layouts/assets' %>
+```
+
 #### Register component in index.js
 
 ```js
@@ -83,9 +88,13 @@ renderComponent('customComponentName', {user_id: 1}, element);
 ```
 
 ### Development
-Run webpack in watch mode using script:
+Run webpack in auto-reloading mode using script:
 
     $ npm start
+
+Run webpack in hot-auto-reloading mode using script:
+
+    $ npm run start-hot-dev
 
 Or manually:
 
