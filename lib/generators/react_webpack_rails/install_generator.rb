@@ -15,6 +15,7 @@ module ReactWebpackRails
       copy_file 'webpack/tests.config.js', 'webpack/tests.config.js'
       copy_file 'partial/_assets.html.erb', 'app/views/layouts/_assets.html.erb'
       template 'react/index.js.erb', 'app/react/index.js'
+      create_file 'app/assets/javascripts/react_bundle.js'
       if options.example
         copy_file 'react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
         copy_file 'react/components/hello-world-test.jsx', 'app/react/components/hello-world-test.jsx'
