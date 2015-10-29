@@ -3,11 +3,11 @@
   * webpack-dev-server
   * react-hot-loader
 * Now there are two development servers:
-  * with auto-reload
+  * served by webpack - without auto-reload:
     ```
     $ npm start
     ```
-  * with hot-auto-reload
+  * served by webpack-dev-server - with hot-auto-reload:
     ```
     $ npm run start-hot-dev
     ```
@@ -22,6 +22,9 @@
     <script src='http://localhost:8080/assets/react_bundle.js'></script>
   <% end %>
   ```
+* copy file `hot-dev.config.js` from https://github.com/netguru/react_webpack_rails/tree/master/lib/generators/react_webpack_rails/templates/webpack to your `/webpack` directory.
+* make sure that you have `react_bundle.js` in your `/app/assets/javascripts` directory. If not, to use hot-reloading server please create empty `react_bundle.js` in your `/app/assets/javascripts` directory or just run `$ npm start` or `$ npm build` in your terminal.
+
 
 ## 0.0.4 (October 26, 2015)
 * Add [react-router [v1]](https://github.com/rackt/react-router) integration:
