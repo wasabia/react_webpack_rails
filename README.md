@@ -64,7 +64,7 @@ By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to 
 ##### Check [docs](https://github.com/netguru/react_webpack_rails/tree/master/docs) for detailed api description.
 ### add partial in your application.html.erb to <body>:
 ```erb
-<%= render 'layouts/assets' %>
+<%= render 'layouts/react_hot_assets' %>
 ```
 
 #### Register component in index.js
