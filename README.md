@@ -62,6 +62,11 @@ By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to 
 
 ## Usage
 ##### Check [docs](https://github.com/netguru/react_webpack_rails/tree/master/docs) for detailed api description.
+### to use hot-reloading add partial in your application.html.erb to <body> (it's not needed when you want to use just webpack in watch mode without hot-reloading):
+```erb
+<%= render 'layouts/react_hot_assets' %>
+```
+
 #### Register component in index.js
 
 ```js
@@ -86,6 +91,10 @@ renderComponent('customComponentName', {user_id: 1}, element);
 Run webpack in watch mode using script:
 
     $ npm start
+
+Run webpack in hot-auto-reloading mode using script (to use it you have to add `react_hot_assets` partial as mentioned before):
+
+    $ npm run start-hot-dev
 
 Or manually:
 
