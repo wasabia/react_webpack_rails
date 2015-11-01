@@ -1,6 +1,21 @@
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
 
-RSpec::Core::RakeTask.new(:spec)
+namespace :spec do
+  desc 'Run all tests'
+  task all: [:gem, :rails3] do
+    puts 'Finished all tests, yay!'
+  end
 
-task :default => :spec
+  desc 'Run gem tests'
+  task :gem do
+    sh %Q(rspec spec/react_webpack_rails_spec.rb)
+  end
+
+  desc 'Run rspec for rails3 application'
+  task :rails3 do
+    sh %Q(cd spec/rails3_dummy_app && rspec)
+  end
+end
+
+task default: 'spec:all'
