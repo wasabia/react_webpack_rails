@@ -22,4 +22,6 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'test-unit', '~> 3.0'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
