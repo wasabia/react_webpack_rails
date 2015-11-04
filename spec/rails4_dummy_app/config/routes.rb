@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'client_side_hello_world', to: 'pages#client_side_hello_world', as: :client_side_hello_world
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
