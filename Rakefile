@@ -3,7 +3,7 @@ require "rspec/core/rake_task"
 
 namespace :spec do
   desc 'Run all tests'
-  task all: [:gem, :rails3] do
+  task all: [:gem, :rails3, :rails4] do
     puts 'Finished all tests, yay!'
   end
 
@@ -15,6 +15,11 @@ namespace :spec do
   desc 'Run rspec for rails3 application'
   task :rails3 do
     sh %Q(cd spec/rails3_dummy_app && rspec)
+  end
+
+  desc 'Run rspec for rails4 application'
+  task :rails4 do
+    sh %Q(cd spec/rails4_dummy_app && rspec)
   end
 end
 
