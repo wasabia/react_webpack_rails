@@ -26,16 +26,23 @@ This will create following files:
 
 ```
 ├── app
-│   └── react
-│       ├── components
-│       │   ├── hello-world.jsx
-│       │   └── hello-world-test.jsx
-│       └── index.js
+│   ├── react
+│   │   ├── components
+│   │   │   ├── hello-world.jsx
+│   │   │   └── hello-world-test.jsx
+│   │   └── index.js
+│   ├── views
+│   │   └── layouts
+│   │       └── _react_hot_assets.html.erb
+│   └── assets
+│       └── javascripts
+│           └──react_bundle.js
 ├── webpack
 │   ├── dev.config.js
+│   ├── hot-dev.config.js
 │   ├── production.config.js
 │   └── tests.config.js
-|── .babelrc
+├── .babelrc
 ├── karma.conf.js
 ├── package.json
 └── webpack.config.js
@@ -62,7 +69,8 @@ By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to 
 
 ## Usage
 ##### Check [docs](https://github.com/netguru/react_webpack_rails/tree/master/docs) for detailed api description.
-### to use hot-reloading add partial in your application.html.erb to <body> (it's not needed when you want to use just webpack in watch mode without hot-reloading):
+### to use hot-reloading add partial in your application.html.erb to `<body>`:
+(it's not needed when you want to use just webpack in watch mode without hot-reloading)
 ```erb
 <%= render 'layouts/react_hot_assets' %>
 ```
