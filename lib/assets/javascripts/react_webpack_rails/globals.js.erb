@@ -1,0 +1,26 @@
+var RWR;
+var _reactDOM;
+var $ = (typeof window.jQuery !== 'undefined') && window.jQuery;
+
+_reactDOM = function () {
+  if (typeof window.ReactDOM !== 'undefined') {
+    return window.ReactDOM;
+  }
+
+  if (parseFloat(window.React.version) >= 0.14) {
+    console.warn("ReactDOM is missing. Make sure it's exposed in app/react/index.js");
+  }
+
+  return window.React;
+};
+
+RWR = {
+  components: {},
+  reactRouters: {},
+  CLASS_NAME_ATTR: 'data-react-class',
+  PROPS_ATTR: 'data-react-props',
+  ELEMENT_TYPE_ATTR: 'data-element-type',
+  RAILS_ENV_DEVELOPMENT: <%= Rails.env == "development" %>,
+  reactDOM: _reactDOM,
+  routerEnabled: false,
+};
