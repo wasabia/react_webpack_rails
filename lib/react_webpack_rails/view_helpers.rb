@@ -21,5 +21,9 @@ module ReactWebpackRails
     def react_router(name)
       react_element(name, :router)
     end
+
+    def alt_store(name, data)
+      react_element(name, :alt_store, data)
+    end
   end
 end
