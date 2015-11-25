@@ -1,16 +1,10 @@
-## 0.0.5 (October 27, 2015)
-* Add dependencies
-  * webpack-dev-server
-  * react-hot-loader
-* Now there are two development servers:
-  * served by webpack - without auto-reload:
-    ```
-    $ npm start
-    ```
-  * served by webpack-dev-server - with hot-auto-reload:
-    ```
-    $ npm run start-hot-dev
-    ```
+## 0.0.5 (November 26, 2015)
+* Add Hot Reload support
+  * Dependencies:
+    * webpack-dev-server
+    * react-hot-loader
+  * Second development server (webpack-dev-server) with hot-auto-reload:
+* Setup and add tests
 
 ### migration 0.0.4 -> 0.0.5
 * make sure your package.json is up-to-date.
