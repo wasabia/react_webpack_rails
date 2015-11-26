@@ -11,7 +11,6 @@ module ReactWebpackRails
       end
       html_tag = html_options[:tag] || :div
       html_options.except!(:tag)
-
       content_tag(html_tag, '', html_options, &block)
     end
 
