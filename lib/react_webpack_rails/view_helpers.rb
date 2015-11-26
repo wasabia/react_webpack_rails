@@ -1,12 +1,13 @@
 module ReactWebpackRails
   module ViewHelpers
     # based on https://github.com/reactjs/react-rails/blob/master/lib/react/rails/view_helper.rb
-    def react_element(name, element_type, props = {}, options = {}, &block)
+    def react_element(integration_name, payload = {}, options = {}, &block)
       html_options = options.reverse_merge(data: {})
       html_options[:data].tap do |data|
-        data[:react_class] = name
-        data[:react_props] = (props.is_a?(String) ? props : props.to_json)
-        data[:element_type] = element_type
+        data[:react_element] = true
+        data[:integration_name] = integration_name
+        data[:payload] = payload
+        data[:options] = options
       end
       html_tag = html_options[:tag] || :div
       html_options.except!(:tag)
@@ -15,11 +16,11 @@ module ReactWebpackRails
     end
 
     def react_component(name, props = {}, options = {})
-      react_element(name, :component, props, options)
+      react_element('react-component', props, options.merge(name: name))
     end
 
     def react_router(name)
-      react_element(name, :router)
+      react_element('react-router', {}, name: name)
     end
 
     def alt_store(name, data)
