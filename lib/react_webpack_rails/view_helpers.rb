@@ -10,7 +10,6 @@ module ReactWebpackRails
         data[:react_element] = true
       end
       html_tag = options[:tag] || :div
-
       content_tag(html_tag, '', html_options, &block)
     end
 
