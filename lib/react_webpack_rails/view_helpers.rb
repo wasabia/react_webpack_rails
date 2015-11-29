@@ -24,7 +24,7 @@ module ReactWebpackRails
     end
 
     def alt_store(name, data)
-      react_element(name, :alt_store, data)
+      react_element('alt-store', data, name: name)
     end
   end
 end
