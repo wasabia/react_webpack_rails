@@ -52,6 +52,10 @@ Establish the node packages (may take a few moments)
 
     $ npm install    # you may see warnings to consider updating the provided package.json file with license and repository
 
+Make sure you have [webpack](https://webpack.github.io/docs/installation.html) installed globally:
+
+    $ npm install webpack -g
+
 Generate `react_bundle` for first time:
 
     $ webpack
