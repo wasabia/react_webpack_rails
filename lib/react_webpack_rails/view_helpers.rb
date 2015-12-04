@@ -21,5 +21,13 @@ module ReactWebpackRails
     def react_router(name)
       react_element('react-router', {}, name: name)
     end
+
+    def redux_store(name, props = {})
+      react_element('redux-store', props, name: name)
+    end
+
+    def redux_container(name, options = {})
+      react_element('redux-container', {}, name: name)
+    end
   end
 end
