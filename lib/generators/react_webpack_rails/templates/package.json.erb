@@ -15,6 +15,7 @@
     "sinon": "^1.17.2",
     "react-hot-loader": "^1.3.0",
     "webpack-dev-server": "^1.12.1",
+<%= options.redux ? '    "redux-devtools": "^2.1.5",' : ''%>
     "webpack-notifier": "^1.2.1"
   },
   "dependencies": {
@@ -25,6 +26,11 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
 <%= options.router ? '    "react-router": "1.0.0-rc3",' : ''%>
+<% if options.redux %>
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4",
+    "redux-thunk": "^1.0.0",
+<% end %>
     "react-tools": "*",
     "sass-loader": "^3.0.0",
     "webpack": "^1.12.1"

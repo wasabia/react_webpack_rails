@@ -3,7 +3,7 @@ module ReactWebpackRails
     source_root File.expand_path('../templates', __FILE__)
     class_option :example, type: :boolean, default: true, desc: 'Include example component and test files.'
     class_option :router, type: :boolean, default: true, desc: 'Add and expose react-router globally.'
-
+    class_option :redux, type: :boolean, default: false, desc: 'Add redux with directory structure.'
 
     def generate_layout
       copy_file '.babelrc', '.babelrc'
@@ -16,6 +16,12 @@ module ReactWebpackRails
       copy_file 'partial/_react_hot_assets.html.erb', 'app/views/layouts/_react_hot_assets.html.erb'
       template 'react/index.js.erb', 'app/react/index.js'
       create_file 'app/assets/javascripts/react_bundle.js'
+      if options.redux
+        copy_file 'react/store/store.js', 'app/react/store/store.js'
+        copy_file 'react/reducers/index.js', 'app/react/reducers/index.js'
+        create_file 'app/react/actions/.keep'
+        create_file 'app/react/containers/.keep'
+      end
       if options.example
         copy_file 'react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
         copy_file 'react/components/hello-world-test.jsx', 'app/react/components/hello-world-test.jsx'
