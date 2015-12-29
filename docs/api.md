@@ -36,7 +36,7 @@
   * #### createComponent [js]
 
     ```js
-    createComponent(String componentName[, Object props])
+    createComponent(String componentName, [Object props])
     ```
 
     Wrapper over React.createElement that creates ready to render component with props.
@@ -153,3 +153,159 @@
     ```ruby
     <%= react_router('MyRouterName') %>
     ```
+
+## Redux
+
+  * #### registerContainer [js]
+    ```js
+    registerContainer(String containerName, class|function container)
+    ```
+
+    Register container so it's globally accessible.
+
+    ##### example:
+
+    ```js
+    import MyContainer from 'my-container';
+
+    registerContainer('MyContainerName', MyContainer);
+    ```
+
+    **note:** Registered containers are accessible in globally exposed `RWR.redux` under `containers` property.
+
+  * #### getContainer [js]
+
+    ```js
+    getContainer(String containerName)
+    ```
+
+    Shortcut for accessing registered container.
+
+    ##### example:
+
+    ```js
+    getContainer('MyContainertName');
+    ```
+
+  * #### createContainer [js]
+
+    ```js
+    createContainer(String containerName, [Object props])
+    ```
+
+    Wrapper over React.createElement that creates ready to render container with props.
+
+    ##### example:
+
+    ```js
+    createContainer('MyContainerName', {foo: 'bar'});
+    ```
+
+  * #### renderContainer [js]
+
+    ```js
+    renderContainer(String containerName, Object props, DOMElement container)
+    ```
+
+    Wrapper over `React.render` and `React.createElement`. Renders container with given props into specified DOM element.
+
+    ##### example:
+
+    ```js
+    var element = document.getElementById('my-element');
+    renderContainer('MyContainerName', {foo: 'bar'}, element);
+    ```
+
+  * #### unmountContainer [js]
+
+    ```js
+    unmountContainer(DOMElement container)
+    ```
+
+    Wrapper over `React.unmountContainerAtNode`. It will unmount container from given DOM node.
+
+    ##### example:
+
+    ```js
+    var element = document.getElementById('my-element');
+    unmountContainer(element);
+    ```
+
+  * ### redux_container [ruby]
+
+    ```ruby
+    redux_container(String container_name)
+    ```
+
+    Creates DOM node with initial state from Store as data attributes in rendered view so RWR can grab it and mount proper container.
+
+    ##### example:
+
+    ```ruby
+    <%= redux_container('MyComponentName') %>
+    ```
+
+  * #### registerStore [js]
+    ```js
+    registerStore(String storeName, class|function store)
+    ```
+
+    Register store so it's globally accessible.
+
+    ##### example:
+
+    ```js
+    import Store from './store/store';
+
+    registerStore('StoreName', Store);
+    ```
+
+    **note:** Registered stores are accessible in globally exposed `RWR.redux` under `runningStores` property.
+
+  * #### mountStore [js]
+
+    ```js
+    mountStore(String storeName, [object props])
+    ```
+
+  * #### getStore [js]
+
+    ```js
+    getStore(String storeName)
+    ```
+
+    Shortcut for accessing registered store.
+
+    ##### example:
+
+    ```js
+    getStore('StoretName');
+    ```
+
+  * #### renderDevtools [js]
+
+    ```js
+    renderDevtools(String storeName, Object props, DOMElement container)
+    ```
+
+    Wrapper over `React.render` and `React.createElement`. Renders redux devtools with given props into specified DOM element.
+
+    ##### example:
+
+    ```js
+    var element = document.getElementById('my-element');
+    renderDevtools('StoreName', {foo: 'bar'}, element);
+    ```
+
+  * ### redux_store [ruby]
+
+    ```ruby
+    redux_store(String store_name, object initialState, object options)
+    ```
+
+    Mounts store and optional renders devtools.
+
+    ##### example:
+
+    ```ruby
+    <%= redux_store('StoreName', { counter: 3 }, { include_dev_tools: true, enable_devtools: true }) %>
