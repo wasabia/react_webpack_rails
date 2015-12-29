@@ -1,0 +1,35 @@
+var RWR;
+var $ = (typeof window.jQuery !== 'undefined') && window.jQuery;
+
+RWR = {
+  integrations: {},
+  ELEMENT_ATTR: 'data-react-element',
+  PAYLOAD_ATTR: 'data-payload',
+  INTEGRATION_NAME_ATTR: 'data-integration-name',
+  OPTIONS_ATTR: 'data-options',
+  RAILS_ENV: "<%= Rails.env %>",
+  reactDOM: function () {
+    if (typeof window.ReactDOM !== 'undefined') {
+      return window.ReactDOM;
+    }
+
+    if (parseFloat(window.React.version) >= 0.14) {
+      console.warn(RWR._messages.warnings.reactDOMMissing);
+    }
+
+    return window.React;
+  },
+  _messages: {
+    warnings: {
+      deprication: function (item, description) { return 'DEPRICATION: ' + item + ' is depricated. \n' + (description || '') },
+      reactDOMMissing: "WARNING: ReactDOM is missing. Make sure it's exposed in app/react/index.js",
+      turbolinksVersion: 'WARNING: The Turbolinks cache has been disabled (Turbolinks >= 2.4.0 is recommended)'
+    },
+    errors: {
+      missingIntegration: function (integrationName) {
+        return 'ERROR: integration: ' + integrationName + ' is not regiestered. \n'
+          + "make sure it's properly required and regiestered"
+      }
+    },
+  }
+};

@@ -1,152 +1,155 @@
-## UJS helpers
+# RWR api
 
-* ### registerComponent
-  ```js
-  registerComponent(String componentName, class|function component)
-  ```
+## React
 
-  Register component so it's globally accessible.
+  * #### registerComponent [js]
+    ```js
+    registerComponent(String componentName, class|function component)
+    ```
 
-  ##### example:
+    Register component so it's globally accessible.
 
-  ```js
-  import MyComponent from 'my-component';
+    ##### example:
 
-  registerComponent('MyComponentName', MyComponent);
-  ```
+    ```js
+    import MyComponent from 'my-component';
 
-  **note:** Registered components are accessible in globally exposed `ReactRailsUJS` under `reactComponents` property.
+    registerComponent('MyComponentName', MyComponent);
+    ```
 
-* ### getComponent
+    **note:** Registered components are accessible in globally exposed `RWR.react` under `components` property.
 
-  ```js
-  getComponent(String componentName)
-  ```
+  * #### getComponent [js]
 
-  Shortcut for accessing registered component.
+    ```js
+    getComponent(String componentName)
+    ```
 
-  ##### example:
+    Shortcut for accessing registered component.
 
-  ```js
-  getComponent('MyComponentName');
-  ```
+    ##### example:
 
-* ### createComponent
+    ```js
+    getComponent('MyComponentName');
+    ```
 
-  ```js
-  createComponent(String componentName[, Object props])
-  ```
+  * #### createComponent [js]
 
-  Wrapper over React.createElement that creates ready to render component with props.
+    ```js
+    createComponent(String componentName[, Object props])
+    ```
 
-  ##### example:
+    Wrapper over React.createElement that creates ready to render component with props.
 
-  ```js
-  createComponent('MyComponentName', {foo: 'bar'});
-  ```
+    ##### example:
 
-* ### renderComponent
+    ```js
+    createComponent('MyComponentName', {foo: 'bar'});
+    ```
 
-  ```js
-  renderComponent(String componentName, Object props, DOMElement container)
-  ```
+  * #### renderComponent [js]
 
-  Wrapper over `React.render` and `React.createElement`. Renders component with given props into specified DOM element.
+    ```js
+    renderComponent(String componentName, Object props, DOMElement container)
+    ```
 
-  ##### example:
+    Wrapper over `React.render` and `React.createElement`. Renders component with given props into specified DOM element.
 
-  ```js
-  var element = document.getElementById('my-element');
-  renderComponent('MyComponentName', {foo: 'bar'}, element);
-  ```
+    ##### example:
 
-* ### unmountComponent
+    ```js
+    var element = document.getElementById('my-element');
+    renderComponent('MyComponentName', {ųfoo: 'bar'}, element);
+    ```
 
-  ```js
-  unmountComponent(DOMElement container)
-  ```
+  * #### unmountComponent [js]
 
-  Wrapper over `React.unmountComponentAtNode`. It will unmount component from given DOM node.
+    ```js
+    unmountComponent(DOMElement container)
+    ```
 
-  ##### example:
+    Wrapper over `React.unmountComponentAtNode`. It will unmount component from given DOM node.
 
-  ```js
-  var element = document.getElementById('my-element');
-  unmountComponent(element);
-  ```
+    ##### example:
 
-* ### registerRouter
-  ```js
-  registerRouter(String routerName, class|function component)
-  ```
+    ```js
+    var element = document.getElementById('my-element');
+    unmountComponent(element);
+    ```
 
-  Register router so it's globally accessible.
 
-  ##### example:
+  * ### react_component [ruby]
 
-  ```js
-  import MyComponent from 'my-component';
+    ```ruby
+    react_component(String component_name[, Object props])
+    ```
 
-  registerComponent('MyComponentName', MyComponent);
-  ```
+    Creates DOM node with props as data attributes in rendered view so RWR can grab it and mount proper component.
 
-  **note:** Registered components are accessible in globally exposed `ReactRailsUJS` under `reactRouters` property.
+    ##### example:
 
-* ### getRouter
+    ```ruby
+    <%= react_component('MyComponentName', MySerializer.new(my_data)) %>
+    ```
 
-  ```js
-  getRouter(String routerName)
-  ```
+    **note:** Props Object will be parsed to JSON. Be careful when passing rails models there - all its data accessible after `.to_json` will be exposed as data-attributes. We  recommend using serializers to control it.
 
-  Shortcut for accessing registered router.
 
-  ##### example:
+## ReactRouter
+  * #### registerRouter [js]
+    ```js
+    registerRouter(String routerName, class|function component)
+    ```
 
-  ```js
-  getRouter('MyRouterName');
-  ```
+    Register router so it's globally accessible.
 
-* ### renderRouter
+    ##### example:
 
-  ```js
-  renderRouter(String routerName, Object props, DOMElement container)
-  ```
+    ```js
+    import MyComponent from 'my-component';
 
-  Wrapper ove `Router.run` function with possibility to pass props to handler.
+    registerComponent('MyComponentName', MyComponent);
+    ```
 
-  ##### example:
+    **note:** Registered components are accessible in globally exposed `RWR.reactRouter` under `routers` property.
 
-  ```js
-  var element = document.getElementById('my-element');
-  renderComponent('MyComponentName', {foo: 'bar'}, element);
-  ```
+  * #### getRouter [js]
 
-## Rails helpers
+    ```js
+    getRouter(String routerName)
+    ```
 
-* ### react_component
+    Shortcut for accessing registered router.
 
-  ```ruby
-  react_component(String component_name[, Object props])
-  ```
+    ##### example:
 
-  Creates DOM node with props as data attributes in rendered view so ReactRailsUJS can grab it and mount proper  component.
+    ```js
+    getRouter('MyRouterName');
+    ```
 
-  ##### example:
+  * #### renderRouter [js]
 
-  ```ruby
-  <%= react_component('MyComponentName', MySerializer.new(my_data)) %>
-  ```
+    ```js
+    renderRouter(String routerName, Object props, DOMElement container)
+    ```
 
-  **note:** Props Object will be parsed to JSON. Be careful when passing rails models there - all its data accessible after `.to_json` will be exposed as data-attributes. We  recommend using serializers to control it.
+    Wrapper over `React.render`. Search and render given router into specified DOM element.
 
-* ### react_router
+    ##### example:
 
-  ```ruby
-  react_router(String router_name)
-  ```
+    ```js
+    var element = document.getElementById('my-element');
+    renderComponent('MyComponentName', {foo: 'bar'}, element);
+    ```
 
-  ##### example:
+  * #### react_router [ruby]
 
-  ```ruby
-  <%= react_router('MyRouterName') %>
-  ```
+    ```ruby
+    react_router(String router_name)
+    ```
+
+    ##### example:
+
+    ```ruby
+    <%= react_router('MyRouterName') %>
+    ```

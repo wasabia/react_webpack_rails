@@ -1,21 +1,25 @@
 module ReactWebpackRails
   module ViewHelpers
     # based on https://github.com/reactjs/react-rails/blob/master/lib/react/rails/view_helper.rb
-    def react_component(name, props = {}, options = {}, &block)
-      html_options = options.reverse_merge(data: {})
+    def react_element(integration_name, payload = {}, options = {}, &block)
+      html_options = { data: {} }
       html_options[:data].tap do |data|
-        data[:react_class] = name
-        data[:react_props] = (props.is_a?(String) ? props : props.to_json)
-        data[:react_router] = options.delete(:react_router)
+        data[:integration_name] = integration_name
+        data[:options] = options.except(:tag)
+        data[:payload] = (payload.is_a?(String) ? payload : payload.to_json)
+        data[:react_element] = true
       end
-      html_tag = html_options[:tag] || :div
-      html_options.except!(:tag)
+      html_tag = options[:tag] || :div
 
       content_tag(html_tag, '', html_options, &block)
     end
 
+    def react_component(name, props = {}, options = {})
+      react_element('react-component', props, options.merge(name: name))
+    end
+
     def react_router(name)
-      react_component(name, {}, react_router: true)
+      react_element('react-router', {}, name: name)
     end
   end
 end
