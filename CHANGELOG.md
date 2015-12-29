@@ -1,3 +1,14 @@
+## 0.0.6
+* Add redux integration:
+  * js helpers:
+    * `registerStore`
+    * `registerContainer`
+    * `getStore`
+    * `renderContainer`
+  * rails helpers:
+    * `redux_store`
+    * `redux_container`
+
 ## 0.0.5 (November 26, 2015)
 * Add Hot Reload support
   * Dependencies:
