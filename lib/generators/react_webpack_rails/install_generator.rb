@@ -17,10 +17,10 @@ module ReactWebpackRails
       template 'react/index.js.erb', 'app/react/index.js'
       create_file 'app/assets/javascripts/react_bundle.js'
       if options.redux
-        copy_file 'react/store/store.js', 'app/react/store/store.js'
+        copy_file 'react/store/configureStore.js', 'app/react/store/configureStore.js'
         copy_file 'react/reducers/index.js', 'app/react/reducers/index.js'
+        copy_file 'react/containers/DevTools.js', 'app/react/containers/DevTools.js'
         create_file 'app/react/actions/.keep'
-        create_file 'app/react/containers/.keep'
       end
       if options.example
         copy_file 'react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'

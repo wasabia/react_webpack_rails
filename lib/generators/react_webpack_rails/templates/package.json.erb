@@ -15,7 +15,11 @@
     "sinon": "^1.17.2",
     "react-hot-loader": "^1.3.0",
     "webpack-dev-server": "^1.12.1",
-<%= options.redux ? '    "redux-devtools": "^2.1.5",' : ''%>
+<% if options.redux %>
+    "redux-devtools": "^3.0.1",
+    "redux-devtools-dock-monitor": "^1.0.1",
+    "redux-devtools-log-monitor": "^1.0.1",
+<% end %>
     "webpack-notifier": "^1.2.1"
   },
   "dependencies": {

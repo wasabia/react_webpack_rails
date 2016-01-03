@@ -1,21 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<% if options.redux %>
+import { Provider } from 'react-redux';
+<% end %>
 window.React = React;
 window.ReactDOM = ReactDOM;
 <% if options.redux %>
 window.Provider = Provider;
-window.DevTools = DevTools;
-window.DebugPanel = DebugPanel;
-window.LogMonitor = LogMonitor;
 
-import Store from './store/store';
-registerStore('Store', Store)
+// default store
+import Store from './store/configureStore';
+RWR.registerStore('Store', Store);
+
+// default DevTools
+import DevTools from './containers/DevTools';
+RWR.registerContainer('DevTools', DevTools);
 <% end %>
 <% if options.example %>
 import HelloWorld from './components/hello-world';
-registerComponent('HelloWorld', HelloWorld);
+RWR.registerComponent('HelloWorld', HelloWorld);
 <% else %>
 // example usage:
 // import HelloWorld from './components/hello-world';
-// registerComponent('HelloWorld', HelloWorld);
+// RWR.registerComponent('HelloWorld', HelloWorld);
 <% end %>
