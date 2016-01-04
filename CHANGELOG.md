@@ -1,3 +1,6 @@
+## UNRELEASED
+* `config.react.camelize_props = true` will camelize `react_component` prop keys #409
+
 ## 0.0.5 (November 26, 2015)
 * Add Hot Reload support
   * Dependencies:
