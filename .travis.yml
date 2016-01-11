@@ -1,4 +1,29 @@
 language: ruby
-rvm:
-  - 2.2.2
-before_install: gem install bundler -v 1.10.4
+
+cache:
+  bundler: true
+  directories:
+  - spec/rails3_dummy_app/node_modules
+  - spec/rails4_dummy_app/node_modules
+
+matrix:
+  include:
+    - rvm: 2.2.4
+      gemfile: spec/rails4_dummy_app/Gemfile
+      env: TEST_SUITE=rails4 SETUP=true APP_PATH=spec/rails4_dummy_app
+    - rvm: 2.2.4
+      gemfile: spec/rails3_dummy_app/Gemfile
+      env: TEST_SUITE=rails3 SETUP=true APP_PATH=spec/rails3_dummy_app
+    - rvm: 2.2.4
+      gemfile: Gemfile
+      env: TEST_SUITE=gem SETUP=false
+
+before_script:
+  - $SETUP && cd $APP_PATH && npm install webpack -g && npm install && npm build || true
+  - cd $TRAVIS_BUILD_DIR
+  - "export DISPLAY=:99.0" # Setup display for selenium driver
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
+script:
+  - bundle exec rake spec:$TEST_SUITE
