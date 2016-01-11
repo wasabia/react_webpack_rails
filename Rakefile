@@ -9,17 +9,17 @@ namespace :spec do
 
   desc 'Run gem tests'
   task :gem do
-    sh %Q(rspec spec/react_webpack_rails_spec.rb)
+    sh %Q(bundle exec rspec spec/react_webpack_rails_spec.rb)
   end
 
   desc 'Run rspec for rails3 application'
   task :rails3 do
-    sh %Q(cd spec/rails3_dummy_app && rspec)
+    sh %Q(cd spec/rails3_dummy_app && npm run build && bundle exec rspec)
   end
 
   desc 'Run rspec for rails4 application'
   task :rails4 do
-    sh %Q(cd spec/rails4_dummy_app && rspec)
+    sh %Q(cd spec/rails4_dummy_app && npm run build && bundle exec rspec)
   end
 end
 
