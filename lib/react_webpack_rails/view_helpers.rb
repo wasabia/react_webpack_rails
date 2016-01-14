@@ -12,6 +12,7 @@ module ReactWebpackRails
       end
       html_tag = options[:tag] || :div
 
+      SendToNodeService.new(html_tag, html_options).call
       content_tag(html_tag, '', html_options, &block)
     end
 
@@ -24,11 +25,35 @@ module ReactWebpackRails
     end
 
     private
+
     def camelize_props_key(props)
       return props unless props.is_a?(Hash)
       props.inject({}) do |h, (k,v)|
         h[k.to_s.camelize(:lower)] = v.is_a?(Hash) ? camelize_props_key(v) : v; h
       end
     end
+  end
+end
+
+class SendToNodeService
+  attr_reader :html_options, :html_tag
+
+  def initialize(html_tag, html_options)
+    @html_options = html_options
+    @html_tag = html_tag
+  end
+
+  def call
+    Net::HTTP.post_form(node_uri, data_hash)
+  end
+
+  private
+
+  def data_hash
+    { html_tag: html_tag, html_options: html_options.to_json }
+  end
+
+  def node_uri
+    URI('http://localhost:8080/')
   end
 end

@@ -5,7 +5,8 @@ module.exports = {
     main: ['./app/react/index.js']
   },
   output: {
-    path: __dirname + '/app/assets/javascripts',
+    // path: __dirname + '/app/assets/javascripts',
+    path: __dirname,
     filename: 'react_bundle.js'
   },
   module: {
