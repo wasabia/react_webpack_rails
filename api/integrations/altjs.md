@@ -1,0 +1,3 @@
+# alt.js
+
+Coming soon.

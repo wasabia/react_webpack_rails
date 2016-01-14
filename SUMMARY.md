@@ -1,0 +1,22 @@
+# Summary
+
+* [Introduction](README.md)
+* [Getting started](getting_started/README.md)
+   * [Installation](getting_started/installation.md)
+   * [Usage](getting_started/usage.md)
+   * [Hot Reload mode](getting_started/hot_reload_mode.md)
+   * [Passing props](getting_started/passing_props.md)
+   * [Hello World example](getting_started/hello_world_example.md)
+* [Guides](guides/README.md)
+   * [React Router integration](guides/react_router_integration.md)
+* [API](api/README.md)
+   * [Basics](api/basics/README.md)
+       * [Ruby](api/basics/ruby.md)
+       * [Javascript](api/basics/javascript.md)
+   * [Integrations](api/integrations/README.md)
+       * [react-router](api/integrations/react-router.md)
+       * [alt.js](api/integrations/altjs.md)
+       * [redux](api/integrations/redux.md)
+* [Deployment](deployment/README.md)
+   * [Heroku](deployment/heroku.md)
+
