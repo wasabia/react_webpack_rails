@@ -19,4 +19,3 @@
        * [redux](api/integrations/redux.md)
 * [Deployment](deployment/README.md)
    * [Heroku](deployment/heroku.md)
-

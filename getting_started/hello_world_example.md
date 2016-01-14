@@ -8,7 +8,7 @@ First, create a rails project
 
     $ rails new hello_world
     $ cd hello_world
-    
+
 add RWR gem to the `Gemfile`
 
 ```ruby
@@ -18,11 +18,11 @@ gem 'react_webpack_rails'
 and execute:
 
     $ bundle install
-    
+
 Now we can generate a basic scaffold inside the project
 
     $ rails g controller Hello index
-    
+
 ## React setup
 
 Time to add some React
@@ -38,11 +38,11 @@ Then, install node packages
 and webpack if you don't have it
 
     $ npm install webpack -g
-    
+
 When it's done, generate `react_bundle`
 
     $ webpack
-    
+
 and add the following to `app/assets/javascripts/application.js`
 
 ```js
@@ -104,7 +104,7 @@ Let's also add hot reload to `application.html.erb`:
 Finally, running
 
     $ rails s
-    
+
 and
 
     $ npm run start-hot-dev

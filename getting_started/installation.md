@@ -13,7 +13,7 @@ And execute:
 Or install it yourself as:
 
     $ gem install react_webpack_rails
-    
+
 ---
 
 Then, run installation:

@@ -17,7 +17,7 @@ registerComponent('customComponentName', Component);
 <%= react_component('customComponentName', { user: User.last }) %>
 ```
 
-See [passing props](passing_props.md) for details. 
+See [passing props](passing_props.md) for details.
 
 #### Use it in Javascript file
 
@@ -36,7 +36,7 @@ Run webpack in watch mode using script:
 or manually:
 
     $ webpack -w --config YOUR_CONFIG
-    
+
 You can also run webpack in [hot-auto-reloading mode](hot_reload_mode.md).
 
 ## Production

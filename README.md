@@ -1,4 +1,4 @@
-# ReactWebpackRails  
+# ReactWebpackRails
 
 ## Rails - Webpack setup with React integration.
 [![Netguru](netguru_logo.png)](https://www.netguru.co)

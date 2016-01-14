@@ -11,7 +11,7 @@ In order to make use of it simply render the partial before your React component
 Now, instead of watch mode you can run webpack as follows:
 
     $ npm run start-hot-dev
-    
+
 or manually
 
     $ webpack-dev-server --hot --inline --config YOUR_CONFIG
