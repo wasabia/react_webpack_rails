@@ -1,5 +1,5 @@
 # ReactWebpackRails
-[![Travis CI](https://travis-ci.org/netguru/react_webpack_rails.svg)](https://travis-ci.org/netguru/react_webpack_rails)
+[![Travis CI](https://travis-ci.org/netguru/react_webpack_rails.svg?branch=master)](https://travis-ci.org/netguru/react_webpack_rails)
 
 #### Rails - Webpack setup with React integration.
 Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes react-webpack-rails integration easy.
