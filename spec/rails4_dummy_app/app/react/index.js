@@ -1,5 +1,13 @@
 import RWR from 'rwr-integration';
-window.RWR = RWR;
+var g;
+if(typeof(window) == 'undefined'){
+  g = global;
+} else {
+  g = window;
+};
+g.RWR = RWR;
 
 import HelloWorld from './components/hello-world';
 RWR.registerComponent('HelloWorld', HelloWorld);
+g.comp = HelloWorld;
+
