@@ -1,8 +1,5 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// window.React = React;
-// window.ReactDOM = ReactDOM;
+import RWR from 'rwr-integration';
+window.RWR = RWR;
 
 import HelloWorld from './components/hello-world';
-// registerComponent('HelloWorld', HelloWorld);
-global.comp = HelloWorld;
+RWR.registerComponent('HelloWorld', HelloWorld);
