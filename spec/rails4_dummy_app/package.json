@@ -26,6 +26,7 @@
     "react-dom": "^0.14.0",
     "react-router": "1.0.0-rc3",
     "react-tools": "*",
+    "rwr-integration": "0.0.1",
     "sass-loader": "^3.0.0",
     "webpack": "^1.12.1"
   },
