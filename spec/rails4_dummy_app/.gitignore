@@ -17,3 +17,4 @@
 /tmp
 
 /node_modules
+/spec/rails4_dummy_app/app/assets/javascripts/react_bundle.js

@@ -1,4 +1,6 @@
 # ReactWebpackRails
+[![Travis CI](https://travis-ci.org/netguru/react_webpack_rails.svg?branch=master)](https://travis-ci.org/netguru/react_webpack_rails)
+
 #### Rails - Webpack setup with React integration.
 Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes react-webpack-rails integration easy.
 
@@ -51,6 +53,10 @@ This will create following files:
 Establish the node packages (may take a few moments)
 
     $ npm install    # you may see warnings to consider updating the provided package.json file with license and repository
+
+Make sure you have [webpack](https://webpack.github.io/docs/installation.html) installed globally:
+
+    $ npm install webpack -g
 
 Generate `react_bundle` for first time:
 
