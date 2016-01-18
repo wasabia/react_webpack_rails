@@ -19,7 +19,7 @@ matrix:
       env: TEST_SUITE=gem SETUP=false
 
 before_script:
-  - $SETUP && cd $APP_PATH && npm install webpack -g && npm install && npm run build || true
+  - $SETUP && cd $APP_PATH && npm install webpack -g && npm install && npm build || true
   - cd $TRAVIS_BUILD_DIR
   - "export DISPLAY=:99.0" # Setup display for selenium driver
   - "sh -e /etc/init.d/xvfb start"
