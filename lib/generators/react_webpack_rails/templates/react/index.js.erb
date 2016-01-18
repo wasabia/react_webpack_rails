@@ -1,7 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-window.React = React;
-window.ReactDOM = ReactDOM;
+import RWR from 'react-webpack-rails';
+window.RWR = RWR;
 <% if options.example %>
 import HelloWorld from './components/hello-world';
 RWR.registerComponent('HelloWorld', HelloWorld);
