@@ -1,6 +1,5 @@
 {
   "name": "Rails3DummyApp",
-  "private": true,
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta6",
     "eslint": "^1.7.3",
@@ -30,6 +29,7 @@
     "react-dom": "^0.14.0",
     "react-router": "1.0.0-rc3",
     "react-tools": "*",
+    "react-webpack-rails": "0.0.4",
     "sass-loader": "^3.0.0",
     "webpack": "^1.12.1"
   },
