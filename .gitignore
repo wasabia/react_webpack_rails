@@ -7,4 +7,7 @@
 /pkg/
 /spec/reports/
 /tmp/
+/js/lib/
+
+node_modules
 react_webpack_rails-*.gem
