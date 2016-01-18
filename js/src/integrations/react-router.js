@@ -18,7 +18,6 @@ class ReactRouterIntegration {
   }
 
   renderRouter(name, element) {
-    debugger;
     if (this.enabled === true) {
       throw new Error(
         `Error when renering ${name}\n\trenderRouter: can't render more than one router.`

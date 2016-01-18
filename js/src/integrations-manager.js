@@ -2,7 +2,6 @@ import reactIntegration from './integrations/react';
 
 class IntegrationsManager {
   constructor() {
-    debugger;
     this.integrations = {
       'react-component': reactIntegration.integrationWrapper,
     };
