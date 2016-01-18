@@ -41,7 +41,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     end
 
     context 'when options with tag given' do
-      subject { helper.react_element('react-component', {}, {foo: :bar, tag: :li}) }
+      subject { helper.react_element('react-component', {}, {foo: :bar}, {tag: :li}) }
       it 'is renders passed tag' do
         expect(subject).to include('<li ', '></li>')
       end
@@ -58,7 +58,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     it 'wraps #react_component with proper options' do
       expect(helper)
         .to receive(:react_element)
-        .with('react-component', { foo: 'bar' }, name: 'Todo')
+        .with('react-component', { foo: 'bar' }, {name: 'Todo'}, {})
         .once
       helper.react_component('Todo', foo: 'bar')
     end
@@ -67,7 +67,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
       subject { helper.react_component('Todo') }
 
       it 'sets an empty object as default' do
-        expect(helper).to receive(:react_element).with('react-component', {}, name: 'Todo').once
+        expect(helper).to receive(:react_element).with('react-component', {}, {name: 'Todo'}, {}).once
         helper.react_component('Todo')
       end
     end
