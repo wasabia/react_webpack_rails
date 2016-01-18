@@ -1,11 +1,13 @@
-import ReactComponentIntegration from './react-component-integration';
+import reactIntegration from './integrations/react';
 
 class IntegrationsManager {
   constructor() {
+    debugger;
     this.integrations = {
-      'react-component': ReactComponentIntegration,
+      'react-component': reactIntegration.integrationWrapper,
     };
   }
+
 
   get(name) {
     // handle missing one here;

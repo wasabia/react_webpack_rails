@@ -32,6 +32,18 @@ class ReactIntegration {
   unmountComponent(node) {
     ReactDOM.unmountComponentAtNode(node);
   }
+
+  get integrationWrapper() {
+    return {
+      mount: function _mount(config, options) {
+        this.renderComponent(options.name, config.payload, config.node);
+      }.bind(this),
+
+      unmount: function __mount(config) {
+        this.unmountComponent(config.node);
+      }.bind(this),
+    };
+  }
 }
 
 export default new ReactIntegration;
