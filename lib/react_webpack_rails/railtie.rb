@@ -5,6 +5,7 @@ module ReactWebpackRails
     config.react = ActiveSupport::OrderedOptions.new
     # Sensible defaults. Can be overridden in application.rb
     config.react.camelize_props = false # pass in an underscored hash but get a camelized hash
+    config.react.shared = {}
 
     initializer 'react_webpack_rails.view_helpers' do
       ActionView::Base.send :include, ViewHelpers
