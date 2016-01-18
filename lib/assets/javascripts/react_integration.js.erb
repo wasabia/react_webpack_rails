@@ -1,12 +1,43 @@
-//= require react_webpack_rails/globals
-//= require react_webpack_rails/nodes
-//= require react_webpack_rails/handlers
-//= require react_webpack_rails/react_helpers
+var __RWR_ENV__ = {
+  name: "<%=Rails.env%>",
+  config: <%=JSON(Rails.application.config.react.shared)%>
+};
+
+var RWRhandlers = {
+  _mountNodes: function _mountNodes() {
+    RWR.mountNodes();
+  },
+
+  _unmountNodes: function _unmountNodes() {
+    RWR.unmountNodes();
+  },
+
+  _handleEvent(eventName, callback) {
+    document.addEventListener(eventName, callback);
+  },
+
+  handleTurbolinksEvents: function handleTurbolinksEvents() {
+    var unmountEvent;
+
+    if (Turbolinks.EVENTS) {
+      unmountEvent = Turbolinks.EVENTS.BEFORE_UNLOAD;
+    } else {
+      unmountEvent = 'page:receive';
+      Turbolinks.pagesCached(0);
+    }
+    RWRhandlers._handleEvent('page:change', RWRhandlers._mountNodes);
+    RWRhandlers._handleEvent(unmountEvent, RWRhandlers._unmountNodes);
+  },
+
+  handleNativeEvents: function handleNativeEvents() {
+    document.addEventListener('DOMContentLoaded', RWRhandlers._mountNodes);
+  },
+};
 
 (function reactMain() {
   if (typeof Turbolinks !== 'undefined' && Turbolinks.supported) {
-    RWR.handlers.handleTurbolinksEvents();
+    RWRhandlers.handleTurbolinksEvents();
   } else {
-    RWR.handlers.handleNativeEvents();
+    RWRhandlers.handleNativeEvents();
   }
 })(document, window);
