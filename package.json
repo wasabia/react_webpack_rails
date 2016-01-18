@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "Js part of react_webpack_rails - webpack based React & Rails integration.",
   "main": "js/lib/index.js",
-  "files": ["js"],
+  "files": ["js/lib"],
   "scripts": {
     "compile": "babel --presets es2015 -d js/lib/ js/src/",
     "prepublish": "npm run compile",
