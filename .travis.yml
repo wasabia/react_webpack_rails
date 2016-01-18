@@ -4,7 +4,7 @@ cache:
   bundler: true
   directories:
   - spec/rails3_dummy_app/node_modules
-  - spec/rails4_dummy_app/node_modules
+  # - spec/rails4_dummy_app/node_modules
 
 matrix:
   include:
