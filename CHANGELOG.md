@@ -1,5 +1,6 @@
 ## UNRELEASED
 * `config.react.camelize_props = true` will camelize `react_component` prop keys #409
+* Babel update [#39](https://github.com/netguru/react_webpack_rails/pull/39/files)
 
 ## 0.0.5 (November 26, 2015)
 * Add Hot Reload support
@@ -43,13 +44,13 @@
   $ npm install react-dom --save`
   ```
 * Expose `ReactDOM` in app/react/index.js.
-  
+
   ```js
   import ReactDOM from 'react-dom';
   window.ReactDOM = ReactDOM;
   ```
 * Create `.bablerc` in your project directory:
-  
+
   ```js
   {
     "stage": 1
