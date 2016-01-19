@@ -1,26 +1,21 @@
-require('./app/assets/javascripts/react_bundle')
-var http = require('http');
-var React = require('react');
-var Log = console.log
+require('./app/assets/javascripts/react_bundle');
+http = require('http');
+ReactDOMServer = require('react-dom/server');
 
 PORT = 8080;
 
-function handleRequest(request, response){
-  Log(request.data);
-  Log(request.name);
-  var e = RWR.createComponent('HelloWorld', {});
-  var co = React.renderToString(e);
-  request.on('data', function(chunk) {
-    Log("Received body data:");
-    Log(chunk.attributes);
-    Log(chunk.toString());
+function handleRequest(request, response) {
+  request.on('data', function(chunk){
+    data = JSON.parse(chunk.toString());
+    react_component = RWR.createComponent(data.name, {});
+    component_stringified = ReactDOMServer.renderToString(react_component);
+    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.end(component_stringified);
   });
-  response.writeHead(200, {'Content-Type': 'text/plain'});
-  response.end(co);
-}
+};
 
 var server = http.createServer(handleRequest);
 
 server.listen(PORT, function(){
-  Log("Server listening on: http://localhost:%s", PORT);
+  console.log("Server listening on: http://localhost:%s", PORT);
 });
