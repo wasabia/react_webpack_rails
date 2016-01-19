@@ -44,7 +44,9 @@ class SendToNodeService
   end
 
   def call
-    Net::HTTP.post_form(node_uri, data_hash)
+    response = Net::HTTP.start(node_uri.host, node_uri.port) do |http|
+      http.request(request)
+    end
   end
 
   private
@@ -55,5 +57,11 @@ class SendToNodeService
 
   def node_uri
     URI('http://localhost:8080/')
+  end
+
+  def request
+    request = Net::HTTP::Post.new(node_uri)
+    request.body = data_hash.to_json
+    request
   end
 end
