@@ -14,12 +14,12 @@ namespace :spec do
 
   desc 'Run rspec for rails3 application'
   task :rails3 do
-    sh %Q(cd spec/rails3_dummy_app && npm run build && bundle exec rspec)
+    sh %Q(cd spec/rails3_dummy_app && npm run build && bundle exec rspec && npm test)
   end
 
   desc 'Run rspec for rails4 application'
   task :rails4 do
-    sh %Q(cd spec/rails4_dummy_app && npm run build && bundle exec rspec)
+    sh %Q(cd spec/rails4_dummy_app && npm run build && bundle exec rspec && npm test)
   end
 end
 
