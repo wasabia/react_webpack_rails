@@ -30,7 +30,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     end
 
     context 'when options without tag given' do
-      subject { helper.react_element('react-component', {}, {foo: :bar}) }
+      subject { helper.react_element('react-component', {}, foo: :bar) }
       it 'is renders div' do
         expect(subject).to include('<div ', '></div>')
       end
@@ -41,7 +41,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     end
 
     context 'when options with tag given' do
-      subject { helper.react_element('react-component', {}, {foo: :bar, tag: :li}) }
+      subject { helper.react_element('react-component', {}, foo: :bar, tag: :li) }
       it 'is renders passed tag' do
         expect(subject).to include('<li ', '></li>')
       end
@@ -53,6 +53,9 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
   end
 
   describe '#react_component' do
+    before do
+      allow_any_instance_of(ReactWebpackRails::NodeRenderer).to receive(:call) {}
+    end
     it { expect(helper).to respond_to(:react_component) }
 
     it 'wraps #react_component with proper options' do
