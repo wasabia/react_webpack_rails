@@ -16,7 +16,7 @@ module ReactWebpackRails
     end
 
     def react_component(name, props = {}, options = {})
-      SendToNodeService.new(name, props).call
+      NodeRenderer.new(name, props).call
       react_element('react-component', props, options.merge(name: name))
     end
 
@@ -28,40 +28,10 @@ module ReactWebpackRails
 
     def camelize_props_key(props)
       return props unless props.is_a?(Hash)
-      props.inject({}) do |h, (k, v)|
-        h[k.to_s.camelize(:lower)] = v.is_a?(Hash) ? camelize_props_key(v) : v; h
+      props.each_with_object({}) do |h, (k, v)|
+        h[k.to_s.camelize(:lower)] = v.is_a?(Hash) ? camelize_props_key(v) : v
+        h
       end
     end
-  end
-end
-
-class SendToNodeService
-  attr_reader :name, :props
-
-  def initialize(name, props)
-    @name = name
-    @props = props
-  end
-
-  def call
-    response = Net::HTTP.start(node_uri.host, node_uri.port) do |http|
-      http.request(request)
-    end
-  end
-
-  private
-
-  def data_hash
-    { name: name, props: props }
-  end
-
-  def node_uri
-    URI('http://localhost:8080/')
-  end
-
-  def request
-    request = Net::HTTP::Post.new(node_uri)
-    request.body = data_hash.to_json
-    request
   end
 end
