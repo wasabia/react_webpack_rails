@@ -22,7 +22,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
       end
     end
 
-    context 'when paload is a hash' do
+    context 'when payload is a hash' do
       subject { helper.react_element('react-component', foo: :bar) }
       it 'is does cast to JSON' do
         expect(subject).to include("data-payload=\"{&quot;foo&quot;:&quot;bar&quot;}\"")
@@ -53,26 +53,62 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
   end
 
   describe '#react_component' do
-    before do
-      allow_any_instance_of(ReactWebpackRails::NodeRenderer).to receive(:call) {}
-    end
     it { expect(helper).to respond_to(:react_component) }
 
-    it 'wraps #react_component with proper options' do
-      expect(helper)
-        .to receive(:react_element)
-        .with('react-component', { foo: 'bar' }, name: 'Todo', ssr: false)
-        .once
-      helper.react_component('Todo', props: { foo: 'bar' })
+    context 'with ssr: false' do
+      it 'wraps #react_component with proper options' do
+        expect(helper)
+          .to receive(:react_element)
+          .with('react-component', { foo: 'bar' }, name: 'Todo', ssr: false)
+          .once
+        helper.react_component('Todo', props: { foo: 'bar' })
+      end
+
+      context 'when props are not passed' do
+        subject { helper.react_component('Todo') }
+
+        it 'sets an empty object as default' do
+          expect(helper).to receive(:react_element)
+            .with('react-component', {}, name: 'Todo', ssr: false).once
+          helper.react_component('Todo')
+        end
+      end
     end
 
-    context 'when props are not passed' do
-      subject { helper.react_component('Todo') }
+    context 'with ssr: true (server-side rendering)' do
+      let(:node_renderer) { double('node_renderer') }
+      let(:response) { double('response') }
+      let(:ssred_component) do
+        File.read(Rails.root.join('spec/fixtures/ssred_component.html'))
+      end
 
-      it 'sets an empty object as default' do
-        expect(helper).to receive(:react_element)
-          .with('react-component', {}, name: 'Todo', ssr: false).once
-        helper.react_component('Todo')
+      before do
+        allow(response).to receive(:body) { ssred_component }
+        allow_any_instance_of(ReactWebpackRails::NodeRenderer)
+          .to receive(:call) { response }
+      end
+
+      it 'initializes NodeRenderer with proper args' do
+        allow(ReactWebpackRails::NodeRenderer)
+          .to receive(:new) { node_renderer }
+        allow(node_renderer).to receive(:call) { response }
+        expect(ReactWebpackRails::NodeRenderer).to receive(:new)
+          .with('Todo', foo: 'bar')
+        helper.react_component('Todo', props: { foo: 'bar' },
+          options: { ssr: true })
+      end
+
+      it 'calls NodeRenderer instance' do
+        expect_any_instance_of(ReactWebpackRails::NodeRenderer)
+          .to receive(:call)
+        helper.react_component('Todo', props: { foo: 'bar' },
+          options: { ssr: true })
+      end
+
+      it 'retrieves response body in a block' do
+        expect(response).to receive(:body).and_return(ssred_component)
+        helper.react_component('Todo', props: { foo: 'bar' },
+          options: { ssr: true })
       end
     end
   end
