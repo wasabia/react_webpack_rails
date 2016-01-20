@@ -12,9 +12,9 @@ class Users extends React.Component {
   render() {
     return(
       <div>
-        Hello World {this.props.name}
-        <button onClick={this.onClick}>count up</button>
-        {this.state.count}
+        <p>Hello World {this.props.name}</p>
+        <button onClick={this.onClick}>Increment</button>
+        <span>{this.state.count}</span>
       </div>
     );
   }

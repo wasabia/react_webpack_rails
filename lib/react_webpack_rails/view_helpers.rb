@@ -11,12 +11,11 @@ module ReactWebpackRails
         data[:react_element] = true
       end
       html_tag = options[:tag] || :div
-
       content_tag(html_tag, '', html_options, &block)
     end
 
-    def react_component(name, props: {}, options: {}, ssr: false)
-      if ssr
+    def react_component(name, props: {}, options: { ssr: false })
+      if options[:ssr]
         response = NodeRenderer.new(name, props).call
         react_element('react-component', props, options.merge(name: name)) do
           response.body.html_safe
