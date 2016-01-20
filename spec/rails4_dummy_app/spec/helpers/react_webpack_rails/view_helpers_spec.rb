@@ -63,7 +63,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
         .to receive(:react_element)
         .with('react-component', { foo: 'bar' }, name: 'Todo')
         .once
-      helper.react_component('Todo', foo: 'bar')
+      helper.react_component('Todo', props: { foo: 'bar' })
     end
 
     context 'when props are not passed' do

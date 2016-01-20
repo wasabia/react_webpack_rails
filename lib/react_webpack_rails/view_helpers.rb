@@ -15,9 +15,15 @@ module ReactWebpackRails
       content_tag(html_tag, '', html_options, &block)
     end
 
-    def react_component(name, props = {}, options = {})
-      NodeRenderer.new(name, props).call
-      react_element('react-component', props, options.merge(name: name))
+    def react_component(name, props: {}, options: {}, ssr: false)
+      if ssr
+        response = NodeRenderer.new(name, props).call
+        react_element('react-component', props, options.merge(name: name)) do
+          response.body.html_safe
+        end
+      else
+        react_element('react-component', props, options.merge(name: name))
+      end
     end
 
     def react_router(name)
