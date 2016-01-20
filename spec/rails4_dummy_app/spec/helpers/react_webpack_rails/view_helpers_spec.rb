@@ -61,7 +61,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     it 'wraps #react_component with proper options' do
       expect(helper)
         .to receive(:react_element)
-        .with('react-component', { foo: 'bar' }, name: 'Todo')
+        .with('react-component', { foo: 'bar' }, name: 'Todo', ssr: false)
         .once
       helper.react_component('Todo', props: { foo: 'bar' })
     end
@@ -70,7 +70,8 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
       subject { helper.react_component('Todo') }
 
       it 'sets an empty object as default' do
-        expect(helper).to receive(:react_element).with('react-component', {}, name: 'Todo').once
+        expect(helper).to receive(:react_element)
+          .with('react-component', {}, name: 'Todo', ssr: false).once
         helper.react_component('Todo')
       end
     end
@@ -80,7 +81,8 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     it { expect(helper).to respond_to(:react_router) }
 
     it 'wraps #react_component with proper options' do
-      expect(helper).to receive(:react_element).with('react-router', {}, name: 'TodoRouter').once
+      expect(helper).to receive(:react_element)
+        .with('react-router', {}, name: 'TodoRouter').once
       helper.react_router('TodoRouter')
     end
   end
