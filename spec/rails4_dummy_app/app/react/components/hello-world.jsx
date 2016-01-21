@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Users extends React.Component {
+class HelloWorld extends React.Component {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
@@ -20,4 +20,4 @@ class Users extends React.Component {
   }
 }
 
-export default Users;
+export default HelloWorld;
