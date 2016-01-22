@@ -9,11 +9,14 @@ module ReactWebpackRails
     end
 
     def call
-      @response = Net::HTTP.start(node_uri.host, node_uri.port) do |http|
+      response = Net::HTTP.start(node_uri.host, node_uri.port) do |http|
         http.request(request)
       end
-    rescue => e
-      raise Errors::NodeFailure, e.to_s # error_data
+      if response.code.to_i >= 500
+        fail Errors::NodeFailure, "You are retarded: #{response.body}"
+      else
+        response
+      end
     end
 
     private
@@ -28,13 +31,8 @@ module ReactWebpackRails
 
     def request
       request = Net::HTTP::Post.new(node_uri)
-      request.body = data_hash.to_json
+      request.body = JSON.generate(data_hash)
       request
-    end
-
-    def error_data
-      'error data'
-      # JSON.parse(@response.body).slice('error', 'error_description').to_s
     end
   end
 end
