@@ -17,4 +17,4 @@
 /tmp
 
 /node_modules
-react_bundle.js
+/app/assets/javascripts/react_bundle.js

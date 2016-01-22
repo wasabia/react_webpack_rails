@@ -81,15 +81,16 @@
   * ### react_component [ruby]
 
     ```ruby
-    react_component(String component_name[, Object props])
+    react_component(String component_name[, Object props, Object options, Object html_options])
     ```
 
     Creates DOM node with props as data attributes in rendered view so RWR can grab it and mount proper component.
+    Options are passed down to react while html_options are passed to element created by helper.
 
     ##### example:
 
     ```ruby
-    <%= react_component('MyComponentName', MySerializer.new(my_data)) %>
+    <%= react_component('MyComponentName', MySerializer.new(my_data), {}, {tag: :ul, class: 'my-class'}) %>
     ```
 
     **note:** Props Object will be parsed to JSON. Be careful when passing rails models there - all its data accessible after `.to_json` will be exposed as data-attributes. We  recommend using serializers to control it.

@@ -41,7 +41,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     end
 
     context 'when options with tag given' do
-      subject { helper.react_element('react-component', {}, foo: :bar, tag: :li) }
+      subject { helper.react_element('react-component', {}, {foo: :bar}, {tag: :li}) }
       it 'is renders passed tag' do
         expect(subject).to include('<li ', '></li>')
       end

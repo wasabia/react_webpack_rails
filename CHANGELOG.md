@@ -43,11 +43,13 @@
   $ npm install react-dom --save`
   ```
 * Expose `ReactDOM` in app/react/index.js.
+  
   ```js
   import ReactDOM from 'react-dom';
   window.ReactDOM = ReactDOM;
   ```
 * Create `.bablerc` in your project directory:
+  
   ```js
   {
     "stage": 1

@@ -1,16 +1,15 @@
 module ReactWebpackRails
   module ViewHelpers
-    # based on https://github.com/reactjs/react-rails/blob/master/lib/react/rails/view_helper.rb
-    def react_element(integration_name, payload = {}, options = {}, &block)
-      html_options = { data: {} }
+    def react_element(integration_name, payload = {}, options = {}, html_options = {}, &block)
       payload = camelize_props_key(payload) if Rails.application.config.react.camelize_props
-      html_options[:data].tap do |data|
-        data[:integration_name] = integration_name
-        data[:options] = options.except(:tag)
-        data[:payload] = (payload.is_a?(String) ? payload : payload.to_json)
-        data[:react_element] = true
-      end
-      html_tag = options[:tag] || :div
+      data = {
+        integration_name: integration_name,
+        options: options,
+        payload: (payload.is_a?(String) ? payload : payload.to_json),
+        react_element: true
+      }
+      html_options = html_options.merge(data: data)
+      html_tag = html_options.delete(:tag) || :div
       content_tag(html_tag, '', html_options, &block)
     end
 
