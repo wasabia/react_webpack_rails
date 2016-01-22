@@ -1,4 +1,8 @@
 require 'react_webpack_rails/version'
-require 'react_webpack_rails/engine' if defined?(Rails)
-require 'react_webpack_rails/railtie' if defined?(Rails)
-require 'react_webpack_rails/node_renderer' if defined?(Rails)
+if defined?(Rails)
+  require 'react_webpack_rails/engine'
+  require 'react_webpack_rails/railtie'
+  require 'react_webpack_rails/node_renderer'
+  require 'react_webpack_rails/errors/base'
+  require 'react_webpack_rails/errors/node_failure'
+end
