@@ -1,3 +1,4 @@
+global.window = global;
 require('./app/assets/javascripts/react_bundle');
 http = require('http');
 ReactDOMServer = require('react-dom/server');
