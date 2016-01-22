@@ -39,7 +39,7 @@ class ReactIntegration {
         this.renderComponent(options.name, config.payload, config.node);
       }.bind(this),
 
-      unmount: function __mount(config) {
+      unmount: function _unmount(config) {
         this.unmountComponent(config.node);
       }.bind(this),
     };

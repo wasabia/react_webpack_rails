@@ -9,26 +9,26 @@ class ReactRouterIntegration {
     this.renderRouter = this.renderRouter.bind(this);
   }
 
-  registerRouter(name, routes) {
-    this.routers[name] = routes;
+  registerRouter(name, route) {
+    this.routers[name] = route;
   }
 
   getRouter(name) {
     return this.routers[name];
   }
 
-  renderRouter(name, element) {
+  renderRouter(name, node) {
     if (this.enabled === true) {
       throw new Error(
-        `Error when renering ${name}\n\trenderRouter: can't render more than one router.`
+        `Error when rendering ${name}\n\trenderRouter: can't render more than one router.`
       );
     }
     this.enabled = true;
-    ReactDOM.render(this.getRouter(name), element);
+    ReactDOM.render(this.getRouter(name), node);
   }
 
-  unmountRouter(element) {
-    ReactDOM.unmountComponentAtNode(element);
+  unmountRouter(node) {
+    ReactDOM.unmountComponentAtNode(node);
     this.enabled = false;
   }
 

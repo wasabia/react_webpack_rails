@@ -7,7 +7,6 @@ class IntegrationsManager {
     };
   }
 
-
   get(name) {
     // handle missing one here;
     return this.integrations[name];
