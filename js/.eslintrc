@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb",
+  "globals": {
+    "__RWR_ENV__": true,
+    "describe": true,
+    "it": true,
+    "afterEach": true,
+    "beforeEach": true,
+    "context": true
+  },
+  "rules": {
+    func-names: 0
+  }
+}

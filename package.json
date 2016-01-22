@@ -3,11 +3,13 @@
   "version": "0.0.4",
   "description": "Js part of react_webpack_rails - webpack based React & Rails integration.",
   "main": "js/lib/index.js",
-  "files": ["js/lib"],
+  "files": [
+    "js/lib"
+  ],
   "scripts": {
     "compile": "babel --presets es2015 -d js/lib/ js/src/",
     "prepublish": "npm run compile",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha js/test --ui bdd --recursive --require babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,7 @@
     "url": "https://github.com/netguru/react_webpack_rails/issues"
   },
   "homepage": "https://github.com/netguru/react_webpack_rails#readme",
-  "preDependencies": {
+  "peerDependencies": {
     "react": "^0.14.6",
     "react-dom": "^0.14.6"
   },
@@ -39,6 +41,9 @@
     "babel-preset-react": "^6.3.13",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^3.1.0",
-    "eslint-plugin-react": "^3.15.0"
+    "eslint-plugin-react": "^3.15.0",
+    "expect": "^1.13.4",
+    "history": "^1.17.0",
+    "mocha": "^2.3.4"
   }
 }

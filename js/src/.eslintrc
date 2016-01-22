@@ -1,6 +1,0 @@
-{
-  "extends": "airbnb",
-  "globals": {
-    "__RWR_ENV__": true
-  }
-}
