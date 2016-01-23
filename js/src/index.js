@@ -18,4 +18,5 @@ export default {
   unmountComponent: react.unmountComponent,
   mountNodes: nodes.mountNodes,
   unmountNodes: nodes.unmountNodes,
+  integrationsManager: integrationsManager,
 };
