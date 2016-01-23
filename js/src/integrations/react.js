@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 
 class ReactIntegration {
   constructor() {
@@ -9,6 +10,7 @@ class ReactIntegration {
     this.createComponent = this.createComponent.bind(this);
     this.renderComponent = this.renderComponent.bind(this);
     this.unmountComponent = this.unmountComponent.bind(this);
+    this.renderComponentToString = this.renderComponentToString.bind(this);
   }
 
   registerComponent(name, component) {
@@ -33,14 +35,23 @@ class ReactIntegration {
     ReactDOM.unmountComponentAtNode(node);
   }
 
+  renderComponentToString(name, props) {
+    const component = this.createComponent(name, props);
+    return ReactDOMServer.renderToString(component);
+  }
+
   get integrationWrapper() {
     return {
       mount: function _mount(config, options) {
         this.renderComponent(options.name, config.payload, config.node);
       }.bind(this),
 
-      unmount: function __mount(config) {
+      unmount: function _unmount(config) {
         this.unmountComponent(config.node);
+      }.bind(this),
+
+      nodeRun: function _prerender(payload) {
+        return this.renderComponentToString(payload.name, payload.props);
       }.bind(this),
     };
   }
