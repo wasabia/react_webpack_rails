@@ -13,14 +13,14 @@ module ReactWebpackRails
       content_tag(html_tag, '', html_options, &block)
     end
 
-    def react_component(name, props: {}, options: { ssr: false })
-      if options[:ssr]
-        response = NodeRenderer.new(name, props).call
-        react_element('react-component', props, options.merge(name: name)) do
-          response.body.html_safe
+    def react_component(name, props = {}, options = { ssr: false })
+      if options.delete(:ssr)
+        result = NodeRenderer.new('react-component', props: props, name: name).run
+        react_element('react-component', props, { name: name }, options) do
+          result.body.html_safe
         end
       else
-        react_element('react-component', props, options.merge(name: name))
+        react_element('react-component', props, { name: name }, options)
       end
     end
 
