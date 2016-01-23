@@ -34,10 +34,14 @@ var RWRhandlers = {
   },
 };
 
-(function reactMain() {
+function reactMain() {
+  console.log('starting rwr...')
   if (typeof Turbolinks !== 'undefined' && Turbolinks.supported) {
     RWRhandlers.handleTurbolinksEvents();
   } else {
     RWRhandlers.handleNativeEvents();
+    RWR.mountNodes();
   }
-})(document, window);
+}
+
+window.setTimeout(reactMain, 3000);
