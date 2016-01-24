@@ -1,14 +1,18 @@
 import expect from 'expect';
 import reactIntegration from '../src/integrations/react';
+import reactRouterIntegration from '../src/integrations/react-router';
 import subject from '../src/integrations-manager';
 
 describe('IntegrationsManager', function () {
   describe('.constructor', function () {
-    it('by default sets only react integration', function () {
+    it('by default sets react and react-router integrations', function () {
       expect(subject.integrations['react-component']).toEqual(
         reactIntegration.integrationWrapper
       );
-      expect(Object.keys(subject.integrations).length).toEqual(1);
+      expect(subject.integrations['react-router']).toEqual(
+        reactRouterIntegration.integrationWrapper
+      );
+      expect(Object.keys(subject.integrations).length).toEqual(2);
     });
   });
 

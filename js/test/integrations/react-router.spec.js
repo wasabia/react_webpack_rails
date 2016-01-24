@@ -55,6 +55,7 @@ describe('ReactIntegration', function () {
 
     context('when router does not exist', function () {
       let ReactDOMSpy;
+      const node = { nodeType: 1, nodeName: 'DIV' };
       beforeEach(function () {
         ReactDOMSpy = spyOn(ReactDOM, 'render');
       });
@@ -64,16 +65,16 @@ describe('ReactIntegration', function () {
       });
 
       it('sets router presence flag to true', function () {
-        subject.renderRouter('HelloRouter', { node: 'someNode' });
+        subject.renderRouter('HelloRouter', node);
 
         expect(subject.enabled).toBe(true);
       });
 
       it('calls ReactDOM renderer once', function () {
-        subject.renderRouter('HelloRouter', { node: 'someNode' });
+        subject.renderRouter('HelloRouter', { nodeType: 1, nodeName: 'DIV' });
 
         expect(ReactDOMSpy.calls.length).toEqual(1);
-        expect(ReactDOMSpy).toHaveBeenCalledWith(HelloRouter, { node: 'someNode' });
+        expect(ReactDOMSpy).toHaveBeenCalledWith(HelloRouter, { nodeType: 1, nodeName: 'DIV' });
       });
     });
   });
@@ -102,17 +103,19 @@ describe('ReactIntegration', function () {
   });
 
   describe('#integrationWrapper', function () {
+    const node = { nodeType: 1, nodeName: 'DIV' };
+
     describe('function mount', function () {
       it('calls renderComponent', function () {
         const mountSpy = spyOn(subject, 'renderRouter');
-        const config = { node: { node: 'someNode' } };
-        const options = { name: 'routerName' };
-        subject.integrationWrapper.mount(config, options);
+
+        const payload = { name: 'routerName' };
+        subject.integrationWrapper.mount(node, payload);
 
         expect(mountSpy.calls.length).toEqual(1);
         expect(mountSpy).toHaveBeenCalledWith(
           'routerName',
-          { node: 'someNode' }
+          { nodeType: 1, nodeName: 'DIV' }
         );
       });
     });
@@ -120,11 +123,10 @@ describe('ReactIntegration', function () {
     describe('function unmount', function () {
       it('calls unmountComponent', function () {
         const unmountSpy = spyOn(subject, 'unmountRouter');
-        const config = { node: { node: 'someNode' } };
-        subject.integrationWrapper.unmount(config);
+        subject.integrationWrapper.unmount(node);
 
         expect(unmountSpy.calls.length).toEqual(1);
-        expect(unmountSpy).toHaveBeenCalledWith({ node: 'someNode' });
+        expect(unmountSpy).toHaveBeenCalledWith({ nodeType: 1, nodeName: 'DIV' });
       });
     });
   });
