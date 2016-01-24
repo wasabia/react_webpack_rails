@@ -35,12 +35,12 @@ class ReactIntegration {
 
   get integrationWrapper() {
     return {
-      mount: function _mount(config, options) {
-        this.renderComponent(options.name, config.payload, config.node);
+      mount: function _mount(node, payload) {
+        this.renderComponent(payload.name, payload.props, node);
       }.bind(this),
 
-      unmount: function _unmount(config) {
-        this.unmountComponent(config.node);
+      unmount: function _unmount(node) {
+        this.unmountComponent(node);
       }.bind(this),
     };
   }
