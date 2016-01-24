@@ -16,6 +16,12 @@ export default {
   createComponent: react.createComponent,
   renderComponent: react.renderComponent,
   unmountComponent: react.unmountComponent,
+
+  renderRouter: reactRouter.renderRouter,
+  registerRouter: reactRouter.registerRouter,
+  unmountRouter: reactRouter.unmountRouter,
+  getRouter: reactRouter.getRouter,
+
   mountNodes: nodes.mountNodes,
   unmountNodes: nodes.unmountNodes,
 };

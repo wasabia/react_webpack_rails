@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import IntegrationsManager from './../integrations-manager';
 
 class ReactRouterIntegration {
   constructor() {
@@ -43,10 +42,6 @@ class ReactRouterIntegration {
         this.unmountRouter(node);
       }.bind(this),
     };
-  }
-
-  run() {
-    IntegrationsManager.register('react-router', this.integrationWrapper);
   }
 }
 
