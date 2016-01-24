@@ -35,14 +35,14 @@ function _unmountNode(node) {
 }
 
 export default {
-  mountNodes: function mountNodes(searchSelector) {
+  mountNodes: function _mountNodes(searchSelector) {
     const nodes = _findDOMNodes(searchSelector);
     for (let i = 0; i < nodes.length; ++i) {
       _mountNode(nodes[i]);
     }
   },
 
-  unmountNodes: function unmountNodes(searchSelector) {
+  unmountNodes: function _unmountNodes(searchSelector) {
     const nodes = _findDOMNodes(searchSelector);
     for (let i = 0; i < nodes.length; ++i) {
       _unmountNode(nodes[i]);
