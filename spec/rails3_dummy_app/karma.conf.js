@@ -9,6 +9,12 @@ module.exports = function (config) {
     preprocessors: {
       'webpack/tests.config.js': ['webpack', 'sourcemap']
     },
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     reporters: ['dots'],
     webpack: {
       module: {
@@ -16,7 +22,7 @@ module.exports = function (config) {
           {
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loader: 'babel-loader'
+            loader: 'babel'
           }]
       },
       watch: true,
@@ -29,4 +35,7 @@ module.exports = function (config) {
       noInfo: true
     }
   });
+
+  if (process.env.TRAVIS)
+    config.browsers = ['Chrome_travis_ci'];
 };

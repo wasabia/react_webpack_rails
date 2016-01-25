@@ -25,6 +25,7 @@ matrix:
 before_script:
   - $SETUP && cd $APP_PATH && npm install webpack -g && npm install && npm build || true
   - cd $TRAVIS_BUILD_DIR
+  - 'export CHROME_BIN=chromium-browser'
   - "export DISPLAY=:99.0" # Setup display for selenium driver
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
