@@ -59,9 +59,9 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
       it 'wraps #react_component with proper options' do
         expect(helper)
           .to receive(:react_element)
-          .with('react-component', { foo: 'bar' }, name: 'Todo', ssr: false)
+          .with('react-component', { foo: 'bar' }, { name: 'Todo' }, {})
           .once
-        helper.react_component('Todo', props: { foo: 'bar' })
+        helper.react_component('Todo', { foo: 'bar' })
       end
 
       context 'when props are not passed' do
@@ -69,7 +69,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
 
         it 'sets an empty object as default' do
           expect(helper).to receive(:react_element)
-            .with('react-component', {}, name: 'Todo', ssr: false).once
+            .with('react-component', {}, { name: 'Todo' }, {}).once
           helper.react_component('Todo')
         end
       end
@@ -85,30 +85,27 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
       before do
         allow(response).to receive(:body) { ssred_component }
         allow_any_instance_of(ReactWebpackRails::NodeRenderer)
-          .to receive(:call) { response }
+          .to receive(:run) { response }
       end
 
       it 'initializes NodeRenderer with proper args' do
         allow(ReactWebpackRails::NodeRenderer)
           .to receive(:new) { node_renderer }
-        allow(node_renderer).to receive(:call) { response }
+        allow(node_renderer).to receive(:run) { response }
         expect(ReactWebpackRails::NodeRenderer).to receive(:new)
-          .with('Todo', foo: 'bar')
-        helper.react_component('Todo', props: { foo: 'bar' },
-          options: { ssr: true })
+          .with('react-component', props: { foo: 'bar' }, name: 'Todo')
+        helper.react_component('Todo', { foo: 'bar' }, ssr: true)
       end
 
       it 'calls NodeRenderer instance' do
         expect_any_instance_of(ReactWebpackRails::NodeRenderer)
-          .to receive(:call)
-        helper.react_component('Todo', props: { foo: 'bar' },
-          options: { ssr: true })
+          .to receive(:run)
+        helper.react_component('Todo', { foo: 'bar' }, ssr: true)
       end
 
       it 'retrieves response body in a block' do
         expect(response).to receive(:body).and_return(ssred_component)
-        helper.react_component('Todo', props: { foo: 'bar' },
-          options: { ssr: true })
+        helper.react_component('Todo', { foo: 'bar' }, ssr: true)
       end
     end
   end
