@@ -23,6 +23,7 @@ matrix:
       env: TEST_SUITE=gem SETUP=false
 
 before_script:
+  - npm install npm@^2.0
   - $SETUP && cd $APP_PATH && npm install webpack -g && npm install && npm build || true
   - cd $TRAVIS_BUILD_DIR
   - 'export CHROME_BIN=chromium-browser'
