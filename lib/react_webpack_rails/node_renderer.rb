@@ -1,6 +1,6 @@
 module ReactWebpackRails
   class NodeRenderer
-    NODE_URI = 'http://localhost:8080/'
+    include NodeHelpers
 
     def initialize(integration_name, payload)
       @integration_name = integration_name
@@ -36,10 +36,6 @@ module ReactWebpackRails
 
     def data_hash
       { integrationName: integration_name, payload: payload }
-    end
-
-    def node_uri
-      URI(NODE_URI)
     end
 
     def request
