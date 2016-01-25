@@ -2,10 +2,8 @@ global.window = global;
 global.__RWR_ENV__ = {};
 require('./app/assets/javascripts/react_bundle');
 http = require('http');
-var dispatcher = require('httpdispatcher');
-
+dispatcher = require('httpdispatcher');
 PORT = 8080;
-
 
 function handleRequest(request, response){
   try {
@@ -13,10 +11,11 @@ function handleRequest(request, response){
     dispatcher.dispatch(request, response);
   } catch(ex) {
     console.log(ex)
-    response.writeHead(500, {'Content-Type': 'text/plain'});
+    response.writeHead(500);
     response.end(ex.name + ': ' + ex.message);
   }
 }
+
 dispatcher.onPost("/run", function(request, response) {
   try {
     var data = JSON.parse(request.body);
@@ -29,11 +28,10 @@ dispatcher.onPost("/run", function(request, response) {
     response.end(result);
   } catch(ex) {
     console.log(ex)
-    response.writeHead(500, {'Content-Type': 'text/plain'});
-    response.end("nodeRun faild:\n" + ex.name + ': ' + ex.message);
+    response.writeHead(500);
+    response.end("nodeRun failed:\n" + ex.name + ': ' + ex.message);
   }
 });
-
 
 dispatcher.onPost("/reset", function(request, response) {
   try{
@@ -42,8 +40,8 @@ dispatcher.onPost("/reset", function(request, response) {
     response.end();
   } catch(ex) {
     console.log(ex)
-    response.writeHead(500, {'Content-Type': 'text/plain'});
-    response.end("nodeReset faild:\n" + ex.name + ': ' + ex.message);
+    response.writeHead(500);
+    response.end("nodeReset failed:\n" + ex.name + ': ' + ex.message);
   }
 });
 
