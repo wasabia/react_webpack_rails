@@ -1,4 +1,5 @@
 require 'react_webpack_rails/view_helpers'
+require 'react_webpack_rails/application_helper'
 
 module ReactWebpackRails
   class Railtie < ::Rails::Railtie
@@ -11,10 +12,6 @@ module ReactWebpackRails
 
     initializer 'react_webpack_rails.view_helpers' do
       ActionView::Base.send :include, ViewHelpers
-    end
-
-    initializer 'react_webpack_rails.application_helper' do
-      ActionController::Base.send :include, ApplicationHelper
     end
   end
 end
