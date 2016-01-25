@@ -18,18 +18,6 @@ module ReactWebpackRails
       end
     end
 
-
-    def reset
-      response = Net::HTTP.start(node_uri.host, node_uri.port) do |http|
-        http.request(Net::HTTP::Post.new(URI(NODE_URI + 'reset')))
-      end
-      if response.code.to_i >= 500
-        fail Errors::NodeFailure, response.body
-      else
-        response
-      end
-    end
-
     private
 
     attr_reader :integration_name, :payload
