@@ -57,7 +57,7 @@ var RWRhandlers = {
     RWR.unmountNodes();
   },
 
-  _handleEvent(eventName, callback) {
+  _handleEvent: function(eventName, callback) {
     document.addEventListener(eventName, callback);
   },
 
