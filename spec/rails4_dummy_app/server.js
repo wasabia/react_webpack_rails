@@ -1,6 +1,10 @@
+"use strict";
 global.window = global;
 global.__RWR_ENV__ = {};
-require('./app/assets/javascripts/react_bundle');
+require('babel-core/register');
+require('./app/react/index');
+
+let http, dispatcher, PORT;
 http = require('http');
 dispatcher = require('httpdispatcher');
 PORT = 8080;
@@ -18,8 +22,9 @@ function handleRequest(request, response){
 
 dispatcher.onPost("/run", function(request, response) {
   try {
-    var data = JSON.parse(request.body);
-    result = RWR.integrationsManager.runIntegration(data);
+    let data, result;
+    data = JSON.parse(request.body);
+    result = RWR.integrationsManager.runNodeIntegration(data);
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.end(result);
   } catch(ex) {
@@ -31,7 +36,7 @@ dispatcher.onPost("/run", function(request, response) {
 
 dispatcher.onPost("/reset", function(request, response) {
   try{
-    RWR.integrationsManager.nodeResetAll();
+    RWR.integrationsManager.resetNodeIntegrations();
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.end();
   } catch(ex) {
@@ -41,7 +46,7 @@ dispatcher.onPost("/reset", function(request, response) {
   }
 });
 
-var server = http.createServer(handleRequest);
+const server = http.createServer(handleRequest);
 
 server.listen(PORT, function(){
   console.log("Server listening on: http://localhost:%s", PORT);

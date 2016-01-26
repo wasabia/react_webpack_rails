@@ -17,7 +17,7 @@ class IntegrationsManager {
     this.integrations[name] = integration;
   }
 
-  runIntegration(data) {
+  runNodeIntegration(data) {
     let result = '';
     const { nodeRun } = this.get(data.integrationName);
     if (typeof(nodeRun) === 'function') {
@@ -26,7 +26,7 @@ class IntegrationsManager {
     return result;
   }
 
-  nodeResetAll() {
+  resetNodeIntegrations() {
     Object.keys(this.integrations).forEach((integrationName) => {
       const resetFunction = this.get(integrationName).nodeReset;
       if (typeof(resetFunction) === 'function') {
