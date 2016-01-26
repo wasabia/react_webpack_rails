@@ -19,11 +19,7 @@ function handleRequest(request, response){
 dispatcher.onPost("/run", function(request, response) {
   try {
     var data = JSON.parse(request.body);
-    var runFunction = RWR.integrationsManager.get(data.integrationName).nodeRun
-    var result = '';
-    if(typeof(runFunction) == 'function'){
-      result = runFunction(data.payload);
-    }
+    result = RWR.integrationsManager.runIntegration(data);
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.end(result);
   } catch(ex) {
