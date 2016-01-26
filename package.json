@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/netguru/react_webpack_rails#readme",
   "peerDependencies": {
-    "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14"
