@@ -1,6 +1,28 @@
 ## UNRELEASED
 * `config.react.camelize_props = true` will camelize `react_component` prop keys #409
 * Babel update [#39](https://github.com/netguru/react_webpack_rails/pull/39/files)
+* `react-webpack-rails` npm package
+  * replacing integrations js
+  * removing global js helpers (registerComponent, getComponent, createComponent, renderComponent, renderRouter, getRouter)
+
+
+
+#### migration 0.0.5 -> ?
+* Install react-webpack-rails package.
+```
+$ npm install --save react-webpack-rails
+```  
+* Import and expose RWR in react/index.js file
+add on the top:
+```js
+// app/react/index.js
+import RWR from 'react-webpack-rails';
+window.RWR = RWR;
+```
+* Use helpers from RWR instead of globals. For example:
+`registerComponent(...)` -> `RWR.registerComponent(...)`
+* You can remove exposed `React` and `ReactDOM` from `index.js`. No need to expose them globally.
+
 
 ## 0.0.5 (November 26, 2015)
 * Add Hot Reload support

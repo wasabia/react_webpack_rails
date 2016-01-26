@@ -59,7 +59,7 @@
 
     ```js
     var element = document.getElementById('my-element');
-    renderComponent('MyComponentName', {ųfoo: 'bar'}, element);
+    renderComponent('MyComponentName', {foo: 'bar'}, element);
     ```
 
   * #### unmountComponent [js]
@@ -81,19 +81,19 @@
   * ### react_component [ruby]
 
     ```ruby
-    react_component(String component_name[, Object props, Object options, Object html_options])
+    react_component(String component_name[, Object props, Object options])
     ```
 
     Creates DOM node with props as data attributes in rendered view so RWR can grab it and mount proper component.
-    Options are passed down to react while html_options are passed to element created by helper.
+    Options hash contains customization of React component, such as `tag`, `class`.
 
     ##### example:
 
     ```ruby
-    <%= react_component('MyComponentName', MySerializer.new(my_data), {}, {tag: :ul, class: 'my-class'}) %>
+    <%= react_component('MyComponentName', MySerializer.new(my_data), { tag: :ul, class: 'my-class' }) %>
     ```
 
-    **note:** Props Object will be parsed to JSON. Be careful when passing rails models there - all its data accessible after `.to_json` will be exposed as data-attributes. We  recommend using serializers to control it.
+    **note:** Props Object will be parsed to JSON. Be careful when passing rails models there - all its data accessible after `.to_json` will be exposed as data-attributes. We recommend using serializers to control it.
 
 
 ## ReactRouter
@@ -131,7 +131,7 @@
   * #### renderRouter [js]
 
     ```js
-    renderRouter(String routerName, Object props, DOMElement container)
+    renderRouter(String routerName, DOMElement container)
     ```
 
     Wrapper over `React.render`. Search and render given router into specified DOM element.
@@ -140,7 +140,7 @@
 
     ```js
     var element = document.getElementById('my-element');
-    renderComponent('MyComponentName', {foo: 'bar'}, element);
+    renderRouter('MyRouterName', element);
     ```
 
   * #### react_router [ruby]
