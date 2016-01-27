@@ -1,28 +1,56 @@
-## UNRELEASED
-* `config.react.camelize_props = true` will camelize `react_component` prop keys #409
-* Babel update [#39](https://github.com/netguru/react_webpack_rails/pull/39/files)
+## 0.1.0 (January 27, 2015)
+* `config.react.camelize_props = true` will camelize `react_component` prop keys
+* Babel updated to version 6
 * `react-webpack-rails` npm package
-  * replacing integrations js
-  * removing global js helpers (registerComponent, getComponent, createComponent, renderComponent, renderRouter, getRouter)
+  * replacing javascript integrations
+  * removing global javascript helpers (registerComponent, getComponent, createComponent, renderComponent, renderRouter, getRouter)
 
+#### migration 0.0.5 -> 0.1.0
+1. Install react-webpack-rails package.
 
+  ```
+  $ npm install --save react-webpack-rails
+  ```
 
-#### migration 0.0.5 -> ?
-* Install react-webpack-rails package.
-```
-$ npm install --save react-webpack-rails
-```  
-* Import and expose RWR in react/index.js file
+2. Update gem react_webpack_rails
+
+  ```
+  $ bundle update react_webpack_rails
+  ```
+3. Update babel to version 6.x.
+
+  ```
+  $ npm i --save-dev babel-core@^6.0.0 babel-loader@^6.0.0 babel-preset-stage-1@^6.0.0 babel-preset-react@^6.0.0 babel-preset-es2015@^6.0.0
+  ```  
+
+4. Update babel config file (we use stage-1).
+
+  ```
+  {
+    "presets": ["stage-1", "es2015", "react"]
+  }
+  ```
+
+5. Import and expose RWR in `react/index.js` file
 add on the top:
-```js
-// app/react/index.js
-import RWR from 'react-webpack-rails';
-window.RWR = RWR;
-```
-* Use helpers from RWR instead of globals. For example:
-`registerComponent(...)` -> `RWR.registerComponent(...)`
-* You can remove exposed `React` and `ReactDOM` from `index.js`. No need to expose them globally.
 
+  ```js
+  // app/react/index.js
+  import RWR from 'react-webpack-rails';
+  window.RWR = RWR;
+  ```
+
+6. Use helpers from RWR instead of globals. Example:
+
+  ```
+  # old
+  registerComponent(...)
+
+  # new
+  RWR.registerComponent(...)
+  ```
+
+7. You can remove exposed `React` and `ReactDOM` from `react/index.js`. No need to expose them globally.
 
 ## 0.0.5 (November 26, 2015)
 * Add Hot Reload support
