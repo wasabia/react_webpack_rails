@@ -1,13 +1,11 @@
-"use strict";
 global.window = global;
 global.__RWR_ENV__ = {};
 require('babel-core/register');
 require('./app/react/index');
 
-let http, dispatcher, PORT;
-http = require('http');
-dispatcher = require('httpdispatcher');
-PORT = 8080;
+const http = require('http');
+const dispatcher = require('httpdispatcher');
+const PORT = 8080;
 
 function handleRequest(request, response){
   try {
@@ -22,9 +20,8 @@ function handleRequest(request, response){
 
 dispatcher.onPost("/run", function(request, response) {
   try {
-    let data, result;
-    data = JSON.parse(request.body);
-    result = RWR.integrationsManager.runNodeIntegration(data);
+    const data = JSON.parse(request.body);
+    const result = RWR.integrationsManager.runNodeIntegration(data);
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.end(result);
   } catch(ex) {
