@@ -1,11 +1,9 @@
 module ReactWebpackRails
   module ViewHelpers
-    def react_element(integration_name, payload = {}, options = {}, html_options = {}, &block)
-      payload = camelize_props_key(payload) if Rails.application.config.react.camelize_props
+    def react_element(integration_name, payload = {}, html_options = {}, &block)
       data = {
         integration_name: integration_name,
-        options: options,
-        payload: (payload.is_a?(String) ? payload : payload.to_json),
+        payload: payload,
         react_element: true
       }
       html_options = html_options.merge(data: data)
@@ -25,7 +23,7 @@ module ReactWebpackRails
     end
 
     def react_router(name)
-      react_element('react-router', {}, name: name)
+      react_element('react-router', name: name)
     end
 
     private

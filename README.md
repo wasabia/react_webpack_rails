@@ -16,10 +16,6 @@ Execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install react_webpack_rails
-
 Then run installation:
 
     $ rails g react_webpack_rails:install
@@ -75,7 +71,7 @@ By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to 
 
 ## Usage
 ##### Check [docs](https://github.com/netguru/react_webpack_rails/tree/master/docs) for detailed api description.
-### to use hot-reloading add partial in your application.html.erb to `<body>`:
+#### to use hot-reloading add partial in your application.html.erb to `<body>`:
 (it's not needed when you want to use just webpack in watch mode without hot-reloading)
 ```erb
 <%= render 'layouts/react_hot_assets' %>
@@ -101,7 +97,7 @@ const element = $('#my-element');
 renderComponent('customComponentName', {user_id: 1}, element);
 ```
 
-### Development
+### Development environment
 Run webpack in watch mode using script:
 
     $ npm start
@@ -115,7 +111,7 @@ Or manually:
     $ webpack -w --config YOUR_CONFIG
 
 
-### Production
+### Production environment
 Run webpack in production mode before compiling assets using script:
 
     $ npm run build
@@ -127,11 +123,10 @@ or manually:
 #### Deployment
 Check [docs/deployment.md](docs/deployment.md)
 
-## Development
+## Gem development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+After checking out the repo, run `bundle exec rake setup:all` to install dependencies. Then, run `rake` to run the tests (includes gem, test app and node module).
+Run `bundle exec rake -T` to check available development commands.
 
 ## Contributing
 

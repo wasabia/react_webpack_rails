@@ -1,3 +1,7 @@
+branches:
+  except:
+    - docs
+
 language: ruby
 
 cache:
@@ -5,25 +9,30 @@ cache:
   directories:
   - spec/rails3_dummy_app/node_modules
   - spec/rails4_dummy_app/node_modules
+  - node_modules
 
 matrix:
   include:
     - rvm: 2.2.4
       gemfile: spec/rails4_dummy_app/Gemfile
-      env: TEST_SUITE=rails4 SETUP=true APP_PATH=spec/rails4_dummy_app
+      env: TEST_SUITE=rails4
     - rvm: 2.2.4
       gemfile: spec/rails3_dummy_app/Gemfile
-      env: TEST_SUITE=rails3 SETUP=true APP_PATH=spec/rails3_dummy_app
+      env: TEST_SUITE=rails3
     - rvm: 2.2.4
       gemfile: Gemfile
-      env: TEST_SUITE=gem SETUP=false
+      env: TEST_SUITE=gem
+    - rvm: 2.2.4
+      env: TEST_SUITE=node
 
 before_script:
-  - $SETUP && cd $APP_PATH && npm install webpack -g && npm install && npm build || true
-  - cd $TRAVIS_BUILD_DIR
+  - npm install -g npm@^2.0
+  - npm install -g webpack@^1.12.1
+  - bundle exec rake setup:$TEST_SUITE
+  - 'export CHROME_BIN=chromium-browser'
   - "export DISPLAY=:99.0" # Setup display for selenium driver
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
 
 script:
-  - bundle exec rake spec:$TEST_SUITE
+  - bundle exec rake test:$TEST_SUITE

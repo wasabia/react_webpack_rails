@@ -9,37 +9,37 @@ class ReactRouterIntegration {
     this.renderRouter = this.renderRouter.bind(this);
   }
 
-  registerRouter(name, routes) {
-    this.routers[name] = routes;
+  registerRouter(name, route) {
+    this.routers[name] = route;
   }
 
   getRouter(name) {
     return this.routers[name];
   }
 
-  renderRouter(name, element) {
+  renderRouter(name, node) {
     if (this.enabled === true) {
       throw new Error(
-        `Error when renering ${name}\n\trenderRouter: can't render more than one router.`
+        `Error when rendering ${name}\n\trenderRouter: can't render more than one router.`
       );
     }
     this.enabled = true;
-    ReactDOM.render(this.getRouter(name), element);
+    ReactDOM.render(this.getRouter(name), node);
   }
 
-  unmountRouter(element) {
-    ReactDOM.unmountComponentAtNode(element);
+  unmountRouter(node) {
+    ReactDOM.unmountComponentAtNode(node);
     this.enabled = false;
   }
 
   get integrationWrapper() {
     return {
-      mount: function _mount(config, options) {
-        this.renderRouter(options.name, config.node);
+      mount: function _mount(node, payload) {
+        this.renderRouter(payload.name, node);
       }.bind(this),
 
-      unmount: function _unmount(config) {
-        this.unmountRouter(config.node);
+      unmount: function _unmount(node) {
+        this.unmountRouter(node);
       }.bind(this),
     };
   }

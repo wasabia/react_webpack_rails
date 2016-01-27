@@ -24,34 +24,25 @@ function _nodeData(node) {
 
 function _mountNode(node) {
   const data = _nodeData(node);
-  const config = {
-    node,
-    payload: data.payload,
-  };
   const mount = IntegrationsManager.get(data.integrationName).mount;
-  if (typeof(mount) === 'function') { mount(config, data.options); }
+  if (typeof(mount) === 'function') { mount(node, data.payload); }
 }
 
 function _unmountNode(node) {
   const data = _nodeData(node);
-  const config = {
-    node,
-    payload: data.payload,
-  };
-
   const unmount = IntegrationsManager.get(data.integrationName).unmount;
-  if (typeof(unmount) === 'function') { unmount(config, data.options); }
+  if (typeof(unmount) === 'function') { unmount(node, data.payload); }
 }
 
 export default {
-  mountNodes: function mountNodes(searchSelector) {
+  mountNodes: function _mountNodes(searchSelector) {
     const nodes = _findDOMNodes(searchSelector);
     for (let i = 0; i < nodes.length; ++i) {
       _mountNode(nodes[i]);
     }
   },
 
-  unmountNodes: function unmountNodes(searchSelector) {
+  unmountNodes: function _unmountNodes(searchSelector) {
     const nodes = _findDOMNodes(searchSelector);
     for (let i = 0; i < nodes.length; ++i) {
       _unmountNode(nodes[i]);
