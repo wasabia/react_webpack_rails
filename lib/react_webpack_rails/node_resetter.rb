@@ -21,7 +21,7 @@ module ReactWebpackRails
       end
 
       def reset_endpoint
-        URI(NODE_URI + 'reset')
+        node_uri('reset')
       end
     end
   end

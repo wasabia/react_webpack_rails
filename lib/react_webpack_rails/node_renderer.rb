@@ -27,7 +27,7 @@ module ReactWebpackRails
     end
 
     def request
-      request = Net::HTTP::Post.new(URI(NODE_URI + 'run'))
+      request = Net::HTTP::Post.new(node_uri('run'))
       request.body = JSON.generate(data_hash)
       request
     end

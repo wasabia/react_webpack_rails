@@ -1,9 +1,7 @@
 module ReactWebpackRails
   module NodeHelpers
-    NODE_URI = 'http://localhost:8080/'
-
-    def node_uri
-      URI(NODE_URI)
+    def node_uri(path = '')
+      URI(Rails.application.config.react.node_server).merge(path)
     end
   end
 end
