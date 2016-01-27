@@ -55,13 +55,13 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
   describe '#react_component' do
     it { expect(helper).to respond_to(:react_component) }
 
-    context 'with ssr: false' do
+    context 'with server_side: false' do
       it 'wraps #react_component with proper options' do
         expect(helper)
           .to receive(:react_element)
           .with('react-component', { foo: 'bar' }, { name: 'Todo' }, {})
           .once
-        helper.react_component('Todo', { foo: 'bar' })
+        helper.react_component('Todo', { foo: 'bar' }, server_side: false)
       end
 
       context 'when props are not passed' do
@@ -75,7 +75,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
       end
     end
 
-    context 'with ssr: true (server-side rendering)' do
+    context 'with server_side: true (server-side rendering)' do
       let(:node_renderer) { double('node_renderer') }
       let(:response) { double('response') }
       let(:ssred_component) do
@@ -94,18 +94,18 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
         allow(node_renderer).to receive(:run) { response }
         expect(ReactWebpackRails::NodeRenderer).to receive(:new)
           .with('react-component', props: { foo: 'bar' }, name: 'Todo')
-        helper.react_component('Todo', { foo: 'bar' }, ssr: true)
+        helper.react_component('Todo', { foo: 'bar' }, server_side: true)
       end
 
       it 'calls NodeRenderer instance' do
         expect_any_instance_of(ReactWebpackRails::NodeRenderer)
           .to receive(:run)
-        helper.react_component('Todo', { foo: 'bar' }, ssr: true)
+        helper.react_component('Todo', { foo: 'bar' }, server_side: true)
       end
 
       it 'retrieves response body in a block' do
         expect(response).to receive(:body).and_return(ssred_component)
-        helper.react_component('Todo', { foo: 'bar' }, ssr: true)
+        helper.react_component('Todo', { foo: 'bar' }, server_side: true)
       end
     end
   end

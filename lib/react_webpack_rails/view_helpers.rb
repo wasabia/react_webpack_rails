@@ -13,8 +13,8 @@ module ReactWebpackRails
       content_tag(html_tag, '', html_options, &block)
     end
 
-    def react_component(name, props = {}, options = { ssr: false })
-      if options.delete(:ssr)
+    def react_component(name, props = {}, options = {})
+      if server_side(options.delete(:server_side))
         result = NodeRenderer.new('react-component', props: props, name: name).run
         react_element('react-component', props, { name: name }, options) do
           result.body.html_safe
@@ -36,6 +36,10 @@ module ReactWebpackRails
         h[k.to_s.camelize(:lower)] = v.is_a?(Hash) ? camelize_props_key(v) : v
         h
       end
+    end
+
+    def server_side(server_side)
+      server_side.nil? ? Rails.application.config.react.server_side : server_side
     end
   end
 end
