@@ -32,18 +32,6 @@ dispatcher.onPost("/run", function(request, response) {
   }
 });
 
-dispatcher.onPost("/reset", function(request, response) {
-  try{
-    IM.resetNodeIntegrations();
-    response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.end();
-  } catch(ex) {
-    console.log(ex)
-    response.writeHead(500);
-    response.end("nodeReset failed:\n" + ex.name + ': ' + ex.message);
-  }
-});
-
 const server = http.createServer(handleRequest);
 
 server.listen(PORT, function(){

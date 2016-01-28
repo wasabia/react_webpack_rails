@@ -26,15 +26,6 @@ class IntegrationsManager {
     }
     return result;
   }
-
-  resetNodeIntegrations() {
-    Object.keys(this.integrations).forEach((integrationName) => {
-      const resetFunction = this.get(integrationName).nodeReset;
-      if (typeof(resetFunction) === 'function') {
-        resetFunction();
-      }
-    });
-  }
 }
 
 export default new IntegrationsManager;
