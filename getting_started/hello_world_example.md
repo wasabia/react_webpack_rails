@@ -24,6 +24,8 @@ export default class HelloWorld extends React.Component {
 
 We also added `props` validations - in this case we require that `props` should contain `username` as a string variable.
 
+See [passing props](passing_props.md) for details.
+
 ## Integration
 
 We have our component in place, let's register `HelloWorld` component in `app/react/index.js`:
