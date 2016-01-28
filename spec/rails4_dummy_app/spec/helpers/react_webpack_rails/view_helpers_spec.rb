@@ -58,7 +58,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     it 'wraps #react_component with proper options' do
       expect(helper)
         .to receive(:react_element)
-        .with('react-component', { props: { foo: 'bar' }, name: 'Todo' }, {ssr: false})
+        .with('react-component', { props: { foo: 'bar' }, name: 'Todo' }, {})
         .once
       helper.react_component('Todo', foo: 'bar')
     end
@@ -68,7 +68,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
 
       it 'sets an empty object as default' do
         expect(helper).to receive(:react_element).with(
-          'react-component', { props: {}, name: 'Todo' }, { ssr: false }
+          'react-component', { props: {}, name: 'Todo' }, {}
         ).once
         helper.react_component('Todo')
       end
