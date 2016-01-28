@@ -1,79 +1,87 @@
-# Installation
+# Setup
 
-Add this line to your application's Gemfile:
+### Rails part
+
+Add gem to your application's Gemfile:
 
 ```ruby
 gem 'react_webpack_rails'
 ```
 
-And execute:
+Install gem:
 
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install react_webpack_rails
-
----
-
-Then, run installation:
-
-    $ rails g react_webpack_rails:install
-
-This will create following files:
-
+```bash
+$ bundle install
 ```
+
+Then, run gem installator:
+
+```bash
+$ rails g react_webpack_rails:install
+```
+
+This will create the following files:
+
+```bash
 ├── app
 │   ├── react
-│   │   ├── components
-│   │   │   ├── hello-world.jsx
+│   │   ├── components # place for your components
+│   │   │   ├── hello-world.jsx # example component with test file
 │   │   │   └── hello-world-test.jsx
-│   │   └── index.js
+│   │   └── index.js # you register your components here
 │   ├── views
 │   │   └── layouts
-│   │       └── _react_hot_assets.html.erb
+│   │       └── _react_hot_assets.html.erb # for hot reloading, check below
 │   └── assets
 │       └── javascripts
-│           └──react_bundle.js
+│           └──react_bundle.js # output file from webpack
 ├── webpack
 │   ├── dev.config.js
 │   ├── hot-dev.config.js
 │   ├── production.config.js
 │   └── tests.config.js
-├── .babelrc
-├── karma.conf.js
-├── package.json
-└── webpack.config.js
+├── .babelrc # babel config
+├── karma.conf.js # config for tests
+├── package.json # every node modules are specified in this file
+└── webpack.config.js # basic webpack config, rest inherits from it
 ```
 
-There are several options available for the generator:
+There are two options available for the generator:
 
-    $ rails g react_webpack_rails:install --skip-example    # bypasses the addition of hello-world example
-    $ rails g react_webpack_rails:install --skip-router     # bypasses the react-router integration
+```bash
+$ rails g react_webpack_rails:install --skip-example    # bypasses the addition of hello-world example
+$ rails g react_webpack_rails:install --skip-router     # bypasses the react-router integration
+```
 
 You can of course use them in any combination.
 
----
+### Lets install node part
 
 Establish the node packages (may take a few moments)
 
-    $ npm install    # you may see warnings to consider updating the provided package.json file with license and repository
+```bash
+$ npm install    # you may see warnings to consider updating the provided package.json file with license and repository
+```
 
 Make sure you have [webpack](https://webpack.github.io/docs/installation.html) installed globally:
 
     $ npm install webpack -g
 
-Generate `react_bundle` for first time:
+Generate `react_bundle.js` file for first time:
 
     $ webpack
 
-And require integration and bundle files in `application.js`
+Then append following lines to `app/assets/javascript/application.js`
 
 ```js
 //= require react_integration
 //= require react_bundle
 ```
 
-### Babel
+Now you can start your rails server. Keep in mind that you need to recompile `react_bundle` file after every change in `app/react` directory.
 
-By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to change the stage, you can do so in the `.babelrc` file. It is however not recommended to use Stage 0 in a production app, because the features present there can be dropped, which would break your application.
+You can use webpack in watch mode, start webpack proces in separate terminal session:
+
+```bash
+$ webpack -w
+```
