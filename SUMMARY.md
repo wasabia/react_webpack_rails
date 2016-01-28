@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [Getting started](getting_started/README.md)
-   * [Installation](getting_started/installation.md)
+   * [Setup](getting_started/setup.md)
    * [Usage](getting_started/usage.md)
    * [Hot Reload mode](getting_started/hot_reload_mode.md)
    * [Passing props](getting_started/passing_props.md)
@@ -19,3 +19,4 @@
        * [redux](api/integrations/redux.md)
 * [Deployment](deployment/README.md)
    * [Heroku](deployment/heroku.md)
+
