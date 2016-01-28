@@ -27,5 +27,4 @@ export default {
 
   mountNodes: nodes.mountNodes,
   unmountNodes: nodes.unmountNodes,
-  integrationsManager: integrationsManager,
 };

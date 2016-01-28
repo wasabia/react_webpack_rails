@@ -1,6 +1,7 @@
 global.window = global;
 global.__RWR_ENV__ = {};
 require('babel-core/register');
+const IM = require('react-webpack-rails').integrationsManager;
 require('./app/react/index');
 
 const http = require('http');
@@ -21,7 +22,7 @@ function handleRequest(request, response){
 dispatcher.onPost("/run", function(request, response) {
   try {
     const data = JSON.parse(request.body);
-    const result = RWR.integrationsManager.runNodeIntegration(data);
+    const result = IM.runNodeIntegration(data);
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.end(result);
   } catch(ex) {
@@ -33,7 +34,7 @@ dispatcher.onPost("/run", function(request, response) {
 
 dispatcher.onPost("/reset", function(request, response) {
   try{
-    RWR.integrationsManager.resetNodeIntegrations();
+    IM.resetNodeIntegrations();
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.end();
   } catch(ex) {
