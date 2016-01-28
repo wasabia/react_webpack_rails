@@ -3,7 +3,7 @@
 ## Rails - Webpack setup with React integration.
 [![Netguru](netguru_logo.png)](https://www.netguru.co)
 
-Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes [react-webpack-rails](https://github.com/netguru/react_webpack_rails) integration easy.
+Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes [react-webpack-rails](https://github.com/netguru/react_webpack_rails) integration easy.test
 
 ## Documentation
 
