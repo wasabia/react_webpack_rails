@@ -1,7 +1,7 @@
 module ReactWebpackRails
   module ApplicationHelper
     def reset_node
-      ReactWebpackRails::NodeResetter.run
+      # Implement your custom resetter
     end
   end
 end
