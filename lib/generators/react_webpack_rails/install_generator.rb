@@ -16,12 +16,15 @@ module ReactWebpackRails
       copy_file 'webpack/hot-dev.config.js', 'webpack/hot-dev.config.js'
       copy_file 'webpack/production.config.js', 'webpack/production.config.js'
       copy_file 'webpack/tests.config.js', 'webpack/tests.config.js'
+
       create_file 'app/assets/javascripts/react_bundle.js'
+
       template 'package.json.erb', 'package.json'
       template 'react/index.js.erb', 'app/react/index.js'
+
       if options.example
-        copy_file 'example/react/components/hello-world-test.jsx', 'app/react/components/hello-world-test.jsx'
-        copy_file 'example/react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
+        copy_file 'react/components/hello-world-test.jsx', 'app/react/components/hello-world-test.jsx'
+        copy_file 'react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
       else
         create_file 'app/react/components/.keep'
       end
