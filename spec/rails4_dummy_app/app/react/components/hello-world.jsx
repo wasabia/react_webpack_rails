@@ -13,8 +13,6 @@ class HelloWorld extends React.Component {
     return(
       <div>
         <p>Hello World {this.props.name}</p>
-        <button onClick={this.onClick}>Increment</button>
-        <span>{this.state.count}</span>
       </div>
     );
   }
