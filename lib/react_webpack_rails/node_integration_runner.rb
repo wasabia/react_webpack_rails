@@ -1,5 +1,5 @@
 module ReactWebpackRails
-  class NodeRenderer
+  class NodeIntegrationRunner
     include NodeHelpers
 
     def initialize(integration_name, payload)

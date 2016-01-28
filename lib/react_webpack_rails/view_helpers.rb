@@ -13,7 +13,7 @@ module ReactWebpackRails
 
     def react_component(name, props = {}, options = {})
       if server_side(options.delete(:server_side))
-        result = NodeRenderer.new('react-component', props: props, name: name).run
+        result = NodeIntegrationRunner.new('react-component', props: props, name: name).run
         react_element('react-component', { props: props, name: name }, options) do
           result.body.html_safe
         end
