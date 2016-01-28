@@ -2,8 +2,4 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-bundle install
-cd spec/rails3_dummy_app && bundle install && cd ..
-cd rails4_dummy_app && bundle install
-
-# Do any other automated setup that you need to do here
+bundle exec rake setup:all
