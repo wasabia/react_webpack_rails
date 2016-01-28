@@ -36,7 +36,7 @@ task default: 'test:all'
 
 namespace :setup do
   desc 'Prepare every environment'
-  task all: [:gem, :rails3, :rails4] do
+  task all: [:node, :gem, :rails3, :rails4] do
     puts 'Prepared all, yay!'
   end
 
