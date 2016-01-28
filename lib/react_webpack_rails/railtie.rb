@@ -1,5 +1,4 @@
 require 'react_webpack_rails/view_helpers'
-require 'react_webpack_rails/application_helper'
 
 module ReactWebpackRails
   class Railtie < ::Rails::Railtie
