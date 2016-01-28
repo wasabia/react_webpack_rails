@@ -7,7 +7,7 @@
    * [Usage](getting_started/usage.md)
    * [Passing props](getting_started/passing_props.md)
 * [Guides](guides/README.md)
-   * [Hot Reload mode](getting_started/hot_reload_mode.md)
+   * [Hot Reload Mode](getting_started/hot_reload_mode.md)
    * [React Router integration](guides/react_router_integration.md)
 * [API](api/README.md)
    * [Basics](api/basics/README.md)
