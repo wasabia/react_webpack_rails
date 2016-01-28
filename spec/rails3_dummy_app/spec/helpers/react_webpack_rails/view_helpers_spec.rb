@@ -22,7 +22,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
       end
     end
 
-    context 'when paload is a hash' do
+    context 'when payload is a hash' do
       subject { helper.react_element('react-component', foo: :bar) }
       it 'is does cast to JSON' do
         expect(subject).to include("data-payload=\"{&quot;foo&quot;:&quot;bar&quot;}\"")
@@ -58,7 +58,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     it 'wraps #react_component with proper options' do
       expect(helper)
         .to receive(:react_element)
-        .with('react-component', { props: { foo: 'bar' }, name: 'Todo' }, {ssr: false})
+        .with('react-component', { props: { foo: 'bar' }, name: 'Todo' }, {})
         .once
       helper.react_component('Todo', foo: 'bar')
     end
@@ -68,9 +68,43 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
 
       it 'sets an empty object as default' do
         expect(helper).to receive(:react_element).with(
-          'react-component', { props: {}, name: 'Todo' }, { ssr: false }
+          'react-component', { props: {}, name: 'Todo' }, {}
         ).once
         helper.react_component('Todo')
+      end
+    end
+
+    context 'with server_side: true' do
+      let(:node_integration_runner) { double('node_integration_runner') }
+      let(:result) { double('result') }
+      let(:ssred_component) do
+        File.read(Rails.root.join('spec/fixtures/ssred_component.html'))
+      end
+
+      before do
+        allow(result).to receive(:body) { ssred_component }
+        allow_any_instance_of(ReactWebpackRails::NodeIntegrationRunner)
+          .to receive(:run) { result }
+      end
+
+      it 'initializes NodeIntegrationRunner with proper args' do
+        allow(ReactWebpackRails::NodeIntegrationRunner)
+          .to receive(:new) { node_integration_runner }
+        allow(node_integration_runner).to receive(:run) { result }
+        expect(ReactWebpackRails::NodeIntegrationRunner).to receive(:new)
+          .with('react-component', props: { foo: 'bar' }, name: 'Todo')
+        helper.react_component('Todo', { foo: 'bar' }, server_side: true)
+      end
+
+      it 'calls NodeIntegrationRunner instance' do
+        expect_any_instance_of(ReactWebpackRails::NodeIntegrationRunner)
+          .to receive(:run)
+        helper.react_component('Todo', { foo: 'bar' }, server_side: true)
+      end
+
+      it 'retrieves result body in a block' do
+        expect(result).to receive(:body).and_return(ssred_component)
+        helper.react_component('Todo', { foo: 'bar' }, server_side: true)
       end
     end
   end
