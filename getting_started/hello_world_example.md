@@ -1,97 +1,74 @@
 # Hello World example
 
-The gem comes with a simple Hello World component but here we will create our own totally from scratch.
+The gem comes with a simple Hello World component.
 
-## Rails setup
-
-First, create a rails project
-
-    $ rails new hello_world
-    $ cd hello_world
-
-add RWR gem to the `Gemfile`
-
-```ruby
-gem 'react_webpack_rails'
-```
-
-and execute:
-
-    $ bundle install
-
-Now we can generate a basic scaffold inside the project
-
-    $ rails g controller Hello index
-
-## React setup
-
-Time to add some React
-
-    $ rails g react_webpack_rails:install --skip-example
-
-Notice `--skip-example` flag - we don't want to see the predefined hello world component this time.
-
-Then, install node packages
-
-    $ npm install
-
-and webpack if you don't have it
-
-    $ npm install webpack -g
-
-When it's done, generate `react_bundle`
-
-    $ webpack
-
-and add the following to `app/assets/javascripts/application.js`
-
-```js
-//= require react_integration
-//= require react_bundle
-```
+First, follow the steps from [Setup](setup.md) guide.
 
 ## React component
 
-Now, we need a basic React component that we will place inside `app/react/components/` as `hello.jsx`. It will receive a prop from Rails and then display it - that's all.
+Now, we need a basic React component that we will place inside `app/react/components/` as `hello-world.jsx`. It will receive a prop from Rails and then display it - that's all.
 
 ```js
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default class Hello extends React.Component {
+export default class HelloWorld extends React.Component {
+  static propTypes() {
+    return {username: PropTypes.string.isRequired};
+  }
+  
   render() {
-    return <div>Hello {this.props.Target}</div>;
+    return <div>Hello {this.props.username}</div>;
   }
 }
 ```
 
-In real application remember to extend it with prop validation and tests!
+We also added `props` validations - in this case we require that `props` should contain `username` as a string variable.
 
 ## Integration
 
-First, register the new component in `app/react/index.js`:
+We have our component in place, let's register `HelloWorld` component in `app/react/index.js`:
 
 ```js
-import Hello from './components/hello';
-registerComponent('HelloComponent', Hello);
+import HelloWorld from './components/hello-world';
+RWR.registerComponent('HelloWorldComponent', HelloWorld);
 ```
 
-Then, we need variable that will be passed to the component. Let's place it inside `index` action of `app/controllers/hello_controller.rb`
+Then, we need a variable that will be passed to the component. Let's place it inside `index` action of `app/controllers/hello_controller.rb`
 
 ```ruby
 def index
-    @target = 'World'
+  @username = 'testUser'
 end
 ```
 
-And now, everything is ready to display the component in Rails view - place
+We prepared data for components, let's render it in `app/views/hello/index.html.erb`.
 
 ```erb
-<%= react_component('HelloComponent', Target: @target) %>
+<%= react_component('HelloWorldComponent', username: @username) %>
 ```
 
-in `app/views/hello/index.html.erb`.
 
-Let's also add hot reload to `application.html.erb`:
+
+## Done
+Finally, start rails server
+
+```bash
+$ bundle exec rails s
+```
+
+Remember about recompiling `react_bundle.js` file! In new terminal session run:
+
+```bash
+$ npm start # it's a shorthand for webpack -w --config webpack/dev.config.js
+```
+
+This will keep webpack running in watch mode, it will recompile any changes.
+
+---
+
+#### You can use hot reload (you won't need to reload page to see changes).
+
+You need to add hot reload to `application.html.erb`:
 
 ```erb
 <body>
@@ -100,13 +77,9 @@ Let's also add hot reload to `application.html.erb`:
 </body>
 ```
 
-## Done
-Finally, running
+Then, instead of `npm start` run webpack with hot reload config
+```bash
+$ npm run start-hot-dev
+```
 
-    $ rails s
-
-and
-
-    $ npm run start-hot-dev
-
-should allow you to open `localhost:3000/hello/index` url and see the created component with the desired `Hello World` text.
+Above steps should allow you to open `localhost:3000/hello/index` url and see the created component with the desired `Hello World` text.
