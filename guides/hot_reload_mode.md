@@ -1,4 +1,4 @@
-# Hot Reload mode
+# Hot Reload Mode
 
 The [installation](installation.md) generator creates `app/views/layouts/_react_hot_assets.html.erb` partial that allows webpack to be run in hot-auto-reload mode.
 
