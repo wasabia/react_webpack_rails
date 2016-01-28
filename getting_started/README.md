@@ -1,6 +1,6 @@
 # Getting started
 
-* [Installation](installation.md)
+* [Setup](setup.md)
 * [Usage](usage.md)
 * [Hot Reload mode](hot_reload_mode.md)
 * [Passing props](passing_props.md)
