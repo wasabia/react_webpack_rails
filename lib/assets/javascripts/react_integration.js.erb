@@ -79,14 +79,10 @@ var RWRhandlers = {
   },
 };
 
-function reactMain() {
+(function reactMain() {
   if (typeof Turbolinks !== 'undefined' && Turbolinks.supported) {
     RWRhandlers.handleTurbolinksEvents();
-    RWR.mountNodes()
   } else {
-    RWR.mountNodes()
     RWRhandlers.handleNativeEvents();
   }
-}
-
-window.setTimeout(reactMain, 2000);
+})(document, window);
