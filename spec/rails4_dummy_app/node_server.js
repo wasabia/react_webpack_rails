@@ -9,7 +9,7 @@ const PORT = 8080;
 
 function handleRequest(request, response){
   try {
-    console.log(request.url);
+    console.log(`started: ${request.method} "${request.url}" at ${new Date().toLocaleTimeString()}`);
     dispatcher.dispatch(request, response);
   } catch(ex) {
     console.log(ex)
