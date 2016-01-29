@@ -1,7 +1,6 @@
 Server-Side Rendering
 =======
-
-SSR allows you to render react components to string on the server side. This happens using node server we have prepared for you. After running RWR install generator, you will find the server code in app's main directory: `node_server.js`. You must ensure it is up and running if you want to use SSR (and any other server-side processing of JavaScript). To run it, simply execute in terminal:
+Server-side processing enables executing any JavaScript code on the server. The React integration we have prepared allows you to render React components to string on the server side. The integration accepts component name and props and returns valid HTML ([see API](https://github.com/netguru/react_webpack_rails/blob/master/docs/api.md#react_component-ruby)). This happens using node server provided. After running RWR install generator, you will find the server code in app's main directory: `node_server.js`. You must ensure it is up and running if you want to use SSR (and any other server-side processing of JavaScript). To run it, simply execute in terminal:
 ```bash
 node node_server.js
 ```
@@ -9,11 +8,10 @@ If everything is ok, you should see this log:
 ```bash
 Server listening on: http://localhost:8081
 ```
-To set the node server address, set this option to a string of your choice:
+To set the node server address, override this option to a string of your choice:
 ```ruby
 Rails.application.config.rwr.node_server_host
 ```
-The node server accepts component name and props, and returns the component as HTML ready to inject into Rails view.
 
 ##How to use SSR:
 ```erb
@@ -25,9 +23,10 @@ The node server accepts component name and props, and returns the component as H
 import HelloWorld from './components/hello-world';
 RWR.registerComponent('HelloWorld', HelloWorld);
 ```
-`{ name: @name }` is the component's props, and the option `server_side: true` enables SSR. By default it is set to `false`. You can change it globally by setting the following config option to a boolean value of your choice:
+`{ name: @name }` is the component's props, and the option `server_side: true` turns SSR on. By default it is set to `false`. You can change it globally by setting the following config option to a Boolean value of your choice:
 ```ruby
 Rails.application.config.react.server_side
 ```
 This global config may be overridden by passing the `server_side` option to a specific `react_component` invocation.
 
+**Please be aware** that the node server won't automatically load any changes while running - it must be restarted, which applies to all environments (local, prod, etc.).
