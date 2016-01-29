@@ -1,7 +1,7 @@
 import App from './../components/app';
 import Inbox from './../components/inbox';
 import About from './../components/about';
-import Router, { Route } from 'react-router';
+import Router, { hashHistory, Route } from 'react-router';
 import React from 'react';
 
 export default function(props){
@@ -10,7 +10,7 @@ export default function(props){
   }
 
   return (
-    <Router>
+    <Router history={hashHistory}>
       <Route path="/" component={AppWrapper} >
         <Route path="about" component={About} />
         <Route path="inbox" component={Inbox} />
