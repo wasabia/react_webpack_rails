@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import {integrationsManager} from 'react-webpack-rails';
 
 class ReactRouterIntegration {
   constructor() {
@@ -42,6 +43,10 @@ class ReactRouterIntegration {
         this.unmountRouter(node);
       }.bind(this),
     };
+  }
+
+  run() {
+    integrationsManager.register('react-router', this.integrationWrapper);
   }
 }
 
