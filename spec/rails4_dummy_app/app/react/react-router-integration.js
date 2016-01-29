@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import {integrationsManager} from 'react-webpack-rails';
+import { integrationsManager } from 'react-webpack-rails';
 
 class ReactRouterIntegration {
   constructor() {
@@ -18,14 +18,17 @@ class ReactRouterIntegration {
     return this.routers[name];
   }
 
-  renderRouter(name, node) {
+  renderRouter(name, props, node) {
     if (this.enabled === true) {
       throw new Error(
         `Error when rendering ${name}\n\trenderRouter: can't render more than one router.`
       );
     }
     this.enabled = true;
-    ReactDOM.render(this.getRouter(name), node);
+
+    let router = this.getRouter(name);
+    router = typeof(router) === 'function' ? router(props) : router;
+    ReactDOM.render(router, node);
   }
 
   unmountRouter(node) {
@@ -36,7 +39,7 @@ class ReactRouterIntegration {
   get integrationWrapper() {
     return {
       mount: function _mount(node, payload) {
-        this.renderRouter(payload.name, node);
+        this.renderRouter(payload.name, payload.props, node);
       }.bind(this),
 
       unmount: function _unmount(node) {
