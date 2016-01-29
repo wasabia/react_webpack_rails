@@ -9,7 +9,7 @@ require('babel-core/register');
 // Enable our integrations manager
 const IM = require('react-webpack-rails').integrationsManager;
 
-// Enable RWR on window and load our custom React components:
+// Enable RWR on window and load our custom React components
 require('./app/react/index');
 
 // Load dependencies
@@ -44,7 +44,7 @@ dispatcher.onPost("/run", function(request, response) {
 
     // Pass data to our custom integration method
     // The data object includes integration name 'react-component'
-    // This determines which integration to use
+    // This determines which integration will be used
     const result = IM.runNodeIntegration(data);
 
     response.writeHead(200, {'Content-Type': 'text/plain'});
