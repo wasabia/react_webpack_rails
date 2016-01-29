@@ -16,8 +16,8 @@ module ReactWebpackRails
       react_element('react-component', { props: props, name: name }, options)
     end
 
-    def react_router(name)
-      react_element('react-router', name: name)
+    def react_router(name, props)
+      react_element('react-router', name: name, props: props)
     end
 
     private
