@@ -11,20 +11,33 @@ export { integrationsManager as integrationsManager };
 export { env as env };
 export { reactRouter as reactRouter };
 
-export default {
-  version: version,
 
-  registerComponent: react.registerComponent,
-  getComponent: react.getComponent,
-  createComponent: react.createComponent,
-  renderComponent: react.renderComponent,
-  unmountComponent: react.unmountComponent,
+class RWR {
+  constructor() {
+    this.version = version;
 
-  renderRouter: reactRouter.renderRouter,
-  registerRouter: reactRouter.registerRouter,
-  unmountRouter: reactRouter.unmountRouter,
-  getRouter: reactRouter.getRouter,
+    this.registerComponent = react.registerComponent;
+    this.getComponent = react.getComponent;
+    this.createComponent = react.createComponent;
+    this.renderComponent = react.renderComponent;
+    this.unmountComponent = react.unmountComponent;
 
-  mountNodes: nodes.mountNodes,
-  unmountNodes: nodes.unmountNodes,
-};
+    this.renderRouter = reactRouter.renderRouter;
+    this.registerRouter = reactRouter.registerRouter;
+    this.unmountRouter = reactRouter.unmountRouter;
+    this.getRouter = reactRouter.getRouter;
+
+    this.mountNodes = nodes.mountNodes;
+    this.unmountNodes = nodes.unmountNodes;
+  }
+
+  run() {
+    if (typeof(window) !== 'undefined') {
+      window.RWR = this;
+    } else {
+      global.RWR = this;
+    }
+  }
+}
+
+export default new RWR;
