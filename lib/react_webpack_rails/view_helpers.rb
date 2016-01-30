@@ -12,6 +12,8 @@ module ReactWebpackRails
     end
 
     def react_component(name, props = {}, options = {})
+      props = props.as_json
+      props = camelize_props_key(props) if Rails.application.config.react.camelize_props
       if server_side(options.delete(:server_side))
         result = NodeIntegrationRunner.new('react-component', props: props, name: name).run
         react_element('react-component', { props: props, name: name }, options) do
