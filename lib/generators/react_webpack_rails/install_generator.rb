@@ -8,8 +8,12 @@ module ReactWebpackRails
     def generate_layout
       copy_file '.babelrc', '.babelrc'
       copy_file 'karma.conf.js', 'karma.conf.js'
-      copy_file 'node_server.js', 'node_server.js'
+      copy_file 'react/node_server.js', 'app/react/node_server.js'
       copy_file 'partial/_react_hot_assets.html.erb', 'app/views/layouts/_react_hot_assets.html.erb'
+
+      copy_file 'forever/development.json', 'forever/development.json'
+      copy_file 'forever/production.json', 'forever/production.json'
+
       copy_file 'webpack.config.js', 'webpack.config.js'
       copy_file 'webpack/dev.config.js', 'webpack/dev.config.js'
       copy_file 'webpack/hot-dev.config.js', 'webpack/hot-dev.config.js'
