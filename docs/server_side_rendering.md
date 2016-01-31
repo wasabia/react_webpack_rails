@@ -29,4 +29,4 @@ Rails.application.config.react.server_side
 ```
 This global config may be overridden by passing the `server_side` option to a specific `react_component` invocation.
 
-**Please be aware** that the node server won't automatically load any changes while running - it must be restarted, which applies to all environments (local, prod, etc.).
+**Please be aware** that the node server won't automatically load any changes while running - it must be restarted, as well locally as in any other environment.
