@@ -1,6 +1,6 @@
 import RWR from 'react-webpack-rails';
 window.RWR = RWR;
-<% if options.example %>
+<% if options.example || options.server_side_example %>
 import HelloWorld from './components/hello-world';
 RWR.registerComponent('HelloWorld', HelloWorld);
 <% else %>
