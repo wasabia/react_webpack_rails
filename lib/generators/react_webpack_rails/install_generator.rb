@@ -2,8 +2,11 @@ module ReactWebpackRails
   class InstallGenerator < Rails::Generators::Base
     desc 'Prepare files necessary to use react-webpack-rails gem in a rails app.'
     source_root File.expand_path('../templates', __FILE__)
-    class_option :example, type: :boolean, default: true, desc: 'Include example component and test files.'
-    class_option :router, type: :boolean, default: true, desc: 'Add and expose react-router globally.'
+    class_option :example, type: :boolean, default: true, desc: 'Include example component and test files'
+    class_option :hot_reload, type: :boolean, default: false, desc: 'Activate hot reload'
+    class_option :router, type: :boolean, default: true, desc: 'Add and expose react-router globally'
+    class_option :server_side, type: :boolean, default: false, desc: 'Set server_side global option'
+    class_option :server_side_example, type: :boolean, default: false, desc: 'Include fully functional server side rendering example'
 
     def generate_layout
       copy_file '.babelrc', '.babelrc'
@@ -30,6 +33,9 @@ module ReactWebpackRails
         copy_file 'react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
       else
         create_file 'app/react/components/.keep'
+      end
+
+      if options.server_side
       end
     end
 
