@@ -29,8 +29,11 @@ module ReactWebpackRails
       template 'react/index.js.erb', 'app/react/index.js'
 
       if options.example
-        copy_file 'react/components/hello-world-test.jsx', 'app/react/components/hello-world-test.jsx'
-        copy_file 'react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
+        copy_file 'example/controllers/rwr_examples_controller.rb', 'app/controllers/rwr_examples_controller.rb'
+        copy_file 'example/react/components/hello-world-test.jsx', 'app/react/components/hello-world-test.jsx'
+        copy_file 'example/react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
+        copy_file 'example/views/rwr_examples/client_side_hello_world.html.erb', 'app/views/rwr_examples/client_side_hello_world.html.erb'
+        route "get 'client_side_hello_world', to: 'rwr_examples#client_side_hello_world', as: :client_side_hello_world"
       else
         create_file 'app/react/components/.keep'
       end
