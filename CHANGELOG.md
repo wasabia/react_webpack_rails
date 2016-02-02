@@ -9,8 +9,8 @@
   * Added node server generator (`app/react/node_server.js`)
   * Added NodeIntegrationRunner service for running JS code on node server.
 * Updated React-integration:
-  * Added server-side render support to npm package.
-  * Updated react_component helper
+  * Added server-side rendering support to npm package
+  * It is triggered with the updated API of `react_component` method
 
 ## 0.1.1 (February 2, 2015)
 * fix for hot-reload mode
