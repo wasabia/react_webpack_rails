@@ -1,3 +1,6 @@
+## 0.1.1 (February 2, 2015)
+* fix for hot-reload mode
+
 ## 0.1.0 (January 27, 2015)
 * `config.react.camelize_props = true` will camelize `react_component` prop keys
 * Babel updated to version 6
