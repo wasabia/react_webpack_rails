@@ -1,3 +1,19 @@
+## UNRELEASED
+* Added server-side execution of js
+  * Updated package.json generator,
+    * Added dependencies:
+      * http
+      * httpdispatcher
+      * forever
+    * Added npm scripts for running node-server on development/production
+  * Added node server generator (`app/react/node_server.js`)
+  * Updated `app/react/index.js` generator
+  * Added NodeIntegrationRunner service for running JS code on node server.
+* Updated React-integration:
+  * Added server-side render support to npm package
+  * Updated react_component helper
+* fixed props processing
+
 ## 0.1.1 (February 2, 2015)
 * fix for hot-reload mode
 

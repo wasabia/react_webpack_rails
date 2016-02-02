@@ -1,5 +1,5 @@
 import RWR from 'react-webpack-rails';
-window.RWR = RWR;
+RWR.run();
 
 import HelloWorld from './components/hello-world';
 RWR.registerComponent('HelloWorld', HelloWorld);

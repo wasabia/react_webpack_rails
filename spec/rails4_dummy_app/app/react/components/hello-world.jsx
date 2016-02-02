@@ -1,13 +1,13 @@
 import React from 'react';
 
-class Users extends React.Component {
+class HelloWorld extends React.Component {
   render() {
     return(
       <div>
-        Hello World {this.props.name}
+        <p>Hello World {this.props.name}</p>
       </div>
     );
   }
 }
 
-export default Users;
+export default HelloWorld;
