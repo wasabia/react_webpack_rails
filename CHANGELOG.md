@@ -7,6 +7,7 @@
       * forever
     * Added npm scripts for running node-server on development/production
   * Added node server generator (`app/react/node_server.js`)
+  * Updated `app/react/index.js` generator
   * Added NodeIntegrationRunner service for running JS code on node server.
 * Updated React-integration:
   * Added server-side rendering support to npm package
