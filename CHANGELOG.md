@@ -13,6 +13,7 @@
   * Added server-side render support to npm package
   * Updated react_component helper
 * fixed props processing
+* Added react_component render
 
 ## 0.1.1 (February 2, 2015)
 * fix for hot-reload mode
