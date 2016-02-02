@@ -1,4 +1,5 @@
 require 'react_webpack_rails/view_helpers'
+require 'react_webpack_rails/react_component_renderer'
 
 module ReactWebpackRails
   class Railtie < ::Rails::Railtie
@@ -16,6 +17,19 @@ module ReactWebpackRails
 
     initializer 'react_webpack_rails.view_helpers' do
       ActionView::Base.send :include, ViewHelpers
+    end
+
+    initializer 'react_webpack_rails.add_react_component_renderer' do
+      ActionController::Renderers.add :react_component do |name, options = {}|
+        renderer = ReactWebpackRails::ReactComponentRenderer.new
+        component_options = options.slice(:aria, :class, :data, :id, :tag, :server_side)
+        props = options.delete(:props)
+
+        html = renderer.call(name, props, component_options)
+        render_options = options.merge(inline: html)
+
+        render(render_options)
+      end
     end
   end
 end
