@@ -11,7 +11,8 @@ module ReactWebpackRails
       content_tag(html_tag, '', html_options, &block)
     end
 
-    def react_component(name, props = {}, options = { ssr: false })
+    def react_component(name, raw_props = {}, options = { ssr: false })
+      props = raw_props.as_json
       props = camelize_props_key(props) if Rails.application.config.react.camelize_props
       react_element('react-component', { props: props, name: name }, options)
     end
@@ -24,7 +25,7 @@ module ReactWebpackRails
 
     def camelize_props_key(props)
       return props unless props.is_a?(Hash)
-      props.each_with_object({}) do |h, (k, v)|
+      props.inject({}) do |h, (k, v)|
         h[k.to_s.camelize(:lower)] = v.is_a?(Hash) ? camelize_props_key(v) : v
         h
       end

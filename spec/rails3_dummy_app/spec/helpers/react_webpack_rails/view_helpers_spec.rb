@@ -58,7 +58,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     it 'wraps #react_component with proper options' do
       expect(helper)
         .to receive(:react_element)
-        .with('react-component', { props: { foo: 'bar' }, name: 'Todo' }, {ssr: false})
+        .with('react-component', { props: { 'foo' => 'bar' }, name: 'Todo' }, {ssr: false})
         .once
       helper.react_component('Todo', foo: 'bar')
     end
@@ -71,6 +71,23 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
           'react-component', { props: {}, name: 'Todo' }, { ssr: false }
         ).once
         helper.react_component('Todo')
+      end
+    end
+
+    context 'when camelize_props enabled' do
+      before do
+        Rails.application.config.react.camelize_props = true
+      end
+
+      context 'and AMS object is in props' do
+        let(:ams_props) { TestSerializer.new({}, root: false) }
+
+        it 'camelize props' do
+          expect(helper).to receive(:react_element).with(
+            'react-component', { props: { 'testName' => 'name test' }, name: 'Todo' }, { ssr: false }
+          ).once
+          helper.react_component('Todo', ams_props)
+        end
       end
     end
   end
