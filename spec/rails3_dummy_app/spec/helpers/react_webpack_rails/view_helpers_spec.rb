@@ -58,7 +58,7 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
     it 'wraps #react_component with proper options' do
       expect(helper)
         .to receive(:react_element)
-        .with('react-component', { props: { foo: 'bar' }, name: 'Todo' }, {ssr: false})
+        .with('react-component', { props: { 'foo' => 'bar' }, name: 'Todo' }, {ssr: false})
         .once
       helper.react_component('Todo', foo: 'bar')
     end
