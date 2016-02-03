@@ -94,7 +94,7 @@ registerComponent('customComponentName', Component);
 
 ```js
 const element = $('#my-element');
-renderComponent('customComponentName', {user_id: 1}, element);
+RWR.renderComponent('customComponentName', {user_id: 1}, element);
 ```
 
 ### Development environment
