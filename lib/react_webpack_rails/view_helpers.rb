@@ -25,7 +25,7 @@ module ReactWebpackRails
 
     def camelize_props_key(props)
       return props unless props.is_a?(Hash)
-      props.each_with_object({}) do |h, (k, v)|
+      props.inject({}) do |h, (k, v)|
         h[k.to_s.camelize(:lower)] = v.is_a?(Hash) ? camelize_props_key(v) : v
         h
       end
