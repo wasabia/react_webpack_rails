@@ -1,5 +1,7 @@
 Rails3DummyApp::Application.routes.draw do
   get 'client_side_hello_world', to: 'pages#client_side_hello_world', as: :client_side_hello_world
+  get 'react_component_renderer_test', to: 'pages#react_component_renderer_test', as: :react_component_renderer_test
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
