@@ -24,6 +24,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-1": "^6.3.13",
+    "forever": "^0.15.1",
     "extract-text-webpack-plugin": "^0.8.2",
     "http": "*",
     "httpdispatcher": "^0.4.0",
@@ -40,6 +41,8 @@
     "test": "karma start",
     "start": "webpack -w --config webpack/dev.config.js",
     "start-hot-dev": "webpack-dev-server --hot --inline --config webpack/hot-dev.config.js",
+    "rwr-node-dev-server": "forever forever/development.json",
+    "rwr-node-server": "forever -o log/rwr-server-out.log -e log/rwr-server-err.log forever/production.json",
     "build": "webpack -p --config webpack/production.config.js"
   },
   "license": "",

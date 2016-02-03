@@ -1,12 +1,23 @@
-## 0.2.0
+## UNRELEASED
 * Added server-side execution of js
-  * Dependencies:
-    * http
-    * httpdispatcher
-  * The execution occurrs on a provided node server (`/node_server.js`)
-  * Prepared react integration enables rendering react components on the server side
-    * It is triggered with the (updated) API of `react_component` method
-  * You can plug your own integration (see readme for details)
+  * Updated package.json generator,
+    * Added dependencies:
+      * http
+      * httpdispatcher
+      * forever
+    * Added npm scripts for running node-server on development/production
+  * Added node server generator (`app/react/node_server.js`)
+  * Updated `app/react/index.js` generator
+  * Added NodeIntegrationRunner service for running JS code on node server.
+* Updated React-integration:
+  * Added server-side render support to npm package
+  * Updated react_component helper
+* fixed props processing
+* Added react_component render
+
+## 0.1.1 (February 2, 2015)
+* fix for hot-reload mode
+
 ## 0.1.0 (January 27, 2015)
 * `config.react.camelize_props = true` will camelize `react_component` prop keys
 * Babel updated to version 6

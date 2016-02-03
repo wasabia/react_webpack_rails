@@ -55,10 +55,10 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
   describe '#react_component' do
     it { expect(helper).to respond_to(:react_component) }
 
-    it 'wraps #react_component with proper options' do
+    it 'wraps #react_element with proper options' do
       expect(helper)
         .to receive(:react_element)
-        .with('react-component', { props: { foo: 'bar' }, name: 'Todo' }, {})
+        .with('react-component', { props: { 'foo' => 'bar' }, name: 'Todo' }, {})
         .once
       helper.react_component('Todo', foo: 'bar')
     end
@@ -82,28 +82,24 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
       end
 
       before do
-        allow(result).to receive(:body) { ssred_component }
         allow_any_instance_of(ReactWebpackRails::NodeIntegrationRunner)
-          .to receive(:run) { result }
+          .to receive(:run) { ssred_component }
       end
 
       it 'initializes NodeIntegrationRunner with proper args' do
         allow(ReactWebpackRails::NodeIntegrationRunner)
           .to receive(:new) { node_integration_runner }
         allow(node_integration_runner).to receive(:run) { result }
+        allow(result).to receive(:html_safe)
         expect(ReactWebpackRails::NodeIntegrationRunner).to receive(:new)
-          .with('react-component', props: { foo: 'bar' }, name: 'Todo')
+          .with('react-component', props: { 'foo' => 'bar' }, name: 'Todo')
+
         helper.react_component('Todo', { foo: 'bar' }, server_side: true)
       end
 
       it 'calls NodeIntegrationRunner instance' do
         expect_any_instance_of(ReactWebpackRails::NodeIntegrationRunner)
           .to receive(:run)
-        helper.react_component('Todo', { foo: 'bar' }, server_side: true)
-      end
-
-      it 'retrieves result body in a block' do
-        expect(result).to receive(:body).and_return(ssred_component)
         helper.react_component('Todo', { foo: 'bar' }, server_side: true)
       end
     end

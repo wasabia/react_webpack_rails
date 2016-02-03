@@ -17,7 +17,7 @@ module ReactWebpackRails
       if server_side(options.delete(:server_side))
         result = NodeIntegrationRunner.new('react-component', props: props, name: name).run
         react_element('react-component', { props: props, name: name }, options) do
-          result.body.html_safe
+          result.html_safe
         end
       else
         react_element('react-component', { props: props, name: name }, options)

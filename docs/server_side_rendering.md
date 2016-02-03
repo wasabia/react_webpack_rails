@@ -1,19 +1,22 @@
 Server-Side Rendering
 =======
-Server-side processing enables executing any JavaScript code on the server. The React integration we have prepared allows you to render React components to string on the server side. The integration accepts component name and props and returns valid HTML ([see API](https://github.com/netguru/react_webpack_rails/blob/master/docs/api.md#react_component-ruby)). This happens using node server provided. After running RWR install generator, you will find the server code in app's main directory: `node_server.js`. You must ensure it is up and running if you want to use SSR (and any other server-side processing of JavaScript). To run it, simply execute in terminal:
-```bash
-node node_server.js
-```
-If everything is ok, you should see this log:
-```bash
-Server listening on: http://localhost:8081
-```
+Server-side processing enables execution of any JavaScript code on the server side. The React integration we have prepared allows you to render React components to string on the server. The integration accepts component name and props, and returns valid HTML ([see API](https://github.com/netguru/react_webpack_rails/blob/master/docs/api.md#react_component-ruby)). This happens using provided node server. After running RWR install generator, you will find the server code in `app/react/` directory: `node_server.js`. You must ensure it is up and running if you want to use the SSR (or any other server-side processing of JavaScript). We use [Forever](https://github.com/foreverjs/forever) to keep the node server up. It handles watch and reload, and enables running and tracking background processes. Should you use current package.json, there are scripts ready to run:  
+  * running on development:
+    ```bash
+    npm run rwr-node-dev-server
+    ```
+  * running on production (foregroud):
+  ```bash
+    npm run rwr-node-server
+  ```
+  
 To set the node server address, override this option to a string of your choice:
 ```ruby
-Rails.application.config.rwr.node_server_host
+  Rails.application.config.rwr.node_server_host
 ```
 
-##How to use SSR:
+### How to use SSR:
+
 ```erb
 <%# A view in erb %>
 <%= react_component('HelloWorld', { name: @name }, server_side: true) %>
@@ -28,5 +31,3 @@ RWR.registerComponent('HelloWorld', HelloWorld);
 Rails.application.config.react.server_side
 ```
 This global config may be overridden by passing the `server_side` option to a specific `react_component` invocation.
-
-**Please be aware** that the node server won't automatically load any changes while running - it must be restarted, as well locally as in any other environment.

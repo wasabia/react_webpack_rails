@@ -14,7 +14,7 @@ module ReactWebpackRails
       if response.code.to_i >= 500
         fail Errors::NodeFailure, response.body
       else
-        response
+        response.body.force_encoding('utf-8')
       end
     end
 

@@ -79,22 +79,35 @@
 
 
   * ### react_component [ruby]
+    #### helper
 
     ```ruby
     react_component(String component_name[, Object props, Object options])
+    ```
+
+    #### renderer
+
+    ```ruby
+    render react_component String component_name[, Object options])
     ```
 
     Creates DOM node with props as data attributes in rendered view, so RWR can grab it and mount proper component.
     Options hash contains customization of React component, such as `tag`, `class`.
     Also, the options hash is the place where you can override the global server-side rendering setting.
 
-    ##### example:
+    **note:** Props Object will be parsed to JSON. Be careful when passing rails models there - all its data accessible after `.to_json` will be exposed as data-attributes. We recommend using serializers to control it.
+
+    ##### helper example:
 
     ```ruby
     <%= react_component('MyComponentName', MySerializer.new(my_data), { tag: :ul, class: 'my-class', server_side: true }) %>
     ```
 
-    **note:** Props Object will be parsed to JSON. Be careful when passing rails models there - all its data accessible after `.to_json` will be exposed as data-attributes. We recommend using serializers to control it.
+    ##### renderer example:
+
+    ```ruby
+    render react_component: 'MyComponentName', props: MySerializer.new(my_data), tag: :ul, server_side: true
+    ```
 
 
 ## ReactRouter

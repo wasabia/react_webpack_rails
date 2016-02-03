@@ -97,6 +97,14 @@ const element = $('#my-element');
 renderComponent('customComponentName', {user_id: 1}, element);
 ```
 
+#### Render component in controller
+
+```ruby
+def action_name
+  render react_component 'customComponentName', props: { user_id: 1 }
+end
+```
+
 ### Development environment
 Run webpack in watch mode using script:
 
