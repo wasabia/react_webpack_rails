@@ -1,3 +1,7 @@
+## 0.1.2 (February 3, 2015)
+* fix camelize_props
+* allow camelize for AMS objects
+
 ## 0.1.1 (February 2, 2015)
 * fix for hot-reload mode
 
