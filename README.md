@@ -65,6 +65,15 @@ And require integration and bundle files in `application.js`
 //= require react_bundle
 ```
 
+
+You probably also want to add the compiled react javascript to your `.gitignore`
+
+```bash
+# React bundle
+app/assets/javascripts/react_bundle.js
+```
+
+
 ### Babel
 
 By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to change the stage, you can do so in the `.babelrc` file. It is however not recommended to use Stage 0 in a production app, because the features present there can be dropped, which would break your application.
