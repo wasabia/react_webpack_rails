@@ -140,15 +140,9 @@ or manually:
 #### Deployment
 Check [docs/deployment.md](docs/deployment.md)
 
-## Gem development
-
-After checking out the repo, run `bundle exec rake setup:all` to install dependencies. Then, run `rake` to run the tests (includes gem, test app and node module).
-Run `bundle exec rake -T` to check available development commands.
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/netguru/react_webpack_rails.
-
+See the [contribution guide](https://github.com/netguru/react_webpack_rails/blob/master/CONTRIBUTING.md).
 
 ## License
 
