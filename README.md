@@ -4,6 +4,10 @@
 #### Rails - Webpack setup with React integration.
 Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes react-webpack-rails integration easy.
 
+
+### Development branch!
+See [0.1-stable](https://github.com/netguru/react_webpack_rails/tree/0.1-stable) for latest release.
+
 ## Installation
 
 Add this line to your application's Gemfile:
