@@ -103,6 +103,24 @@ RSpec.describe ReactWebpackRails::ViewHelpers, type: :helper do
         helper.react_component('Todo', { foo: 'bar' }, server_side: true)
       end
     end
+
+    context 'when camelize_props enabled' do
+      before do
+        allow(Rails.application.config.react)
+          .to receive(:camelize_props)
+          .and_return(true)
+      end
+
+      context 'and AMS object is in props' do
+        let(:ams_props) { TestSerializer.new({}, root: false) }
+        it 'camelize props' do
+          expect(helper).to receive(:react_element).with(
+            'react-component', { props: { 'testName' => 'name test' }, name: 'Todo' }, {}
+          ).once
+          helper.react_component('Todo', ams_props)
+        end
+      end
+    end
   end
 
   describe '#react_router' do

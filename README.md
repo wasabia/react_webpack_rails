@@ -94,7 +94,7 @@ By default, `react-webpack-rails` uses Babel Stage 1 - Proposal. If you want to 
 
 ```js
 import Component from './components/some-component';
-registerComponent('customComponentName', Component);
+RWR.registerComponent('customComponentName', Component);
 ```
 
 #### Use it in rails view
@@ -107,7 +107,7 @@ registerComponent('customComponentName', Component);
 
 ```js
 const element = $('#my-element');
-renderComponent('customComponentName', {user_id: 1}, element);
+RWR.renderComponent('customComponentName', {user_id: 1}, element);
 ```
 
 #### Render component in controller
