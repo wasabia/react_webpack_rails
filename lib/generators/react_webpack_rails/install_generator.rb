@@ -2,41 +2,43 @@ module ReactWebpackRails
   class InstallGenerator < Rails::Generators::Base
     desc 'Prepare files necessary to use react-webpack-rails gem in a rails app.'
     source_root File.expand_path('../templates', __FILE__)
-    class_option :example, type: :boolean, default: true, desc: 'Include example component and test files.'
-    class_option :router, type: :boolean, default: true, desc: 'Add and expose react-router globally.'
+    class_option :no_example, type: :boolean, default: false, desc: 'Skip generating example.'
+    class_option :no_server_side, type: :boolean, default: false, desc: 'Skip node server setup.'
+    class_option :no_hot_reload, type: :boolean, default: false, desc: 'Skip hot relaod setup generation.'
+    class_option :no_karma_setup, type: :boolean, default: false, desc: 'Skip karma setup generation.'
 
-    def generate_layout
-      copy_file '.babelrc', '.babelrc'
-      copy_file 'karma.conf.js', 'karma.conf.js'
-      copy_file 'react/node_server.js', 'app/react/node_server.js'
-      copy_file 'partial/_react_hot_assets.html.erb', 'app/views/layouts/_react_hot_assets.html.erb'
-
-      copy_file 'forever/development.json', 'forever/development.json'
-      copy_file 'forever/production.json', 'forever/production.json'
-
-      copy_file 'webpack.config.js', 'webpack.config.js'
-      copy_file 'webpack/dev.config.js', 'webpack/dev.config.js'
-      copy_file 'webpack/hot-dev.config.js', 'webpack/hot-dev.config.js'
-      copy_file 'webpack/production.config.js', 'webpack/production.config.js'
-      copy_file 'webpack/tests.config.js', 'webpack/tests.config.js'
-
-      create_file 'app/assets/javascripts/react_bundle.js'
-
-      template 'package.json.erb', 'package.json'
-      template 'react/index.js.erb', 'app/react/index.js'
-
-      if options.example
-        copy_file 'react/components/hello-world-test.jsx', 'app/react/components/hello-world-test.jsx'
-        copy_file 'react/components/hello-world.jsx', 'app/react/components/hello-world.jsx'
-      else
-        create_file 'app/react/components/.keep'
-      end
+    def generate_core
+      generate 'react_webpack_rails:install:core --tmp_package'
     end
 
-    private
+    def generate_hot_reload
+      return if options.no_hot_reload
+      generate 'react_webpack_rails:install:hot_reload --tmp_package'
+    end
 
-    def file_name
-      layout_name.underscore
+    def generate_server_side
+      return if options.no_hot_reload
+      generate 'react_webpack_rails:install:server_side --tmp_package'
+    end
+
+    def generate_karma_setup
+      return if options.no_karma_setup
+      generate 'react_webpack_rails:install:karma_setup --tmp_package'
+    end
+
+    def generate_example
+      return if options.no_example
+      example_generator = 'react_webpack_rails:install:example'
+      example_generator += ' --no_server_side' if options.no_server_side
+      generate example_generator
+    end
+
+    def copy_package
+      create_file 'package.json', File.read(Rails.root.join('tmp/package.json'))
+    end
+
+    def cleanup
+      remove_file('tmp/package.json')
     end
   end
 end
