@@ -6,6 +6,7 @@ module ReactWebpackRails
     class_option :no_server_side, type: :boolean, default: false, desc: 'Skip node server setup.'
     class_option :no_hot_reload, type: :boolean, default: false, desc: 'Skip hot relaod setup generation.'
     class_option :no_karma_setup, type: :boolean, default: false, desc: 'Skip karma setup generation.'
+    class_option :react_router, type: :boolean, default: false, desc: 'Install react router'
 
     def generate_core
       generate 'react_webpack_rails:install:core --tmp_package'
@@ -31,6 +32,11 @@ module ReactWebpackRails
       example_generator = 'react_webpack_rails:install:example'
       example_generator += ' --no_server_side' if options.no_server_side
       generate example_generator
+    end
+
+    def generate_react_router
+      return unless options.react_router
+      generate 'react_webpack_rails:install:react_router --tmp_package'
     end
 
     def copy_package
