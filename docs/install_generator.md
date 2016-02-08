@@ -1,4 +1,5 @@
 # Instlal Generator
+=======
 Install generator is build from 6 independent generators responsible for different parts of installation process. All steps except core generator can be skipped by passing one of possible [options]().
 
 ```bash
@@ -40,27 +41,14 @@ Running install generator with default options will create fallowing files:
 ```
 
 And modify:
-- `config/routes.rb` by adding route for example component
+- `config/routes.rb` by adding route for example component,
 - `app/views/layouts/application.html.erb` by adding hot_reload partial.
 
 ### Options
 * *--no_example bool* - skip example generator
 * *--no_hot_reload bool* - skip hot_reload generator
-* *--no_server_side bool* - skip server_side setup generator
-* *--no_karma_setup bool* - skip karma_setup
-* *--react_router bool* - add react_rotuer setup
+* *--no_server_side bool* - skip server_side  generator
+* *--no_karma_setup bool* - skip karma_setup generator
+* *--react_router bool* - run react_rotuer generator
 
-## Core generator
-TODO
-
-## Hot-reload generator
-TODO
-
-## Karma setup generator
-TODO
-
-## Example generator
-TODO
-
-## React-router generator
-TODO
+*Detailed description of generators coming soon...*
