@@ -4,7 +4,7 @@ module ReactWebpackRails
 
     class ReactRouterGenerator < Rails::Generators::Base
       include MergeHelpers
-      desc "Add react-router setup"
+      desc 'Add react-router setup'
       source_root File.expand_path('../../templates', __FILE__)
 
       class_option :tmp_package,

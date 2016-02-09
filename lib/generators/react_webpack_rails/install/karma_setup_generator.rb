@@ -4,7 +4,7 @@ module ReactWebpackRails
 
     class KarmaSetup < Rails::Generators::Base
       include MergeHelpers
-      desc "Add karma setup with mocha and except"
+      desc 'Add karma setup with mocha and except'
       source_root File.expand_path('../../templates', __FILE__)
 
       class_option :tmp_package,

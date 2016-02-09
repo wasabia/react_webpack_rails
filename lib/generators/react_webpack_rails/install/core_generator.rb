@@ -1,7 +1,7 @@
 module ReactWebpackRails
   module Install
     class CoreGenerator < Rails::Generators::Base
-      desc 'Install basic stuff'
+      desc 'Create basic files structure, prepare package.json and webpack setup'
       source_root File.expand_path('../../templates', __FILE__)
 
       class_option :tmp_package,
@@ -14,6 +14,10 @@ module ReactWebpackRails
         copy_file '.babelrc', '.babelrc'
         create_file 'app/assets/javascripts/react_bundle.js'
         template 'react/index.js', 'app/react/index.js'
+      end
+
+      def structure
+        create_file 'app/react/components/.keep'
       end
 
       def package

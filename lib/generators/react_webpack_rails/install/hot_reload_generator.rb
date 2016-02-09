@@ -4,7 +4,7 @@ module ReactWebpackRails
 
     class HotReloadGenerator < Rails::Generators::Base
       include MergeHelpers
-      desc "Add hot reload setup"
+      desc 'Add hot reload setup'
       source_root File.expand_path('../../templates', __FILE__)
 
       class_option :tmp_package,

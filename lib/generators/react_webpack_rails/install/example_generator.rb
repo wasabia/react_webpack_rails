@@ -1,10 +1,13 @@
 module ReactWebpackRails
   module Install
     class ExampleGenerator < Rails::Generators::Base
-      desc "Add example component, its controller and router"
+      desc 'Add example component, its controller and router'
       source_root File.expand_path('../../templates', __FILE__)
 
-      class_option :no_server_side, type: :boolean, default: false, desc: 'Skip server_side example'
+      class_option :server_side,
+                   type: :boolean,
+                   default: true,
+                   desc: 'Set server_side: true in example'
 
       def es6_example
         copy_file 'react/components/hello-world-test.jsx', 'app/react/components/hello-world-test.jsx'
@@ -19,7 +22,7 @@ module ReactWebpackRails
 
       def controller_and_view
         copy_file 'examples/react_examples_controller.rb', 'app/controllers/react_examples_controller.rb'
-        template = "examples/#{options.no_server_side ? '' : 'ssr-'}component_view.html.erb"
+        template = "examples/#{options.server_side ? 'ssr-' : ''}component_view.html.erb"
         copy_file template, 'app/views/react_examples/component.html.erb'
       end
 
