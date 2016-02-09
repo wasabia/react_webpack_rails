@@ -20,6 +20,15 @@ module ReactWebpackRails
         create_file 'app/react/components/.keep'
       end
 
+      def gitignore
+        append_file '.gitignore' do <<-'TEXT'.strip_heredoc
+          /node_modules
+          /app/assets/javascripts/react_bundle.js
+          /app/assets/stylesheets/react_bundle.css
+          TEXT
+        end
+      end
+
       def package
         if options.tmp_package
           copy_file 'packages/core.json', 'tmp/package.json', force: true
