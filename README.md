@@ -2,11 +2,18 @@
 [![Travis CI](https://travis-ci.org/netguru/react_webpack_rails.svg?branch=master)](https://travis-ci.org/netguru/react_webpack_rails)
 
 #### Rails - Webpack setup with React integration.
-Inspired and partially based on https://github.com/reactjs/react-rails/ this gem provides generators and helpers that makes react-webpack-rails integration easy.
-
+This gem provides easy and convenient way to build modern JavaScript stack on top of Rails applications using [Webpack](http://webpack.github.io/) and [React](https://facebook.github.io/react/).
 
 ### Development branch!
 See [0.1-stable](https://github.com/netguru/react_webpack_rails/tree/0.1-stable) for latest release.
+
+## Features
+* [Install Generator]((https://github.com/netguru/react_webpack_rails/blob/master/docs/install_generator.md) for quick [Webpack](http://webpack.github.io/) setup.
+* Integrated [react-hot-loader](https://github.com/gaearon/react-hot-loader)
+* Es6/7 support with [bablejs](https://babeljs.io/).
+* Node.js based [server-side JavaScript execution](https://github.com/netguru/react_webpack_rails/blob/master/docs/server_side_rendering.md).
+* [React](https://facebook.github.io/react/) integration with server prerender option.
+* [React-router](https://github.com/rackt/react-router) integration.
 
 ## Installation
 
@@ -68,15 +75,6 @@ And require integration and bundle files in `application.js`
 //= require react_integration
 //= require react_bundle
 ```
-
-
-You probably also want to add the compiled react javascript to your `.gitignore`
-
-```bash
-# React bundle
-app/assets/javascripts/react_bundle.js
-```
-
 
 ### Babel
 
