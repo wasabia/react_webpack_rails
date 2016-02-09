@@ -8,7 +8,7 @@ This gem provides easy and convenient way to build modern JavaScript stack on to
 See [0.1-stable](https://github.com/netguru/react_webpack_rails/tree/0.1-stable) for latest release.
 
 ## Features
-* [Install Generator]((https://github.com/netguru/react_webpack_rails/blob/master/docs/install_generator.md) for quick [Webpack](http://webpack.github.io/) setup.
+* [Install Generator](https://github.com/netguru/react_webpack_rails/blob/master/docs/install_generator.md) for quick [Webpack](http://webpack.github.io/) setup.
 * Integrated [react-hot-loader](https://github.com/gaearon/react-hot-loader)
 * Es6/7 support with [bablejs](https://babeljs.io/).
 * Node.js based [server-side JavaScript execution](https://github.com/netguru/react_webpack_rails/blob/master/docs/server_side_rendering.md).
