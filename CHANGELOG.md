@@ -15,6 +15,19 @@
 * fixed props processing
 * Added react_component render
 
+#### migration 0.1.2 -> UNRELEASED
+* Make sure you have latest npm package installed. In your package.json:
+```js
+"react_webpack_rails": "UNRELEASED"
+```
+* In `app/react/index.js` replace `window.RWR = RWR;` with `RWR.run();` - its required by node environment.
+* Setup node server by running server_side generator.
+```bash
+$ rails generate react_webpack_rails:install:server_side
+```
+
+  ***note***: *generator will ask you to override existing package.json. Don't worry about its conent - generator is doing merge on existing pacakge.*
+
 ## 0.1.2 (February 3, 2015)
 * fix camelize_props
 * allow camelize for AMS objects
