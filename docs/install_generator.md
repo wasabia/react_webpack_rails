@@ -1,5 +1,6 @@
-# Instlal Generator
+Instlall Generator
 =======
+
 Install generator is build from 6 independent generators responsible for different parts of installation process. All steps except core generator can be skipped by passing one of possible [options]().
 
 ```bash
@@ -45,9 +46,9 @@ And modify:
 - `app/views/layouts/application.html.erb` by adding hot_reload partial.
 
 ### Options
-* *--no_example bool* - skip example generator
-* *--no_hot_reload bool* - skip hot_reload generator
-* *--no_server_side bool* - skip server_side  generator
+* *--no-example bool* - skip example generator
+* *--no-hot-reload bool* - skip hot_reload generator
+* *--no-server-side bool* - skip server_side  generator
 * *--no_karma_setup bool* - skip karma_setup generator
 * *--react_router bool* - run react_rotuer generator
 

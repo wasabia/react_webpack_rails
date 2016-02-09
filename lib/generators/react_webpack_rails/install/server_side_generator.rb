@@ -4,7 +4,7 @@ module ReactWebpackRails
 
     class ServerSideGenerator < Rails::Generators::Base
       include MergeHelpers
-      desc "Add node serer for server side execution"
+      desc "Add node server for server side execution"
       source_root File.expand_path('../../templates', __FILE__)
 
       class_option :tmp_package,

@@ -18,7 +18,7 @@ module ReactWebpackRails
     end
 
     def generate_server_side
-      return unless options.hot_reload
+      return unless options.server_side
       generate 'react_webpack_rails:install:server_side --tmp_package'
     end
 

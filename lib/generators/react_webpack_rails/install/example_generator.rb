@@ -1,7 +1,7 @@
 module ReactWebpackRails
   module Install
     class ExampleGenerator < Rails::Generators::Base
-      desc "Add example compoennt, it's controller and router"
+      desc "Add example component, its controller and router"
       source_root File.expand_path('../../templates', __FILE__)
 
       class_option :no_server_side, type: :boolean, default: false, desc: 'Skip server_side example'
