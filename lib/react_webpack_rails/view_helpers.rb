@@ -28,6 +28,16 @@ module ReactWebpackRails
       react_element('react-router', name: name)
     end
 
+    def redux_store(name, raw_props = {}, options = {})
+      props = raw_props.as_json
+      props = camelize_props_key(props) if Rails.application.config.react.camelize_props
+      react_element('redux-store', { props: props }, options)
+    end
+
+    def redux_container(name, options = {})
+      react_element('redux-container', { name: name }, options)
+    end
+
     private
 
     def camelize_props_key(props)
