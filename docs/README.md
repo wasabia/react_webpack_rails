@@ -11,3 +11,4 @@
     * [js: renderRouter](https://github.com/netguru/react_webpack_rails/blob/master/docs/api.md#renderrouter)
     * [ruby: react_router](https://github.com/netguru/react_webpack_rails/blob/master/docs/api.md#react_router)
 2. [Server-Side Rendering](https://github.com/netguru/react_webpack_rails/blob/master/docs/server_side_rendering.md)
+3. [Install Generator]((https://github.com/netguru/react_webpack_rails/blob/master/docs/install_generator.md))
