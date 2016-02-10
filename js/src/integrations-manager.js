@@ -1,11 +1,14 @@
 import reactIntegration from './integrations/react';
 import reactRouterIntegration from './integrations/react-router';
+import reduxIntegration from './integrations/redux';
 
 class IntegrationsManager {
   constructor() {
     this.integrations = {
       'react-component': reactIntegration.integrationWrapper,
       'react-router': reactRouterIntegration.integrationWrapper,
+      'redux-store': reduxIntegration.storeIntegrationWrapper,
+      'redux-container': reduxIntegration.containerIntegrationWrapper
     };
   }
 
