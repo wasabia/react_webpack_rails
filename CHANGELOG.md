@@ -1,4 +1,4 @@
-## UNRELEASED
+## 0.2.0
 * Added server-side execution of js
   * Updated package.json generator,
     * Added dependencies:
@@ -15,10 +15,10 @@
 * fixed props processing
 * Added react_component render
 
-#### migration 0.1.2 -> UNRELEASED
+#### migration 0.1.2 -> 0.2.0
 * Make sure you have latest npm package installed. In your package.json:
 ```js
-"react_webpack_rails": "UNRELEASED"
+"react_webpack_rails": "0.2.0"
 ```
 * In `app/react/index.js` replace `window.RWR = RWR;` with `RWR.run();` - it's required by node environment.
 * Setup node server by running server_side generator.
