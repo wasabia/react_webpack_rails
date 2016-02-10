@@ -18,7 +18,7 @@
 #### migration 0.1.2 -> 0.2.0
 * Make sure you have latest npm package installed. In your package.json:
 ```js
-"react_webpack_rails": "0.2.0"
+"react-webpack-rails": "0.2.0"
 ```
 * In `app/react/index.js` replace `window.RWR = RWR;` with `RWR.run();` - it's required by node environment.
 * Setup node server by running server_side generator.
