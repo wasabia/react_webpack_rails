@@ -3,6 +3,7 @@ import nodes from './nodes';
 import integrationsManager from './integrations-manager';
 import react from './integrations/react';
 import reactRouter from './integrations/react-router';
+import redux from './integrations/redux';
 import version from './version';
 
 export { react as react };
@@ -26,6 +27,9 @@ class RWR {
     this.registerRouter = reactRouter.registerRouter;
     this.unmountRouter = reactRouter.unmountRouter;
     this.getRouter = reactRouter.getRouter;
+
+    this.registerStore = redux.registerStore;
+    this.registerContainer = redux.registerContainer;
 
     this.mountNodes = nodes.mountNodes;
     this.unmountNodes = nodes.unmountNodes;
