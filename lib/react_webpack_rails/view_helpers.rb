@@ -31,11 +31,12 @@ module ReactWebpackRails
     def redux_store(name, raw_props = {}, options = {})
       props = raw_props.as_json
       props = camelize_props_key(props) if Rails.application.config.react.camelize_props
-      react_element('redux-store', { props: props }, options)
+      react_element('redux-store', { name: name, props: props }, options)
     end
 
     def redux_container(name, options = {})
-      react_element('redux-container', { name: name }, options)
+      store_name = options.delete(:store_name)
+      react_element('redux-container', { name: name, storeName: store_name }, options)
     end
 
     private

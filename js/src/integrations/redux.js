@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 
 class ReduxIntegration {
   constructor() {
-    this.store = null;
-    this.mountedStore = null;
+    this.stores = {};
+    this.mountedStores = {};
     this.containers = {};
 
     this.registerStore = this.registerStore.bind(this);
@@ -21,16 +21,17 @@ class ReduxIntegration {
     this.renderContainerToString = this.renderContainerToString.bind(this);
   }
 
-  registerStore(store) {
-    this.store = store;
+  registerStore(name, store) {
+    this.stores[name] = store;
   }
 
-  mountStore(props) {
-    this.mountedStore = this.store(props);
+  mountStore(name, props) {
+    const storeObject = this.stores[name](props);
+    this.mountedStores[name] = storeObject;
   }
 
-  getStore() {
-    return this.mountedStore;
+  getStore(name) {
+    return this.mountedStores[name];
   }
 
   registerContainer(name, container) {
@@ -46,13 +47,13 @@ class ReduxIntegration {
     return React.createElement(constructor, props);
   }
 
-  createRootComponent(name, props) {
+  createRootComponent(name, props, storeName) {
     const container = this.createContainer(name, props);
-    return React.createElement(Provider, { store: this.getStore() }, container);
+    return React.createElement(Provider, { store: this.getStore(storeName) }, container);
   }
 
-  renderContainer(name, props, node) {
-    const rootComponent = this.createRootComponent(name, props);
+  renderContainer(name, props, node, storeName) {
+    const rootComponent = this.createRootComponent(name, props, storeName);
     render(rootComponent, node);
   }
 
@@ -60,15 +61,15 @@ class ReduxIntegration {
     unmountComponentAtNode(node);
   }
 
-  renderContainerToString(name, props) {
-    const rootComponent = this.createRootComponent(name, props);
+  renderContainerToString(name, props, storeName) {
+    const rootComponent = this.createRootComponent(name, props, storeName);
     renderToString(rootComponent);
   }
 
   get storeIntegrationWrapper() {
     return {
       mount: function _mount(node, payload) {
-        this.mountStore(payload.props);
+        this.mountStore(payload.name, payload.props);
       }.bind(this)
     }
   }
@@ -76,7 +77,7 @@ class ReduxIntegration {
   get containerIntegrationWrapper() {
     return {
       mount: function _mount(node, payload) {
-        this.renderContainer(payload.name, payload.props, node);
+        this.renderContainer(payload.name, payload.props, node, payload.storeName);
       }.bind(this),
 
       unmount: function _unmount(node) {
