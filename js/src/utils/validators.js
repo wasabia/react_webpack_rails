@@ -18,6 +18,5 @@ export function isFunction(func, errorMsg) {
 }
 
 export function isReduxStore(store, errorMsg) {
-    console.log(!_isReduxStore(store));
   if (!_isObject(store) || !_isReduxStore(store)) throw new Error(errorMsg);
 }
