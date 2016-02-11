@@ -3,6 +3,8 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux'
 
+import { isFunction, isReduxStore } from '../utils/validators';
+
 class ReduxIntegration {
   constructor() {
     this.stores = {};
@@ -22,11 +24,16 @@ class ReduxIntegration {
   }
 
   registerStore(name, store) {
+    isFunction(store, `Error when registering '${name}' store: must be a function.`);
     this.stores[name] = store;
   }
 
   mountStore(name, props) {
-    const storeObject = this.stores[name](props);
+    const store = this.stores[name];
+    isFunction(store, `Error when mounting '${name}' store: must be a function.`);
+
+    const storeObject = store(props);
+    isReduxStore(storeObject, `Error when mounting '${name}' store: must be a valid Redux store.`);
     this.mountedStores[name] = storeObject;
   }
 
