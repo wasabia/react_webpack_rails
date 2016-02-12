@@ -49,18 +49,18 @@ class ReduxIntegration {
     return this.containers[name];
   }
 
-  createContainer(name, props) {
+  createContainer(name) {
     const constructor = this.getContainer(name);
-    return React.createElement(constructor, props);
+    return React.createElement(constructor);
   }
 
-  createRootComponent(name, props, storeName) {
-    const container = this.createContainer(name, props);
+  createRootComponent(name, storeName) {
+    const container = this.createContainer(name);
     return React.createElement(Provider, { store: this.getStore(storeName) }, container);
   }
 
-  renderContainer(name, props, node, storeName) {
-    const rootComponent = this.createRootComponent(name, props, storeName);
+  renderContainer(name, node, storeName) {
+    const rootComponent = this.createRootComponent(name, storeName);
     render(rootComponent, node);
   }
 
@@ -84,7 +84,7 @@ class ReduxIntegration {
   get containerIntegrationWrapper() {
     return {
       mount: function _mount(node, payload) {
-        this.renderContainer(payload.name, payload.props, node, payload.storeName);
+        this.renderContainer(payload.name, node, payload.storeName);
       }.bind(this),
 
       unmount: function _unmount(node) {
@@ -92,7 +92,7 @@ class ReduxIntegration {
       }.bind(this),
 
       nodeRun: function _prerender(payload) {
-        return this.renderContainerToString(payload.name, payload.props);
+        return this.renderContainerToString(payload.name);
       }.bind(this)
     };
   }
