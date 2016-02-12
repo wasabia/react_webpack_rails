@@ -68,14 +68,14 @@ class ReduxIntegration {
     unmountComponentAtNode(node);
   }
 
-  renderContainerToString(name, props, storeName) {
-    const rootComponent = this.createRootComponent(name, props, storeName);
+  renderContainerToString(name, storeName) {
+    const rootComponent = this.createRootComponent(name, storeName);
     renderToString(rootComponent);
   }
 
   get storeIntegrationWrapper() {
     return {
-      mount: function _mount(node, payload) {
+      mount: function _mount(_, payload) {
         this.mountStore(payload.name, payload.props);
       }.bind(this)
     }
