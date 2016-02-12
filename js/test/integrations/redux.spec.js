@@ -1,7 +1,8 @@
 import expect, { spyOn } from 'expect';
-import ReactDOM from 'react-dom';
 import { createStore } from 'redux'
 import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 
 import subject from '../../src/integrations/redux';
 
@@ -21,6 +22,7 @@ describe('ReduxIntegration', function () {
     subject.stores = {};
     subject.mountedStores = {};
     subject.containers = {};
+    expect.restoreSpies();
   });
 
   describe('.constructor', function() {
@@ -122,7 +124,7 @@ describe('ReduxIntegration', function () {
   });
 
   describe('#renderContainer', function() {
-    it('calls #createRootComponent and React.render functions', function() {
+    it('calls #createRootComponent and ReactDOM.render functions', function() {
       const subjectSpy = spyOn(subject, 'createRootComponent');
       const reactSpy = spyOn(ReactDOM, 'render');
 
@@ -131,6 +133,41 @@ describe('ReduxIntegration', function () {
       expect(subjectSpy.calls.length).toEqual(1);
       expect(subjectSpy).toHaveBeenCalledWith('ContainerName', 'StoreName');
       expect(reactSpy.calls.length).toEqual(1);
+    });
+  });
+
+  describe('#unmountContainer', function() {
+    const node = { nodeType: 1, nodeName: 'DIV' };
+    const unmountSpy = spyOn(ReactDOM, 'unmountComponentAtNode');
+
+    subject.unmountContainer(node);
+
+    expect(unmountSpy.calls.length).toEqual(1);
+    expect(unmountSpy).toHaveBeenCalledWith(node);
+  });
+
+  describe('#renderContainerToString', function() {
+    it('calls #createRootComponent and ReactDOM.renderToString', function() {
+      const subjectSpy = spyOn(subject, 'createRootComponent');
+      const reactSpy = spyOn(ReactDOMServer, 'renderToString');
+
+      subject.renderContainerToString('ContainerName', 'StoreName');
+
+      expect(subjectSpy.calls.length).toEqual(1);
+      expect(subjectSpy).toHaveBeenCalledWith('ContainerName', 'StoreName');
+      expect(reactSpy.calls.length).toEqual(1);
+    });
+  });
+
+  describe('#storeIntegrationWrapper.mount', function() {
+    it('calls #mountStore function', function() {
+      const mountStoreSpy = spyOn(subject, 'mountStore');
+      const payload = { name: 'StoreName', props: { fake: 'props' } };
+
+      subject.storeIntegrationWrapper.mount('', payload)
+
+      expect(mountStoreSpy.calls.length).toEqual(1);
+      expect(mountStoreSpy).toHaveBeenCalledWith(payload.name, payload.props);
     });
   });
 });
