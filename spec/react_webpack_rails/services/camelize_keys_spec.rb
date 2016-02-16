@@ -16,5 +16,12 @@ describe ReactWebpackRails::Services::CamelizeKeys do
 
       it { expect(described_class.call(props)).to eq(camelized_props) }
     end
+
+    context 'when props has nested hash' do
+      let(:props) { { nested_hash: { props_name: 'name' } } }
+      let(:camelized_props) { { 'nestedHash' => { 'propsName' => 'name' } } }
+
+      it { expect(described_class.call(props)).to eq(camelized_props) }
+    end
   end
 end
