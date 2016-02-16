@@ -14,7 +14,7 @@ namespace :test do
 
   desc 'Run gem tests'
   task :gem do
-    sh %Q(bundle exec rspec spec/react_webpack_rails_spec.rb)
+    sh %Q(bundle exec rspec spec/react_webpack_rails_spec.rb spec/react_webpack_rails)
   end
 
   desc 'Run rspec for rails3 application'
