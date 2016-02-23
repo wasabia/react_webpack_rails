@@ -31,43 +31,12 @@ Then run installation:
 
     $ rails g react_webpack_rails:install
 
-This will create following files:
+*read more about [install  generator]((https://github.com/netguru/react_webpack_rails/blob/master/docs/install_generator.md) here*
 
-```
-├── app
-│   ├── react
-│   │   ├── components
-│   │   │   ├── hello-world.jsx
-│   │   │   └── hello-world-test.jsx
-│   │   └── index.js
-│   ├── views
-│   │   └── layouts
-│   │       └── _react_hot_assets.html.erb
-│   └── assets
-│       └── javascripts
-│           └──react_bundle.js
-├── webpack
-│   ├── dev.config.js
-│   ├── hot-dev.config.js
-│   ├── production.config.js
-│   └── tests.config.js
-├── .babelrc
-├── karma.conf.js
-├── package.json
-└── webpack.config.js
-```
 
 Establish the node packages (may take a few moments)
 
     $ npm install    # you may see warnings to consider updating the provided package.json file with license and repository
-
-Make sure you have [webpack](https://webpack.github.io/docs/installation.html) installed globally:
-
-    $ npm install webpack -g
-
-Generate `react_bundle` for first time:
-
-    $ webpack
 
 And require integration and bundle files in `application.js`
 
@@ -125,19 +94,18 @@ Run webpack in hot-auto-reloading mode using script (to use it you have to add `
 
     $ npm run start-hot-dev
 
-Or manually:
+If you are using server side render in components *(it's enabled by default in generated example)*, run node server:
 
-    $ webpack -w --config YOUR_CONFIG
-
+    $ npm run rwr-node-dev-server
 
 ### Production environment
 Run webpack in production mode before compiling assets using script:
 
     $ npm run build
 
-or manually:
+If you are using server side render *(it's enabled by default in generated example)*, run node server:
 
-    $ webpack -p --config YOUR_CONFIG
+    $ npm run rwr-node-server
 
 #### Deployment
 Check [docs/deployment.md](docs/deployment.md)
