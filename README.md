@@ -94,7 +94,7 @@ Run webpack in hot-auto-reloading mode using script (to use it you have to add `
 
     $ npm run start-hot-dev
 
-If you are using server side render in components, run node server:
+If you are using server side render in components *(it's enabled by default in generated example)*, run node server:
 
     $ npm run rwr-node-dev-server
 
@@ -103,7 +103,7 @@ Run webpack in production mode before compiling assets using script:
 
     $ npm run build
 
-If you are using server side render, run node server:
+If you are using server side render *(it's enabled by default in generated example)*, run node server:
 
     $ npm run rwr-node-server
 
