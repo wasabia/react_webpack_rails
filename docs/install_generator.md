@@ -1,4 +1,4 @@
-Instlall Generator
+Install Generator
 =======
 
 `Install` generator is build from 6 independent generators responsible for different parts of installation process. All steps except core generator can be skipped by passing one of possible [options]().
