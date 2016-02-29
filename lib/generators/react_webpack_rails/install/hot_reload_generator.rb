@@ -31,7 +31,7 @@ module ReactWebpackRails
       private
 
       def template_language_settings(command)
-        layout_file = Dir.glob("app/views/layouts/application.*").first
+        layout_file = Dir.glob('app/views/layouts/application.*').first
 
         case File.extname(layout_file)
         when '.slim'
