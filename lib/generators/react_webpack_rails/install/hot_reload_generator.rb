@@ -23,10 +23,23 @@ module ReactWebpackRails
 
       def partial
         copy_file 'partial/_react_hot_assets.html.erb', 'app/views/layouts/_react_hot_assets.html.erb'
+        settings = template_language_settings("render 'layouts/react_hot_assets'")
 
-        inject_into_file 'app/views/layouts/application.html.erb', after: "<body>\n" do <<-'HTML'.strip_heredoc
-          <%= render 'layouts/react_hot_assets' %>
-        HTML
+        inject_into_file settings[:layout_file], settings[:parsed_command], after: "#{settings[:body_tag]}\n"
+      end
+
+      private
+
+      def template_language_settings(command)
+        layout_file = Dir.glob('app/views/layouts/application.*').first
+
+        case File.extname(layout_file)
+        when '.slim'
+          return { layout_file: layout_file, body_tag: 'body', parsed_command: "  = #{command}\n" }
+        when '.haml'
+          return { layout_file: layout_file, body_tag: '%body', parsed_command: "  = #{command}\n" }
+        else
+          return { layout_file: layout_file, body_tag: '<body>', parsed_command: "<%= #{command} %>\n" }
         end
       end
     end
