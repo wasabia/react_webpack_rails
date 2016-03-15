@@ -15,6 +15,9 @@ See [0.2-stable](https://github.com/netguru/react_webpack_rails/tree/0.2-stable)
 * [React](https://facebook.github.io/react/) integration with server prerender option.
 * [React-router](https://github.com/rackt/react-router) integration.
 
+### Plugins:
+* [rwr-alt](https://github.com/netguru/rwr-alt) plugin that makes it possible to populate and share Alt stores between react component located in different parts of rails views.
+
 ## Installation
 
 Add this line to your application's Gemfile:
