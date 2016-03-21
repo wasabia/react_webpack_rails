@@ -21,7 +21,7 @@ To set the node server address, override this option to a string of your choice:
 <%# A view in erb %>
 <%= react_component('HelloWorld', { name: @name }, server_side: true) %>
 ```
-`HelloWorld` is the name of the react component, which has to be `import`ed and `registered`ed in your `app/react/index.js` like so:
+`HelloWorld` is the name of the react component, which has to be `import`ed and `register`ed in your `app/react/index.js` like so:
 ```js
 import HelloWorld from './components/hello-world';
 RWR.registerComponent('HelloWorld', HelloWorld);
