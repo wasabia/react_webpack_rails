@@ -52,6 +52,7 @@ module ReactWebpackRails
 
     def generate_react_router
       return unless options.react_router
+      deprecation_warning
       generate 'react_webpack_rails:install:react_router --tmp_package'
     end
 
@@ -61,6 +62,18 @@ module ReactWebpackRails
 
     def cleanup
       remove_file('tmp/package.json')
+    end
+
+    private
+
+    def deprecation_warning
+      message = [
+        "\nDEPRECATION WARNING - since v0.3.0:",
+        "current integration with react-router was extracted and moved to external plugin.",
+        "Use https://github.com/netguru/rwr-react_router instead.\n\n",
+      ]
+
+      warn message.join("\n")
     end
   end
 end
