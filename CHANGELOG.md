@@ -1,3 +1,8 @@
+## 0.3.0
+* move integration with react-router to external plugin: https://github.com/netguru/rwr-react_router
+* add redux integration by external plugin: https://github.com/netguru/rwr-redux
+* support haml and coffee script in generator
+
 ## 0.2.1
 * Fix Readme typo
 * Fix json loader in generator
@@ -63,7 +68,7 @@ $ rails generate react_webpack_rails:install:server_side
 
   ```
   $ npm i --save-dev babel-core@^6.0.0 babel-loader@^6.0.0 babel-preset-stage-1@^6.0.0 babel-preset-react@^6.0.0 babel-preset-es2015@^6.0.0
-  ```  
+  ```
 
 4. Update babel config file (we use stage-1).
 
