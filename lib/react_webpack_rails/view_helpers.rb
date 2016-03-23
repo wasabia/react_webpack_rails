@@ -27,6 +27,7 @@ module ReactWebpackRails
     end
 
     def react_router(name)
+      deprecation_warning
       react_element('react-router', name: name)
     end
 
@@ -34,6 +35,16 @@ module ReactWebpackRails
 
     def server_side(server_side)
       server_side.nil? ? Rails.application.config.react.server_side : server_side
+    end
+
+    def deprecation_warning
+      message = [
+        "\nDEPRECATION WARNING - since v0.3.0:",
+        "current integration with react-router was extracted and moved to external plugin.",
+        "Use https://github.com/netguru/rwr-react_router instead.\n\n",
+      ]
+
+      warn message.join("\n")
     end
   end
 end
