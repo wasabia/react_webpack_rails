@@ -35,7 +35,7 @@ Then run installation:
 
     $ rails g react_webpack_rails:install
 
-*read more about [install  generator]((https://github.com/netguru/react_webpack_rails/blob/master/docs/install_generator.md) here*
+*read more about [install  generator](https://github.com/netguru/react_webpack_rails/blob/master/docs/install_generator.md) here*
 
 
 Establish the node packages (may take a few moments)
