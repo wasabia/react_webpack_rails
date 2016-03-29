@@ -18,10 +18,10 @@ class ReactRouterIntegration {
     this.registerRouter = this.registerRouter.bind(this);
     this.getRouter = this.getRouter.bind(this);
     this.renderRouter = this.renderRouter.bind(this);
-    deprecationWarning();
   }
 
   registerRouter(name, route) {
+    deprecationWarning();
     this.routers[name] = route;
   }
 
