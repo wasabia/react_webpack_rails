@@ -10,7 +10,7 @@ See [0.3-stable](https://github.com/netguru/react_webpack_rails/tree/0.3-stable)
 ## Features
 * [Install Generator](https://github.com/netguru/react_webpack_rails/blob/master/docs/install_generator.md) for quick [Webpack](http://webpack.github.io/) setup.
 * Integrated [react-hot-loader](https://github.com/gaearon/react-hot-loader)
-* ES6/7 support with [bablejs](https://babeljs.io/).
+* ES6/7 support with [babeljs](https://babeljs.io/).
 * Node.js based [server-side JavaScript execution](https://github.com/netguru/react_webpack_rails/blob/master/docs/server_side_rendering.md).
 * [React](https://facebook.github.io/react/) integration with server prerender option.
 * [React-router](https://github.com/rackt/react-router) integration.
