@@ -1,4 +1,4 @@
-Instlall Generator
+Install Generator
 =======
 
 `Install` generator is build from 6 independent generators responsible for different parts of installation process. All steps except core generator can be skipped by passing one of possible [options]().
@@ -50,6 +50,6 @@ And modify:
 * *--no-hot-reload* - skip hot_reload generator
 * *--no-server-side* - skip server_side  generator
 * *--no-karma-setup* - skip karma_setup generator
-* *--react-router* - run react_rotuer generator
+* *--react-router* - run react_rotuer generator [DEPRECIATED since v0.3.0 - use [rwr-react_router](https://github.com/netguru/rwr-react_router) instead]
 
 *Detailed description of generators coming soon...*

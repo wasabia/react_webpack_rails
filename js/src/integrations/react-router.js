@@ -1,5 +1,16 @@
 import ReactDOM from 'react-dom';
 
+function deprecationWarning() {
+  if (typeof console !== 'undefined' && console.warn) {
+    const msg = [
+      'Deprecation warning - since v0.3.0: current integration with react-router was extracted and moved to external plugin.',
+      'Use https://github.com/netguru/rwr-react_router instead.',
+    ];
+
+    console.warn(msg.join('\n'));
+  }
+}
+
 class ReactRouterIntegration {
   constructor() {
     this.routers = {};
@@ -10,6 +21,7 @@ class ReactRouterIntegration {
   }
 
   registerRouter(name, route) {
+    deprecationWarning();
     this.routers[name] = route;
   }
 
